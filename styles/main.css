@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Outfit", sans-serif;
+}
+
+header{
+    padding: 1%;
+    display: flex;
+    color: #40a2cb;
+}
+main{
+    background: linear-gradient(135deg, #2684ac, #135673);
+    min-height: 100vh;
+    max-height: 100%;
+    padding: 1%;
+    display: block;
+}
+
+
+
+input, select,textarea{
+    display: block;
+
+    padding: 1% 1%;
+    width: 90%;
+    border-radius: 5px 20px 20px 5px;
+    border: none;
+    outline: none;
+    background-color: #dedede;
+    cursor: pointer;
+}
+button{
+    padding: 1% 2.5%;
+    margin: 1% 0%;
+    text-decoration: none;
+
+    background-color: #4c93af;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+button:active{
+    background-color: #3e788e;
+}
+
+/*
+background-color: #dedede;
+    --color-background: #F9F9F9;     Blanco suave para el fondo 
+    --color-primary: #4CAF50;       /* Verde suave para botones principales y elementos destacados 
+    --color-secondary: #A5D6A7;     /* Verde claro para acentos secundarios 
+    --color-accent: #FFB74D;        /* Naranja para botones o íconos de acción 
+    --color-highlight: #64B5F6;     /* Azul claro para enlaces o notificaciones 
+
+    /* Colores de Texto 
+    --color-text-primary: #333333;  /* Gris oscuro para el texto principal 
+    --color-text-secondary: #666666; /* Gris medio para texto secundario o etiquetas 
+
+    /* Colores de Estado 
+    --color-success: #81C784;       /* Verde claro para mensajes de éxito o validación 
+    --color-warning: #FFD54F;       /* Amarillo para advertencias 
+    --color-error: #E57373;         Rojo suave para mensajes de error*/

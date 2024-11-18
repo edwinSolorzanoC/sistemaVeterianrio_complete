@@ -1,0 +1,62 @@
+@import url(main.css);
+
+
+
+.mostrar-perfil{
+    background-color: white;
+    padding: 1%;
+}
+.mostrar-perfil .tabla-pacientes{
+    width: 25%;
+}
+.mostrar-perfil .boton button{
+    padding: 0.5% 2%;
+}
+.mostrar-perfil .bloque{
+    display: flex;
+    justify-content: space-between;
+}
+.mostrar-perfil .tabla-pacientes table{
+    text-align: center;
+    width: 100%;
+}
+.mostrar-perfil  .tabla-pacientes table thead tr{
+    background-color: #3e788e;
+    color: white;
+}
+.mostrar-perfil  .tabla-pacientes table tbody tr{
+    background-color: #3e778e71;
+}
+.mostrar-perfil  .tabla-pacientes table tbody tr :hover{
+    background-color: #3e788e; 
+}
+
+
+.mostrar-perfil .ver-informacion{
+    width: 70%;
+}
+.mostrar-perfil .ver-informacion .bloque{
+    display: flex;
+}
+.mostrar-perfil .ver-informacion .bloque .divicion{
+    width: 50%;
+}
+.mostrar-perfil .ver-informacion .bloque .divicion input{
+    padding: 1.5%;
+}
+#datosPropietario{
+    display: none;
+}
+
+@media screen and (max-width: 900px){
+    .mostrar-perfil .bloque{
+        display: block;
+    }
+    .mostrar-perfil .tabla-pacientes{
+        width: 100%;
+    }
+    .mostrar-perfil .ver-informacion{
+        width: 100%;
+    }
+    
+}

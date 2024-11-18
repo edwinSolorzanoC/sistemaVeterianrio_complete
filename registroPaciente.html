@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="styles/registroPaciente.css">
+</head>
+<body>
+    <header>
+
+        <section class="titulo-header">
+            <h1>Sadrac - Administracion</h1>
+        </section>
+
+
+    </header>
+    
+    <main>
+
+        <section class="formulario-registro">
+
+            <div class="volver">
+                <form action="/admistracion.html">
+                    <button><i class="fa-solid fa-arrow-left"></i> Volver</button>
+                </form>
+            </div>
+            <h1>Registrar nuevo paciente</h1>
+            <form action="#">
+                <div class="bloque">
+
+                    <div class="datos-propietario">
+                        <h3>Datos Propietario</h3>
+                        <div class="datos">
+                            <label for="nombrePropietario">Escribe nombre del propietario</label>
+                            <input type="text" name="nombrePropietario" id="nombrePropietario" placeholder="Nombre del propietario..." required>
+                        </div>
+                        <div class="datos">
+                            <label for="cedulaPropietario">Escribe cedula del propietario</label>
+                            <input type="number" name="cedulaPropietario" id="cedulaPropietario" placeholder="Cedula del propietario..." required>
+                        </div>
+                        <div class="datos">
+                            <label for="correoPropietario">Escribe correo electronico del propietario</label>
+                            <input type="email" name="correoPropietario" id="correoPropietario" placeholder="Correo electronico del propietario..." required>
+                        </div>
+                        <div class="datos">
+                            <label for="correoPropietario">Escribe el telefono del propietario</label>
+                            <input type="number" name="telefonoPropietario" id="telefonoPropietario" placeholder="Telefono del propietario..." required>
+                        </div>
+                        <div class="datos">
+                            <label for="correoPropietario">Escribe la direccion del propietario</label>
+                            <input type="text" name="direccionPropietario" id="direccionPropietario" placeholder="Direccion del propietario..." required>
+                        </div>
+                        
+                    </div>
+                    <div class="datos-mascota">
+                        <h3>Datos de mascota</h3>
+                        <div class="datos">
+                            <label for="nombreMascota">Escribe nombre de la mascota: </label>
+                            <input type="text" name="nombreMascota" id="nombreMascota" placeholder="Nombre de la mascota" required>
+                        </div>
+                        <div class="datos">
+                            <label for="tipoMascota">Selecciona tipo de mascota: </label>
+                            <select name="tipoMascota" id="tipoMascota" required>
+                                <option value="Canino">Canino</option>
+                                <option value="Felino">Felino</option>
+                            </select>
+                        </div>
+                        <div class="datos">
+                            <label for="razaMascota">Escribe la raza de la mascota: </label>
+                            <input type="text" name="razaMascota" id="razaMascota" placeholder="Raza de mascota..." required>
+                        </div>
+                        <div class="datos">
+                            <label for="pesoMascota">Escribe el peso de la mascota: </label>
+                            <input type="number" name="pesoMascota" id="pesoMascota" placeholder="Solamente escribe el peso de la mascota..." required>
+                        </div>
+                        <div class="datos">
+                            <label for="fechaNacimientoMascota">Escribe fecha de naciemiento de la mascota:</label>
+                            <input type="date" name="fechaNacimientoMascota" id="fechaNacimientoMascota">
+                        </div>
+                        <div class="datos">
+                            <label for="edadMascota">Edad exacta de la mascota: </label>
+                            <input type="number" name="edadMascota" id="edadMascota" placeholder="Automatico..." disabled>
+                        </div>
+                        <div class="datos">
+                            <label for="castracionMascota">Selecciona si las mascota es castrada o no</label>
+                            <select name="castracionMascota" id="castracionMascota">
+                                <option value="true">Si esta castrada</option>
+                                <option value="false">No esta castrada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="boton">
+                    <button id="btn-guardardatosRegistro" class="btn-guardardatosRegistro">Guardar</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+</html>

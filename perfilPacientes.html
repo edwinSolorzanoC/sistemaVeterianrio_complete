@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="styles/perfilPacientes.css">
+</head>
+<body>
+    <header>
+
+        <section class="titulo-header">
+            <h1>Sadrac - Administracion</h1>
+        </section>
+
+
+    </header>
+    
+    <main>
+
+        <section class="mostrar-perfil">
+            <div class="boton">
+                <form action="/admistracion.html">
+                    <button><i class="fa-solid fa-arrow-left"></i> Volver</button>
+                </form>
+            </div>
+           
+            <section class="bloque">
+                <div class="tabla-pacientes">
+                    <h1>Registro de pacientes</h1>
+                    <p>Seleccion un paciente para ver mas infromacion...</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre paciente</th>
+                                <th>Propietario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jack</td>
+                                <td>Edwin Solorzano</td>
+                            </tr>
+                            <tr>
+                                <td>Max</td>
+                                <td>Saray Lejarza</td>
+                            </tr>
+                            <tr>
+                                <td>Chopper</td>
+                                <td>Edwin Solorzano</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="ver-informacion">
+                    <h1>Perfil de mascotas</h1>
+                    
+                    <div class="bloque">
+                        <div class="divicion">
+
+                            <div class="dato-informacion">
+                                <label for="nombrePropietario">Nombre Propietario: </label>
+                                <input type="text" name="nombrePropietario" id="nombrePropietario" disabled>
+                            </div>
+                            <div class="dato-infromacion">
+                                <label for="nombreMascota">Nombre Paciente: </label>
+                                <input type="text" name="nombreMascota" id="nombreMascota" disabled>
+                            </div>
+                            <div class="dato-infromacion">
+                                <label for="tipoMascota">Tipo</label>
+                                <input type="text" name="tipoMascota" id="tipoMascota" disabled>
+                            </div>
+                            <div class="dato-infromacion">
+                                <label for="razMascota">Raza</label>
+                                <input type="text" name="razMascota" id="razMascota" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="fechaNacimiento">Fecha Naciemiento</label>
+                                <input type="text" name="fechaNacimiento" id="fechaNacimiento" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="sexoMascota">Sexo</label>
+                                <input type="text" name="sexoMascota" id="sexoMascota" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="colorMascota">Color</label>
+                                <input type="text" name="colorMascota" id="colorMascota" disabled>
+                            </div>
+
+                        </div>
+                        <div class="divicion">
+
+                            <div class="dato-informacion">
+                                <label for="castradoMascota">Castrado</label>
+                                <input type="text" name="castradoMascota" id="castradoMascota" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="edadMascota">Edad</label>
+                                <input type="text" name="edadMascota" id="edadMascota" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="cantidadPartos">Partos</label>
+                                <input type="text" name="cantidadPartos" id="cantidadPartos" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="fechaPartos">Fecha de Partos</label>
+                                <input type="text" name="fechaPartos" id="fechaPartos" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="pesoMascota">Peso</label>
+                                <input type="text" name="pesoMascota" id="pesoMascota" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="ultimaConsulta">Ultima Consulta</label>
+                                <input type="text" name="ultimaConsulta" id="ultimaConsulta" disabled>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="informacion-propietario">
+                        <div class="opcion">
+                            <button id="mostrarDatosPropietario"><i class="fa-solid fa-plus"></i> Ver Datos Propierario</button>
+                        </div>
+                        <div class="datos" id="datosPropietario">
+                            <h1>Datos Propierario</h1>
+                            <div class="dato-informacion">
+                                <label for="nombrePropietario">Nombre Propierario</label>
+                                <input type="text" name="nombrePropietario" id="nombrePropietario" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="cedulaPropietario">Cedula</label>
+                                <input type="text" name="cedulaPropietario" id="cedulaPropietario" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="diereccionPropietario">Direccion</label>
+                                <input type="text" name="diereccionPropietario" id="diereccionPropietario" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="telefonoPropietario">Telefono</label>
+                                <input type="text" name="telefonoPropietario" id="telefonoPropietario" disabled>
+                            </div>
+                            <div class="dato-informacion">
+                                <label for="correoElectronico">Correo Electronico</label>
+                                <input type="text" name="correoElectronico" id="correoElectronico" disabled>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </section>
+            
+        </section>
+
+        
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="js/perfilPacientesDatosPropietario.js"></script>
+
+</body>
+</html>

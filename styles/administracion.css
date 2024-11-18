@@ -1,0 +1,83 @@
+@import url(main.css);
+
+
+.bloque{
+    display: flex;
+    justify-content: space-between;
+}
+.bloque .lista-pacientes{
+    width: 30%;
+    background-color: white;
+    padding: 1%;
+    margin: 1%;
+}
+.bloque .tipo-consulta{
+    width: 70%;
+    background-color: white;
+    padding: 1%;
+    margin: 1%;
+}
+
+.lista-pacientes .opciones{
+    text-align: end;
+}
+
+.lista-pacientes .mostrar-lista table{
+    text-align: center;
+    width: 100%;
+}
+.lista-pacientes .mostrar-lista table tr{
+    cursor: pointer;
+}
+.lista-pacientes .mostrar-lista table thead tr{
+    background-color: #3e788e;
+    color: white;
+}
+.lista-pacientes .mostrar-lista table tbody tr{
+    background-color: #3e778e71;
+}
+.lista-pacientes .mostrar-lista table tbody tr :hover{
+    background-color: #3e788e; 
+}
+
+
+@media screen and (max-width:900px){
+    .bloque{
+        display: block;
+    }
+    .bloque .lista-pacientes{
+        width: 90%;
+    }
+    .bloque .tipo-consulta{
+        width: 90%;
+    }
+}
+/* ----------------------------------------------------- */
+
+#formulario-vacunas{
+    display: none;
+}
+
+.tipo-consulta .bloque{
+    margin-top: 2%;
+}
+.tipo-consulta .bloque .vacunacion, .tipo-consulta .bloque .desparacitacion{
+    width: 50%;
+}
+
+.btn-guardardatos{
+    background-color: green;
+}
+
+.tipo-consulta .opciones .btn-mostrarconsultas:active , .tipo-consulta .opciones .btn-mostrarvacunas:active{
+    background-color: #3e788e;
+
+}
+/* ----------------------------------------------------- */
+
+
+.recordatorio-citas{
+    padding: 1%;
+    margin: 1%;
+    background-color: white;
+}

@@ -1,0 +1,33 @@
+@import url(main.css);
+
+.formulario-registro{
+    background-color: white;
+    padding: 1%;
+    margin: 1%
+}
+.formulario-registro .volver button{
+    padding: 0.5% 2.5%;
+}
+.formulario-registro form .bloque{
+    display: flex;
+}
+.formulario-registro form .datos-propietario, .formulario-registro form .datos-mascota{
+    width: 50%;
+}
+.formulario-registro form .datos{
+    margin-top: 1%;
+}
+.formulario-registro form .boton{
+    text-align: end;
+}
+.formulario-registro form button{
+    padding: 0.5% 2.5%;
+}
+@media screen and (max-width: 900px){
+    .formulario-registro form .bloque{
+        display: block;
+    }
+    .formulario-registro form .datos-propietario, .formulario-registro form .datos-mascota{
+        width: 100%;
+    }
+}
