@@ -1,6 +1,6 @@
 
 document.querySelectorAll("#tabla tr").forEach((fila, index) => {
-    if (index > 0) { // Ignorar el encabezado
+    if (index > 0) { 
         fila.addEventListener("click", () => {
 
             const formulariogeneral = document.getElementById("formulario-general");
@@ -19,6 +19,7 @@ document.querySelectorAll("#tabla tr").forEach((fila, index) => {
                 document.getElementById('nombrePacienteConsulta').value = mascota;
                 document.getElementById('nombrePropietarioConsulta').value = nombre;
             }
+
             
             
             

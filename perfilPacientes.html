@@ -27,7 +27,7 @@
             </div>
            
             <section class="bloque">
-                <div class="tabla-pacientes">
+                <div class="tabla-pacientes" id="tabla-pacientes">
                     <h1>Registro de pacientes</h1>
                     <p>Seleccion un paciente para ver mas infromacion...</p>
                     <table>
@@ -55,102 +55,178 @@
                 </div>
     
                 <div class="ver-informacion">
-                    <h1>Perfil de mascotas</h1>
-                    
-                    <div class="bloque">
-                        <div class="divicion">
-
-                            <div class="dato-informacion">
-                                <label for="nombrePropietario">Nombre Propietario: </label>
-                                <input type="text" name="nombrePropietario" id="nombrePropietario" disabled>
-                            </div>
-                            <div class="dato-infromacion">
-                                <label for="nombreMascota">Nombre Paciente: </label>
-                                <input type="text" name="nombreMascota" id="nombreMascota" disabled>
-                            </div>
-                            <div class="dato-infromacion">
-                                <label for="tipoMascota">Tipo</label>
-                                <input type="text" name="tipoMascota" id="tipoMascota" disabled>
-                            </div>
-                            <div class="dato-infromacion">
-                                <label for="razMascota">Raza</label>
-                                <input type="text" name="razMascota" id="razMascota" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="fechaNacimiento">Fecha Naciemiento</label>
-                                <input type="text" name="fechaNacimiento" id="fechaNacimiento" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="sexoMascota">Sexo</label>
-                                <input type="text" name="sexoMascota" id="sexoMascota" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="colorMascota">Color</label>
-                                <input type="text" name="colorMascota" id="colorMascota" disabled>
-                            </div>
-
-                        </div>
-                        <div class="divicion">
-
-                            <div class="dato-informacion">
-                                <label for="castradoMascota">Castrado</label>
-                                <input type="text" name="castradoMascota" id="castradoMascota" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="edadMascota">Edad</label>
-                                <input type="text" name="edadMascota" id="edadMascota" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="cantidadPartos">Partos</label>
-                                <input type="text" name="cantidadPartos" id="cantidadPartos" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="fechaPartos">Fecha de Partos</label>
-                                <input type="text" name="fechaPartos" id="fechaPartos" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="pesoMascota">Peso</label>
-                                <input type="text" name="pesoMascota" id="pesoMascota" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="ultimaConsulta">Ultima Consulta</label>
-                                <input type="text" name="ultimaConsulta" id="ultimaConsulta" disabled>
-                            </div>
-
-                        </div>
-
+                    <div class="opciones">
+                        <button id="mostrarInformacioGeneral">Informacion general <i class="fa-solid fa-caret-down"></i></button>
+                        <button id="mostrarInformacionConsultas">Consultas <i class="fa-solid fa-caret-down"></i></button>
+                        <button id="mostrarInformacioVacunacion">Vacunación <i class="fa-solid fa-caret-down"></i></button>
                     </div>
-                    <div class="informacion-propietario">
-                        <div class="opcion">
-                            <button id="mostrarDatosPropietario"><i class="fa-solid fa-plus"></i> Ver Datos Propierario</button>
-                        </div>
-                        <div class="datos" id="datosPropietario">
-                            <h1>Datos Propierario</h1>
-                            <div class="dato-informacion">
-                                <label for="nombrePropietario">Nombre Propierario</label>
-                                <input type="text" name="nombrePropietario" id="nombrePropietario" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="cedulaPropietario">Cedula</label>
-                                <input type="text" name="cedulaPropietario" id="cedulaPropietario" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="diereccionPropietario">Direccion</label>
-                                <input type="text" name="diereccionPropietario" id="diereccionPropietario" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="telefonoPropietario">Telefono</label>
-                                <input type="text" name="telefonoPropietario" id="telefonoPropietario" disabled>
-                            </div>
-                            <div class="dato-informacion">
-                                <label for="correoElectronico">Correo Electronico</label>
-                                <input type="text" name="correoElectronico" id="correoElectronico" disabled>
-                            </div>
-                        </div>
+                    
+                    <div class="informacion-general" id="informacionGeneral">
+                        <h1>informacion General</h1>
+
                         
+                        <div class="bloque">
+                            
+                            <div class="divicion">
+    
+                                <div class="dato-informacion">
+                                    <label for="nombrePropietario">Nombre Propietario: </label>
+                                    <input type="text" name="nombrePropietario" id="nombrePropietario" disabled>
+                                </div>
+                                <div class="dato-infromacion">
+                                    <label for="nombreMascota">Nombre Paciente: </label>
+                                    <input type="text" name="nombreMascota" id="nombreMascota" disabled>
+                                </div>
+                                <div class="dato-infromacion">
+                                    <label for="tipoMascota">Tipo</label>
+                                    <input type="text" name="tipoMascota" id="tipoMascota" disabled>
+                                </div>
+                                <div class="dato-infromacion">
+                                    <label for="razaMascota">Raza</label>
+                                    <input type="text" name="razMascota" id="razMascota" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="fechaNacimiento">Fecha Naciemiento</label>
+                                    <input type="text" name="fechaNacimiento" id="fechaNacimiento" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="sexoMascota">Sexo</label>
+                                    <input type="text" name="sexoMascota" id="sexoMascota" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="colorMascota">Color</label>
+                                    <input type="text" name="colorMascota" id="colorMascota" disabled>
+                                </div>
+    
+                            </div>
+                            <div class="divicion">
+    
+                                <div class="dato-informacion">
+                                    <label for="castradoMascota">Castrado</label>
+                                    <input type="text" name="castradoMascota" id="castradoMascota" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="edadMascota">Edad</label>
+                                    <input type="text" name="edadMascota" id="edadMascota" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="cantidadPartos">Partos</label>
+                                    <input type="text" name="cantidadPartos" id="cantidadPartos" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="fechaPartos">Fecha de Partos</label>
+                                    <input type="text" name="fechaPartos" id="fechaPartos" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="pesoMascota">Peso</label>
+                                    <input type="text" name="pesoMascota" id="pesoMascota" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="ultimaConsulta">Ultima Consulta</label>
+                                    <input type="text" name="ultimaConsulta" id="ultimaConsulta" disabled>
+                                </div>
+    
+                            </div>
+    
+                        </div>
+
+                        <div class="informacion-propietario">
+                            <div class="opcion">
+                                <button id="mostrarDatosPropietario"><i class="fa-solid fa-plus"></i> Datos propietario</button>
+                            </div>
+                            <div class="datos" id="datosPropietario">
+                                <h1>Datos Propierario</h1>
+                                <div class="dato-informacion">
+                                    <label for="nombrePropietario">Nombre Propierario</label>
+                                    <input type="text" name="nombrePropietario" id="nombrePropietario2" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="cedulaPropietario">Cedula</label>
+                                    <input type="text" name="cedulaPropietario" id="cedulaPropietario" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="diereccionPropietario">Direccion</label>
+                                    <input type="text" name="diereccionPropietario" id="diereccionPropietario" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="telefonoPropietario">Telefono</label>
+                                    <input type="text" name="telefonoPropietario" id="telefonoPropietario" disabled>
+                                </div>
+                                <div class="dato-informacion">
+                                    <label for="correoElectronico">Correo Electronico</label>
+                                    <input type="text" name="correoElectronico" id="correoElectronico" disabled>
+                                </div>
+                            </div>
+                            
+                        </div>
+
                     </div>
                     
-                    
+                    <div class="informacion-consultas" style="display: none;" id="informacionConsultas">
+                        <h1>Informacion de consultas</h1>
+
+                        <div class="informacion">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Fecha de consulta</th>
+                                        <th>Motivo de consulta</th>
+                                        <th>Tratamiento</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>12/02/24</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quaerat ipsam rerum at quo, est quod esse. Odit inventore praesentium, laudantium dolorem iure earum qui, eum, ipsum blanditiis quia vel?</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit eaque magni laudantium sunt ab ducimu?</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12/02/24</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quaerat ipsam rerum at quo, est quod esse. Odit inventore praesentium, laudantium dolorem iure earum qui, eum, ipsum blanditiis quia vel?</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit eaque magni laudantium sunt ab ducimu?</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12/02/24</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quaerat ipsam rerum at quo, est quod esse. Odit inventore praesentium, laudantium dolorem iure earum qui, eum, ipsum blanditiis quia vel?</td>
+                                        <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit eaque magni laudantium sunt ab ducimu?</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="informacion-vacunacion" id="informacionVacunacion" style="display: none;">
+                        <h1>Informacion Vacunacion</h1>
+                        <div class="informacion">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Fecha de consulta</th>
+                                        <th>Programa de Desparacitacion</th>
+                                        <th>Programa vacunacion</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>07/05/24</td>
+                                        <td>ipsum blanditiis quia vel?</td>
+                                        <td>e magni laudantium sunt</td>
+                                    </tr>
+                                    <tr>
+                                        <td>28/10/24</td>
+                                        <td></td>
+                                        <td>Lorem ipsum dolor sit amet consectetur,</td>
+                                    </tr>
+                                    <tr>
+                                        <td>01/11/24</td>
+                                        <td>quia vel?</td>
+                                        <td>Lorem ipsum dolor sit </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </section>
             
@@ -164,6 +240,7 @@
     </footer>
 
     <script src="js/perfilPacientesDatosPropietario.js"></script>
+    <script src="js/perfilPacientesTabla.js"></script>
 
 </body>
 </html>

@@ -36,7 +36,7 @@
 .lista-pacientes .mostrar-lista table tbody tr{
     background-color: #3e778e71;
 }
-.lista-pacientes .mostrar-lista table tbody tr :hover{
+.lista-pacientes .mostrar-lista table tbody tr:hover{
     background-color: #3e788e; 
 }
 
