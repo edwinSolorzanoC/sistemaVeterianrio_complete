@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="styles/administracion.css">
+
+</head>
+<body>
+    <header>
+
+        <section class="titulo-header">
+            <h1>CONTROL PET</h1>
+        </section>
+
+    </header>
+    
+    <main>
+
+        <section class="bloque">
+
+            <section class="lista-pacientes">
+
+                <div class="mostrar-lista">
+                
+                    <div class="tabla" id="tabla">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre paciente</th>
+                                    <th>Propietario</th>
+                                    <th>Ultima consulta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Jack</td>
+                                    <td>Edwin Solorzano</td>
+                                    <td>10/10/24</td>
+                                </tr>
+                                <tr>
+                                    <td>Max</td>
+                                    <td>Saray Lejarza</td>
+                                    <td>07/11/24</td>
+                                </tr>
+                                <tr>
+                                    <td>Chopper</td>
+                                    <td>Edwin Solorzano</td>
+                                    <td>04/24/24</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    
+                </div>
+            </section>
+    
+            <section class="tipo-consulta">
+    
+                <div class="opciones">
+                    <button id="mostrarconsultas" class="btn-mostrarconsultas">Consulta General <i class="fa-solid fa-notes-medical"></i></button>
+                    <button id="mostrarvacunas" class="btn-mostrarvacunas"> Cosulta Vacunacion <i class="fa-solid fa-syringe"></i></button>
+                    <button id="verpacientes" class="btn-verpacientes"  onclick="window.location.href='registropaciente.html'"> Agregar nuevo paciente <i class="fa-solid fa-user-plus"></i></button>
+                    <button id="verpacientes" class="btn-verpacientes" onclick="window.location.href='perfilpacientes.html'"> Ver Pacientes <i class="fa-solid fa-users"></i></button>
+                </div>
+                <div class="motivo-consulta" id="motivo-consulta">
+                
+                    <form action="#" autocomplete="off" id="formulario-general">
+                        <h1>Consulta General <i class="fa-solid fa-paste"></i></h1>
+                        <div class="propietario">
+                            <label for="nombrePropietarioConsulta">Nombre propietario: </label>
+                            <input type="text" name="nombrePropietarioConsulta" id="nombrePropietarioConsulta" placeholder="Nombre propietario..." required>
+                        </div>
+                        <div class="pacientes">
+                            <label for="nombrePacienteConsulta">Nombre paciente: </label>
+                            <input type="text" name="nombrePacienteConsulta" id="nombrePacienteConsulta" placeholder="Nombre paciente..." required>
+                        </div>
+                        <div class="descripcion">
+                            <label for="motivoConsulta">Motivo de consulta:</label>
+                            <textarea name="motivoConsulta" id="motivoConsulta" placeholder="Escribe el motivo de la consulta..." required></textarea>
+                        </div>
+                        <div class="medicamentos">
+                            <label for="medicamentosConsulta">Medicamentos utilizados: </label>
+                            <textarea name="medicamentosConsulta" id="medicamentosConsulta" placeholder="Escriba los medicamentos utilizados..." required></textarea>
+                        </div>
+                        <div class="boton">
+                            <button type="submit" class="btn-guardardatos" id="btn-guardardatos-vacunacion"><i class="fa-solid fa-newspaper"></i> Guardar</button>
+                            <button type="submit" class="btn-cancelardatos" id="cancelardatos"><i class="fa-solid fa-newspaper"></i> Cancelar</button>
+                        </div>
+                    </form>
+
+                    <form action="#" class="formulario-vacunas" id="formulario-vacunas" autocomplete="off">
+                        <h1>Consulta vacunacion <i class="fa-solid fa-syringe"></i></h1>
+                        <div class="propietario">
+                            <label for="nombrePropietarioVacunacion">Nombre propietario: </label>
+                            <input type="text" name="nombrePropietarioVacunacion" id="nombrePropietarioVacunacion" placeholder="Nombre de propietario..." required>
+                        </div>
+                        <div class="paciente">
+                            <label for="nombrePacienteVacunacion">Nombre paciente: </label>
+                            <input type="text" name="nombrePacienteVacunacion" id="nombrePacienteVacunacion" placeholder="Nombre de paciente..." required>
+                        </div>
+                        <div class="Peso">
+                            <label for="pesoVacunacion">Peso: </label>
+                            <input type="number" name="pesoVacunacion" id="pesoVacunacion" required placeholder="Peso de mascota...">
+                        </div>
+                        <div class="vacunacion">
+                            <div class="vacuna">
+                                <label for="nombreInyeccionVacunacion">Programa de vacunacion</label>
+                                <input type="text" name="nombreInyeccionVacunacion" id="nombreInyeccionVacunacion" placeholder="Escribe el nombre de la inyeccion...">
+                            </div>
+                        </div>
+                        <div class="desparacitacion">
+                            <div class="vacuna">
+                                <label for="nombreInyeccionDesparacitacion">Programa de Desparacitación</label>
+                                <input type="text" name="nombreInyeccionDesparacitacion" id="nombreInyeccionDesparacitacion" placeholder="Escribe el nombre de la inyeccion...">
+                            </div>
+                        </div>
+                        
+                        <div class="boton">
+                            <button type="submit" class="btn-guardardatos" id="btn-guardardatos-vacunacion"><i class="fa-solid fa-newspaper"></i> Guardar</button>
+                            <button type="submit" class="btn-cancelardatos" id="cancelardatos"><i class="fa-solid fa-newspaper"></i> Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </section>
+
+
+
+        
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="js/administracionalertas.js"></script>
+    <script src="js/administracionformularios.js"></script>
+    <script src="js/administraciontablaclientes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    
+</body>
+</html>

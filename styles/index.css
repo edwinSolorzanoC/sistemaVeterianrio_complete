@@ -1,0 +1,21 @@
+@import url(main.css);
+
+header .navegacion-header{
+    width: 50%;
+}
+header a{
+    padding: 0% 5%;
+    text-decoration: none;
+}
+main{
+    color: white;
+    padding: 0%;
+}
+
+
+.presentacion{
+    text-align: center;
+    align-content: center;
+    height: 40vh;
+}
+

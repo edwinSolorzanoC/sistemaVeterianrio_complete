@@ -7,6 +7,7 @@
     min-height: 80vh;
     max-height: 100%;
     padding: 1%;
+    margin: 1%;
 }
 .mostrar-perfil .tabla-pacientes{
     width: 25%;
@@ -18,22 +19,6 @@
     display: flex;
     justify-content: space-between;
 }
-.mostrar-perfil .tabla-pacientes table{
-    text-align: center;
-    width: 100%;
-}
-.mostrar-perfil  .tabla-pacientes table thead tr{
-    background-color: #3e788e;
-    color: white;
-}
-.mostrar-perfil  .tabla-pacientes table tbody tr{
-    background-color: #3e778e71;
-    cursor: pointer;
-}
-.mostrar-perfil  .tabla-pacientes table tbody tr:hover{
-    background-color: #3e788e; 
-}
-
 
 
 
@@ -81,40 +66,4 @@
     
 }
 
-.informacion-consultas table{
-    width: 100%;
-}
-.informacion-consultas table thead tr th{
-    background-color: #3e788e;
-    color: white;
-}
-.informacion-consultas table tbody tr td{
-    padding: 1%;
-}
-.informacion-consultas table tbody tr:nth-child(even){
-    
-    background-color: rgb(194, 194, 194);
-}
-.informacion-consultas table tbody tr:nth-child(odd){
-    background-color: rgb(233, 233, 233);
-}
 
-
-.informacion-vacunacion table{
-    width: 100%;
-}
-.informacion-vacunacion table thead tr th{
-    background-color: #3e788e;
-    color: white;
-    padding: 1%;
-}
-.informacion-vacunacion table tbody tr td{
-    padding: 1%;
-}
-.informacion-vacunacion table tbody tr:nth-child(even){
-    
-    background-color: rgb(194, 194, 194);
-}
-.informacion-vacunacion table tbody tr:nth-child(odd){
-    background-color: rgb(233, 233, 233);
-}

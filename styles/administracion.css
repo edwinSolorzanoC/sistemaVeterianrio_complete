@@ -22,23 +22,6 @@
     text-align: end;
 }
 
-.lista-pacientes .mostrar-lista table{
-    text-align: center;
-    width: 100%;
-}
-.lista-pacientes .mostrar-lista table tr{
-    cursor: pointer;
-}
-.lista-pacientes .mostrar-lista table thead tr{
-    background-color: #3e788e;
-    color: white;
-}
-.lista-pacientes .mostrar-lista table tbody tr{
-    background-color: #3e778e71;
-}
-.lista-pacientes .mostrar-lista table tbody tr:hover{
-    background-color: #3e788e; 
-}
 
 
 @media screen and (max-width:900px){
@@ -72,6 +55,9 @@
 .tipo-consulta .opciones .btn-mostrarconsultas:active , .tipo-consulta .opciones .btn-mostrarvacunas:active{
     background-color: #3e788e;
 
+}
+.btn-cancelardatos{
+    background-color: red;
 }
 /* ----------------------------------------------------- */
 
