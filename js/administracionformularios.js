@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const formulariogeneral = document.getElementById("formulario-general");
     const formulariovacunas = document.getElementById("formulario-vacunas");
 
+
+
+
     //muestra el formulario de consulta general
     mostrarconsultas.addEventListener('click', function(){
         if (formulariogeneral.style.display === 'none' || formulariogeneral.style.display === '') {
@@ -23,6 +26,23 @@ document.addEventListener('DOMContentLoaded', function(){
             formulariogeneral.style.display = 'none'; 
         }
     });
+
+    const irARegsitropacientes = document.getElementById("agregarpacientes");
+
+
+    irARegsitropacientes.addEventListener('click', function(){
+        window.location.href = 'registroPaciente.html';
+    });
+
+    const irAPercilPacientes = document.getElementById("verpacientes");
+
+    irAPercilPacientes.addEventListener('click', function(){
+        window.location.href = 'perfilPacientes.html';
+    });
+
+
+    
+
 
 
 
