@@ -48,22 +48,16 @@
     width: 50%;
 }
 
-.btn-guardardatos{
-    background-color: green;
-}
 
 .tipo-consulta .opciones .btn-mostrarconsultas:active , .tipo-consulta .opciones .btn-mostrarvacunas:active{
     background-color: #3e788e;
 
 }
 .btn-cancelardatos{
-    background-color: red;
+    background: linear-gradient(1deg, #9e0000, #d52700);
+}
+.btn-guardardatos{
+    background: linear-gradient(1deg, #007816, #00ae14);
 }
 /* ----------------------------------------------------- */
 
-
-.recordatorio-citas{
-    padding: 1%;
-    margin: 1%;
-    background-color: white;
-}

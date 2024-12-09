@@ -49,13 +49,23 @@ button{
     margin: 1% 0%;
     text-decoration: none;
 
-    /* background-color: #006ca3; */
-    /* background: linear-gradient(1deg, #006ca3, #399ac3); */
-    background: linear-gradient(1deg, #005681, #2b7595);
     color: white;
     border-radius: 10px;
     cursor: pointer;
     border: none;
+    background: linear-gradient(1deg, #005681, #2b7595);
+
+}
+
+@media screen and (max-width: 750px){
+
+    button{
+        padding: 2.5% 2.5%;
+        margin: 1% 0%;
+    
+    }
+
+    
 }
 button:active{
     background-color: #3e788e;
