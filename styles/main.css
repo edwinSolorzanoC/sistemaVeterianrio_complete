@@ -64,6 +64,13 @@ input, select,textarea{
     background-color: #dedede;
     cursor: pointer;
 }
+@media screen and (max-width:900px){
+
+    input{
+        padding: 1.5% 1%;
+    }
+    
+}
 button{
     padding: 1% 2.5%;
     margin: 1% 0%;
@@ -105,6 +112,7 @@ button{
         display: none;
     }
 }
+
 button:active{
     background-color: #3e788e;
 }
