@@ -23,7 +23,20 @@ header .opciones-header{
 header .opciones-header button{
     height: 100%;
     width: 100%;
-    background: linear-gradient(1deg, #ca5400, #d58300);}
+    background: linear-gradient(1deg, #ca5400, #d58300);
+}
+header .navegacion-header{
+    width: 50%;
+}
+header a{
+    padding: 0% 5%;
+    text-decoration: none;
+}
+
+header .mostrar-navegacion button{
+    width: 5vh;
+    height: 100%;
+}
 
 
 main{
@@ -74,9 +87,23 @@ button{
     header .opciones-header{
         width: 20%;
     }
+    header .navegacion-header{
+        display: none;
+        width: 0%;
+    }
+    header .mostrar-navegacion{
+        width: 10%;
+    }
     
+}
 
-    
+@media screen and (min-width:750px){
+    header .navegacion-header{
+        display: inline;
+    }
+    header .mostrar-navegacion{
+        display: none;
+    }
 }
 button:active{
     background-color: #3e788e;
