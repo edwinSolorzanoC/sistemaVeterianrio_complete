@@ -39,7 +39,6 @@ header button{
 
 .presentacion .opciones button{
     padding: 1% 2%;
-    margin: 1% 0%;
 
     color: white;
     border-radius: 10px;
@@ -67,10 +66,15 @@ header button{
 .formulario-iniciosesion input{
     background-color: #ffffff;
     border-radius: 5px 5px 5px 5px;
-
+    padding: 3% 1.5% !important;
+    margin-bottom: 2%;
 }
 
-
+@media screen and (max-width: 1500px){
+    .bienvenida .presentacion{
+        height: 99%;
+    }
+}
 @media screen and (max-width:980px){
 
     .presentacion .titulo{
