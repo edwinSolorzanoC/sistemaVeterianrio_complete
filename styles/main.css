@@ -17,6 +17,13 @@ header{
 header h1{
     font-weight: 400;
 }
+header .opciones-header{
+    width: 10%;
+}
+header .opciones-header button{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(1deg, #ca5400, #d58300);}
 
 
 main{
@@ -64,6 +71,10 @@ button{
         margin: 1% 0%;
     
     }
+    header .opciones-header{
+        width: 20%;
+    }
+    
 
     
 }
@@ -96,21 +107,11 @@ table tbody tr:hover{
     cursor: pointer;
 }
 
+.btn-cancelardatos{
+    background: linear-gradient(1deg, #9e0000, #d52700);
+}
+.btn-guardardatos{
+    background: linear-gradient(1deg, #007816, #00ae14);
+}
 
 
-/*
-background-color: #dedede;
-    --color-background: #F9F9F9;     Blanco suave para el fondo 
-    --color-primary: #4CAF50;       /* Verde suave para botones principales y elementos destacados 
-    --color-secondary: #A5D6A7;     /* Verde claro para acentos secundarios 
-    --color-accent: #FFB74D;        /* Naranja para botones o íconos de acción 
-    --color-highlight: #64B5F6;     /* Azul claro para enlaces o notificaciones 
-
-    /* Colores de Texto 
-    --color-text-primary: #333333;  /* Gris oscuro para el texto principal 
-    --color-text-secondary: #666666; /* Gris medio para texto secundario o etiquetas 
-
-    /* Colores de Estado 
-    --color-success: #81C784;       /* Verde claro para mensajes de éxito o validación 
-    --color-warning: #FFD54F;       /* Amarillo para advertencias 
-    --color-error: #E57373;         Rojo suave para mensajes de error*/

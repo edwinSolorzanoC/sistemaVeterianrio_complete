@@ -13,6 +13,10 @@
         <section class="titulo-header">
             <h1>CONTROL PET</h1>
         </section>
+        <section class="opciones-header">
+            <button id="volver"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+        </section>
+
 
 
     </header>
@@ -22,7 +26,6 @@
         <section class="formulario-registro">
 
             <div class="volver">
-                <button id="volver"><i class="fa-solid fa-arrow-left"></i> Volver</button>
             </div>
             <h1>Registrar nuevo paciente</h1>
             <form action="#">
@@ -88,11 +91,16 @@
                                 <option value="false">No esta castrada</option>
                             </select>
                         </div>
+                        <div class="datos">
+                            <label for="colorMascota">Escribe el color de la mascota:</label>
+                            <input type="text" name="colorMascota" id="colorMascota" placeholder="Color de mascota...">
+                        </div>
+                        
                     </div>
 
                 </div>
                 <div class="boton">
-                    <button id="btn-guardardatosRegistro" class="btn-guardardatosRegistro">Guardar</button>
+                    <button id="btn-guardardatosRegistro"  class="btn-guardardatos">Guardar</button>
                 </div>
 
             </form>

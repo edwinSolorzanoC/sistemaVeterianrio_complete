@@ -1,4 +1,19 @@
-@import url(main.css);
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Outfit", sans-serif;
+}
+
+header{
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+    color: #40a2cb;
+}
+header h1{
+    font-weight: 400;
+}
 
 header .navegacion-header{
     width: 50%;
@@ -12,10 +27,38 @@ main{
     padding: 0%;
 }
 
+main{
+    /* background: linear-gradient(135deg, #2684ac, #135673); */
+    background: linear-gradient(135deg, #184558, #031c27);
 
-.presentacion{
-    text-align: center;
-    align-content: center;
-    height: 40vh;
+    min-height: 100vh;
+    max-height: 100%;
+    padding: 1%;
+    display: block;
+
 }
+button{
+    padding: 1% 2.5%;
+    margin: 1% 0%;
+    text-decoration: none;
 
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(1deg, #005681, #2b7595);
+
+}
+button:active{
+    background-color: #3e788e;
+}
+@media screen and (max-width: 750px){
+
+    button{
+        padding: 2.5% 2.5%;
+        margin: 1% 0%;
+    
+    }
+
+    
+}
