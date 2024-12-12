@@ -9,10 +9,11 @@
 }
 
 header{
-    padding: 1%;
+    padding: 2% 1%;
     display: flex;
     justify-content: space-between;
     color: #40a2cb;
+    align-items: center;
 }
 header h1{
     font-weight: 400;
@@ -27,6 +28,9 @@ header .opciones-header button{
 }
 header .navegacion-header{
     width: 50%;
+}
+header .navegacion-header a{
+    color: #005681;
 }
 header a{
     padding: 0% 5%;
@@ -86,6 +90,7 @@ button{
 
 }
 
+
 @media screen and (max-width: 750px){
 
     button{
@@ -93,12 +98,28 @@ button{
         margin: 1% 0%;
     
     }
+    header{
+        display: block;
+    }
+    header .bloque{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
     header .opciones-header{
         width: 20%;
     }
-    header .navegacion-header{
+    header #navegacion-header{
         display: none;
-        width: 0%;
+    }
+    header .navegacion-header{
+        width: 100%;
+        text-align: center;
+        margin-top: 2%;
+    }
+    header .navegacion-header a{
+        display: block;
+        margin: 2% 0%;
     }
     header .mostrar-navegacion{
         width: 20%;

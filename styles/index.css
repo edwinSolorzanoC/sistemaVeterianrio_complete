@@ -69,7 +69,12 @@ header button{
     padding: 3% 1.5% !important;
     margin-bottom: 2%;
 }
+.formulario-iniciosesion .ingresar-sistema{
+    background: linear-gradient(1deg, #048100, #47952b);
+}
 
+
+/*----------------------*/
 @media screen and (max-width: 1500px){
     .bienvenida .presentacion{
         height: 99%;
