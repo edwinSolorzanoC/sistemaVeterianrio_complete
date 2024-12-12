@@ -9,41 +9,57 @@
 }
 
 header{
-    padding: 2% 1%;
     display: flex;
-    justify-content: space-between;
+    padding: 1%;
     color: #40a2cb;
     align-items: center;
+    justify-content: space-between;
+
+}
+header .bloque{
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
 }
 header h1{
     font-weight: 400;
 }
-header .opciones-header{
-    width: 10%;
-}
-header .opciones-header button{
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(1deg, #ca5400, #d58300);
-}
-header .navegacion-header{
+header .bloque .navegacion-header{
+    display: flex;
     width: 50%;
+    justify-content: space-around;
 }
-header .navegacion-header a{
-    color: #005681;
-}
-header a{
-    padding: 0% 5%;
+header .bloque .navegacion-header a{
+    color: #004d73;
     text-decoration: none;
 }
 
-header .mostrar-navegacion button{
-    width: 5vh;
-    height: 100%;
-    background: none;
-    color: #004d73;
+header .opciones-header{
+    width: 30%;
+    text-align: end;
+}
+header .opciones-header button{
+    padding: 2% 5%;
+    background: linear-gradient(135deg, #dd8424, #aa5206);
 }
 
+@media screen and (max-width: 600px){
+    header .bloque{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    header .bloque .navegacion-header{
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    header .bloque .navegacion-header a{
+        margin: 2%;
+    }
+
+
+}
 
 main{
     /* background: linear-gradient(135deg, #2684ac, #135673); */
@@ -90,7 +106,6 @@ button{
 
 }
 
-
 @media screen and (max-width: 750px){
 
     button{
@@ -98,43 +113,9 @@ button{
         margin: 1% 0%;
     
     }
-    header{
-        display: block;
-    }
-    header .bloque{
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
-    header .opciones-header{
-        width: 20%;
-    }
-    header #navegacion-header{
-        display: none;
-    }
-    header .navegacion-header{
-        width: 100%;
-        text-align: center;
-        margin-top: 2%;
-    }
-    header .navegacion-header a{
-        display: block;
-        margin: 2% 0%;
-    }
-    header .mostrar-navegacion{
-        width: 20%;
-    }
     
 }
 
-@media screen and (min-width:750px){
-    header .navegacion-header{
-        display: inline;
-    }
-    header .mostrar-navegacion{
-        display: none;
-    }
-}
 
 button:active{
     background-color: #3e788e;
