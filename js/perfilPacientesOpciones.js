@@ -1,19 +1,24 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-    const mostrarInformacionGeneal = document.getElementById("mostrarInformacioGeneral");
+    const mostrarInformacionGeneal = document.getElementById("mostrarInformacionGeneral");
     const informacionGeneral = document.getElementById("informacionGeneral");
     
     const mostrarInformacionConsultas = document.getElementById("mostrarInformacionConsultas");
     const informacionConsultas = document.getElementById("informacionConsultas");
     
-    const mostrarInformacioVacunacion = document.getElementById("mostrarInformacioVacunacion");
+    const mostrarInformacioVacunacion = document.getElementById("mostrarInformacionVacunacion");
     const informacionVacunacion = document.getElementById("informacionVacunacion");
+    
+    const mostrarinformacionPropietario = document.getElementById("mostrarinformacionPropietario");
+    const informacionPropietario = document.getElementById("informacionPropietario");
     
     mostrarInformacionConsultas.addEventListener('click', function(){
 
         if(informacionConsultas.style.display === 'none'){
             informacionGeneral.style.display = 'none'
             informacionVacunacion.style.display = 'none'
+            informacionPropietario.style.display = 'none'
+
             informacionConsultas.style.display = 'block'
         }
 
@@ -24,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function(){
         if(informacionGeneral.style.display === 'none'){
             informacionConsultas.style.display = 'none'
             informacionVacunacion.style.display = 'none'
+            informacionPropietario.style.display = 'none'
+
             informacionGeneral.style.display = 'block'
             
         }
@@ -35,22 +42,23 @@ document.addEventListener('DOMContentLoaded', function(){
         if(informacionVacunacion.style.display === 'none'){
             informacionConsultas.style.display = 'none'
             informacionGeneral.style.display = 'none'
+            informacionPropietario.style.display = 'none'
+
             informacionVacunacion.style.display = 'block'
         }
 
     });
 
 
-    const botonMostrar = document.getElementById("mostrarDatosPropietario");
-    const datosPropietario = document.getElementById("datosPropietario");
+   
 
-    botonMostrar.addEventListener('click', function(){
-        if(datosPropietario.style.display === 'none'){
+    mostrarinformacionPropietario.addEventListener('click', function(){
+        if(informacionPropietario.style.display === 'none'){
+            informacionPropietario.style.display = 'block'
 
-            datosPropietario.style.display = 'block'
-    
-        }else{
-            datosPropietario.style.display = 'none'
+            informacionConsultas.style.display = 'none'
+            informacionGeneral.style.display = 'none'
+            informacionVacunacion.style.display = 'none'
         }
     });
 

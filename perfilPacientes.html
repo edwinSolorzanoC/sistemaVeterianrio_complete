@@ -53,9 +53,11 @@
     
                 <div class="ver-informacion">
                     <div class="opciones">
-                        <button id="mostrarInformacioGeneral">Informacion general <i class="fa-solid fa-caret-down"></i></button>
+                        <button id="mostrarInformacionGeneral">Informacion general <i class="fa-solid fa-caret-down"></i></button>
                         <button id="mostrarInformacionConsultas">Consultas <i class="fa-solid fa-caret-down"></i></button>
-                        <button id="mostrarInformacioVacunacion">Vacunación <i class="fa-solid fa-caret-down"></i></button>
+                        <button id="mostrarInformacionVacunacion">Vacunación <i class="fa-solid fa-caret-down"></i></button>
+                        <button id="mostrarinformacionPropietario">Datos propietario <i class="fa-solid fa-caret-down"></i></button>
+
                     </div>
                     
                     <div class="informacion-general" id="informacionGeneral">
@@ -127,35 +129,7 @@
     
                         </div>
 
-                        <div class="informacion-propietario">
-                            <div class="opcion">
-                                <button id="mostrarDatosPropietario"><i class="fa-solid fa-plus"></i> Datos propietario</button>
-                            </div>
-                            <div class="datos" id="datosPropietario">
-                                <h1>Datos Propierario</h1>
-                                <div class="dato-informacion">
-                                    <label for="nombrePropietario">Nombre Propierario</label>
-                                    <input type="text" name="nombrePropietario" id="nombrePropietario2" disabled>
-                                </div>
-                                <div class="dato-informacion">
-                                    <label for="cedulaPropietario">Cedula</label>
-                                    <input type="text" name="cedulaPropietario" id="cedulaPropietario" disabled>
-                                </div>
-                                <div class="dato-informacion">
-                                    <label for="diereccionPropietario">Direccion</label>
-                                    <input type="text" name="diereccionPropietario" id="diereccionPropietario" disabled>
-                                </div>
-                                <div class="dato-informacion">
-                                    <label for="telefonoPropietario">Telefono</label>
-                                    <input type="text" name="telefonoPropietario" id="telefonoPropietario" disabled>
-                                </div>
-                                <div class="dato-informacion">
-                                    <label for="correoElectronico">Correo Electronico</label>
-                                    <input type="text" name="correoElectronico" id="correoElectronico" disabled>
-                                </div>
-                            </div>
-                            
-                        </div>
+                        
 
                     </div>
                     
@@ -224,6 +198,29 @@
                             </table>
                         </div>
                     </div>
+                    <div class="informacionPropietario" id="informacionPropietario" style="display: none;">
+                        <h1>Datos Propierario</h1>
+                        <div class="dato-informacion">
+                            <label for="nombrePropietario">Nombre Propierario</label>
+                            <input type="text" name="nombrePropietario" id="nombrePropietario2" disabled>
+                        </div>
+                        <div class="dato-informacion">
+                            <label for="cedulaPropietario">Cedula</label>
+                            <input type="text" name="cedulaPropietario" id="cedulaPropietario" disabled>
+                        </div>
+                        <div class="dato-informacion">
+                            <label for="diereccionPropietario">Direccion</label>
+                            <input type="text" name="diereccionPropietario" id="diereccionPropietario" disabled>
+                        </div>
+                        <div class="dato-informacion">
+                            <label for="telefonoPropietario">Telefono</label>
+                            <input type="text" name="telefonoPropietario" id="telefonoPropietario" disabled>
+                        </div>
+                        <div class="dato-informacion">
+                            <label for="correoElectronico">Correo Electronico</label>
+                            <input type="text" name="correoElectronico" id="correoElectronico" disabled>
+                        </div>
+                    </div>
                 </div>
             </section>
             
@@ -236,7 +233,7 @@
 
     </footer>
 
-    <script src="js/perfilPacientesDatosPropietario.js"></script>
+    <script src="js/perfilPacientesOpciones.js"></script>
     <script src="js/perfilPacientesTabla.js"></script>
     <script src="js/perfilpacientes.js"></script>
 
