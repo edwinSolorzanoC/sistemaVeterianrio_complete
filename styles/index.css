@@ -47,10 +47,17 @@ header button{
 
 }
 
-@media screen and (max-width:900px){
+@media screen and (max-width:980px){
 
     .presentacion .titulo{
-        font-size: 10vh;
+        font-size: 10.5vh;
+    }
+
+}
+@media screen and (max-width:700px){
+
+    .presentacion .titulo{
+        font-size: 8vh;
     }
 
 }
