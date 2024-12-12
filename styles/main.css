@@ -66,10 +66,10 @@ input, select,textarea{
 }
 @media screen and (max-width:900px){
 
-    input{
-        padding: 1.5% 1%;
+    input, select,textarea{
+        padding: 2% 1%;
     }
-    
+
 }
 button{
     padding: 1% 2.5%;
