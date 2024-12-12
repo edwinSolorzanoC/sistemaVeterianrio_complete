@@ -36,6 +36,8 @@ header a{
 header .mostrar-navegacion button{
     width: 5vh;
     height: 100%;
+    background: none;
+    color: #004d73;
 }
 
 

@@ -40,9 +40,13 @@ document.addEventListener('DOMContentLoaded', function(){
         window.location.href = 'perfilPacientes.html';
     });
 
+    const cerrarSesion = document.getElementById("cerrarSesion");
+    cerrarSesion.addEventListener('click', function(){
+        window.location.href = 'index.html'
+    })
+
 
     
-
 
 
 
