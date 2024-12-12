@@ -63,9 +63,18 @@ header button{
 }
 @media screen and (max-width:600px){
 
-    .presentacion .titulo{
-        font-size: 5vh;
+    .presentacion{
+        text-align: center;
+        align-content: center;
     }
+    .presentacion .titulo{
+        font-size: 7vh;
+    }
+    .presentacion .opciones button{
+        padding: 2.5% 3%;
+    
+    }
+    
 
 }
 
