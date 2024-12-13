@@ -6,7 +6,7 @@ header{
 }
 
 .bienvenida{
-    min-height: 90vh;
+    min-height: 110vh;
     max-height: 100%;
     background-image: url(../img/karsten-winegeart-loJL4ijUobg-unsplash.jpg);
     background-size: cover;
@@ -17,7 +17,7 @@ header{
 .bienvenida .presentacion{
     background-color: rgba(0, 0, 0, 0.393);
     backdrop-filter: blur(5px);
-    min-height: 90vh;
+    min-height: 110vh;
     max-height: 100%;
     color: white;
     padding: 0.4% 2%;
