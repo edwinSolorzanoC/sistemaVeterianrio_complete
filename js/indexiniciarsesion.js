@@ -12,5 +12,11 @@ document.addEventListener('DOMContentLoaded', function(){
     })
 
 
-    
+    const ingresarSistema = document.getElementById("ingresar-sistema");
+
+    ingresarSistema.addEventListener('click', function(){
+
+        window.location.href = 'administracion.html';
+
+    })
 })
