@@ -14,15 +14,22 @@ document.querySelectorAll("#tabla tr").forEach((fila, index) => {
                 document.getElementById('nombrePacienteVacunacion').value = mascota;
                 document.getElementById('nombrePropietarioVacunacion').value = nombre;
 
+                document.getElementById('nombrePacienteConsulta').value = mascota;
+                document.getElementById('nombrePropietarioConsulta').value = nombre;
+
             }else{
 
+                document.getElementById('nombrePacienteVacunacion').value = mascota;
+                document.getElementById('nombrePropietarioVacunacion').value = nombre;
+
+                
                 document.getElementById('nombrePacienteConsulta').value = mascota;
                 document.getElementById('nombrePropietarioConsulta').value = nombre;
             }
 
-            
-            
-            
         });
     }
+
+
+    
 });
