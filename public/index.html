@@ -40,14 +40,14 @@
                 <section class="formulario-iniciosesion" id="formulario-iniciosesion">
                     <h1>Inicio de sesion</h1>
 
-                    <form action="/administracion.html">
+                    <form action="/login" method="POST" autocomplete="off">
                         <div class="usuario">
-                            <label for="usuaerio">Esribe tu usuario</label>
-                            <input type="text" placeholder="Usuario..." required>
+                            <label for="usuario">Esribe tu usuario</label>
+                            <input name="usuario" type="text" placeholder="Usuario..." required>
                         </div>
                         <div class="contrasenna">
                             <label for="contrasenna">Escribe tu contraseña</label>
-                            <input type="password" placeholder="Contraseña..." required>
+                            <input name="contrasenna" type="password" placeholder="Contraseña..." required>
                         </div>
                         <button type="submit" id="ingresar-sistema" class="ingresar-sistema">Aceptar</button>
                     </form>
@@ -64,7 +64,7 @@
 
     </footer>
 
-    <script src="js/indexiniciarsesion.js"></script>
+    <script src="js/index_mostrarform.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
