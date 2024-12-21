@@ -1,6 +1,5 @@
 import { verificarUsuario } from '../models/usuarios.js';
 import express from 'express';
-import path from 'path';
 
 const Router = express.Router();
 
@@ -9,14 +8,15 @@ Router.post('/login', (req, res) => {
 
     verificarUsuario(usuario, contrasenna, (error, results) => {
         if (error) {
-            console.log("ERROR EN LINEA 37 DE INDEX.JS", error);
-            return res.status(500).send('Error en la base de datos');
+            
+            console.log("ERROR EN LINEA 13 ROUTER LOGIN", error);
+            return res.redirect('/?error=database');
         }
         if (results.length > 0) {
-            return res.sendFile(path.join(process.cwd(), 'public', 'administracion.html'));
+            return res.redirect('/administracion');
+        }else{
+            return res.redirect('/?error=mensajeUsuarioNoEncontrado');
         }
-        
-        return res.send('USUARIO NO AUTENTICADO LINEA 43 DE INDEX.JS');
     });
 
 });
