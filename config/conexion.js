@@ -12,7 +12,6 @@ connection.connect((err) => {
         console.error('Error al conectar a la base de datos:', err.stack);
         return;
     }
-    console.log('Conectado a la base de datos ' + connection.threadId);
 });
 
 export default connection;

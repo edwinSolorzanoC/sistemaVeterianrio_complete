@@ -28,8 +28,5 @@ app.get('/', (req, res) => { //mostrar el index
 import loginRouterUsuarios from './routes/loginRouterUsuarios.js';
 app.post('/login',loginRouterUsuarios);
 
-
-app.get('/administracion', (req, res) => { //mostrar la pagina de administracion
-    res.sendFile(path.join(process.cwd(), 'public', 'administracion.html'));
-
-})
+import administracionRouters from './routes/administracionRouters.js';
+app.get('/administracion', administracionRouters)

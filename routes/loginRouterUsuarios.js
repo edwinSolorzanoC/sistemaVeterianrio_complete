@@ -10,12 +10,12 @@ Router.post('/login', (req, res) => {
         if (error) {
             
             console.log("ERROR EN LINEA 13 ROUTER LOGIN", error);
-            return res.redirect('/?error=database');
+            return res.redirect('/');
         }
         if (results.length > 0) {
             return res.redirect('/administracion');
         }else{
-            return res.redirect('/?error=mensajeUsuarioNoEncontrado');
+            return res.redirect('/');
         }
     });
 

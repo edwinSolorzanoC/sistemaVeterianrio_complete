@@ -1,5 +1,18 @@
 @import url(main.css);
 
+.busqueda{
+    display: flex;
+    margin: 1%;
+}
+.busqueda .buscar{
+    background-color: white;
+    padding: 1%;
+    width: 28%;
+}
+.busqueda .buscar input{
+    width: 90%;
+    padding: 2%;
+}
 
 .bloque{
     display: flex;
