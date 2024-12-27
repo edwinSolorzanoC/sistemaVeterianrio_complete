@@ -28,7 +28,7 @@ app.get('/', (req, res) => { //mostrar el index
     res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
-// aca se recive el post del formulario de login en index
+
 import loginRouterUsuarios from './routes/indexRouters.js';
 app.post('/login',loginRouterUsuarios);
 
@@ -38,3 +38,6 @@ app.get('/administracion', administracionRouters);
 
 import pPacientesRouters from './routes/pPacientesRouters.js';
 app.get('/perfilPacientes', pPacientesRouters);
+
+import regPacientesRouters from './routes/regPacientesRouters.js';
+app.post('/registrarPropietario', regPacientesRouters);

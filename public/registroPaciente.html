@@ -36,28 +36,30 @@
 
                 <div class="registroPropietario" id="registroPropietario">
 
-                    <form action="">
+                    <form action="/registrarPropietario" method="POST" autocomplete="off">
                         <h3>Datos Propietario</h3>
                         <div class="datos">
-                            <label for="nombrePropietario">Escribe nombre del propietario</label>
-                            <input type="text" name="nombrePropietario" id="nombrePropietario" placeholder="Nombre del propietario..." required>
+                            <label for="cedulaPropietario">Escribe cedula del propietario</label>
+                            <input type="number" name="cedulaPropietario" id="cedulaPropietario" placeholder="Cedula del propietario..." required autocomplete="off"> 
                         </div>
                         <div class="datos">
-                            <label for="cedulaPropietario">Escribe cedula del propietario</label>
-                            <input type="number" name="cedulaPropietario" id="cedulaPropietario" placeholder="Cedula del propietario..." required>
+                            <label for="nombrePropietario">Escribe nombre del propietario</label>
+                            <input type="text" name="nombrePropietario" id="nombrePropietario" placeholder="Nombre del propietario..." required autocomplete="off">
+                        </div>
+                        <div class="datos">
+                            <label for="direccionPropietario">Escribe la direccion del propietario</label>
+                            <input type="text" name="direccionPropietario" id="direccionPropietario" placeholder="Direccion del propietario..." required autocomplete="off">
+                        </div>
+                        <div class="datos">
+                            <label for="telefonoPropietario">Escribe el telefono del propietario</label>
+                            <input type="number" name="telefonoPropietario" id="telefonoPropietario" placeholder="Telefono del propietario..." required autocomplete="off">
                         </div>
                         <div class="datos">
                             <label for="correoPropietario">Escribe correo electronico del propietario</label>
-                            <input type="email" name="correoPropietario" id="correoPropietario" placeholder="Correo electronico del propietario..." required>
+                            <input type="email" name="correoPropietario" id="correoPropietario" placeholder="Correo electronico del propietario..." required autocomplete="off">
                         </div>
-                        <div class="datos">
-                            <label for="correoPropietario">Escribe el telefono del propietario</label>
-                            <input type="number" name="telefonoPropietario" id="telefonoPropietario" placeholder="Telefono del propietario..." required>
-                        </div>
-                        <div class="datos">
-                            <label for="correoPropietario">Escribe la direccion del propietario</label>
-                            <input type="text" name="direccionPropietario" id="direccionPropietario" placeholder="Direccion del propietario..." required>
-                        </div>
+                        
+                        
 
                         <button type="submit" class="btn-guardardatos btn-guardarDatosPropietario">Guardar</button>
                     </form>
@@ -65,7 +67,7 @@
 
                 <div class="registroPaciente" id="registroPaciente">
 
-                    <form action="">
+                    <form action="/registrarMascota" method="POST" autocomplete="off">
                         <h3>Datos Mascota</h3>
                         <div class="datos">
                             <label for="nombreMascota">Escribe nombre de la mascota: </label>
@@ -79,20 +81,16 @@
                             </select>
                         </div>
                         <div class="datos">
-                            <label for="razaMascota">Escribe la raza de la mascota: </label>
-                            <input type="text" name="razaMascota" id="razaMascota" placeholder="Raza de mascota..." required>
-                        </div>
-                        <div class="datos">
                             <label for="pesoMascota">Escribe el peso de la mascota: </label>
                             <input type="number" name="pesoMascota" id="pesoMascota" placeholder="Solamente escribe el peso de la mascota..." required>
                         </div>
                         <div class="datos">
-                            <label for="fechaNacimientoMascota">Escribe fecha de naciemiento de la mascota:</label>
-                            <input type="date" name="fechaNacimientoMascota" id="fechaNacimientoMascota" required>
-                        </div>
-                        <div class="datos">
                             <label for="edadMascota">Edad exacta de la mascota: </label>
                             <input type="number" name="edadMascota" id="edadMascota" placeholder="Automatico..." disabled>
+                        </div>
+                        <div class="datos">
+                            <label for="razaMascota">Escribe la raza de la mascota: </label>
+                            <input type="text" name="razaMascota" id="razaMascota" placeholder="Raza de mascota..." required>
                         </div>
                         <div class="datos">
                             <label for="castracionMascota">Selecciona si las mascota es castrada o no</label>
@@ -100,6 +98,10 @@
                                 <option value="true">Si esta castrada</option>
                                 <option value="false">No esta castrada</option>
                             </select>
+                        </div>
+                        <div class="datos">
+                            <label for="fechaNacimientoMascota">Escribe fecha de naciemiento de la mascota:</label>
+                            <input type="date" name="fechaNacimientoMascota" id="fechaNacimientoMascota" required>
                         </div>
                         <div class="datos">
                             <label for="colorMascota">Escribe el color de la mascota:</label>

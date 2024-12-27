@@ -17,6 +17,3 @@ const verificarUsuario = (usuario, contrasenna, callback) => {
 
 export {verificarUsuario}
 
-/*
-SELECT tb_usuariosVeterinaria_col_usuario, tb_usuariosVeterinaria_col_contrasenna WHERE tb_usuariosVeterinaria_col_usuario = ? and tb_usuariosVeterinaria_col_contrasenna = ?
-*/
