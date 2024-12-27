@@ -41,3 +41,4 @@ app.get('/perfilPacientes', pPacientesRouters);
 
 import regPacientesRouters from './routes/regPacientesRouters.js';
 app.post('/registrarPropietario', regPacientesRouters);
+app.post('/registrarMascota', regPacientesRouters);

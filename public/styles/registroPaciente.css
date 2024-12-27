@@ -8,6 +8,18 @@
 
 .formulario-registro{
     background-color: white;
-    padding: 1%;
     margin: 1%
+}
+.formulario-registro .tipo-registros{
+    display: flex;
+}
+
+.tipo-registros .lista-propietarios{
+
+    width: 28%;
+    padding: 1%;
+}
+.tipo-registros .formularios{
+    width: 70%;
+    padding: 1%;
 }
