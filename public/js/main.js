@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', function(){
     const volver = document.getElementById("volver");
 
     volver.addEventListener('click', function(){
-        window.location.href = 'administracion.html';
+        window.location.href = '/administracion';
     });
     
     const lineasTabla = document.querySelectorAll('.linea-tabla');
-    const listaPacientes = document.getElementById('lista-pacientes');  // Selecciona la sección de la lista de pacientes
 
 
     lineasTabla.forEach((linea) => {

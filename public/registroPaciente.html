@@ -24,14 +24,19 @@
     <main>
 
         <section class="formulario-registro">
-
-            <div class="volver">
-            </div>
+            
             <h1>Registrar nuevo paciente</h1>
-            <form action="#">
-                <div class="bloque">
+            <p>!!! Nota: Para registra una nueva mascota, primero debe estar listo el registro del propietario !!!</p>
 
-                    <div class="datos-propietario">
+            <section class="tipo-registros">
+                <div class="opciones-navegacion">
+                    <button type="button" id="btn-mostrarRegistroPropietario" class="btn-mostrarRegistroPropietario">Nuevo Propietario <i class="fa-solid fa-user-plus"></i> </button>
+                    <button type="button" id="btn-mostrarRegistroPaciente" class="btn-mostrarRegistroPaciente">Nueva Mascota <i class="fa-solid fa-stethoscope"></i> </button>
+                </div>
+
+                <div class="registroPropietario" id="registroPropietario">
+
+                    <form action="">
                         <h3>Datos Propietario</h3>
                         <div class="datos">
                             <label for="nombrePropietario">Escribe nombre del propietario</label>
@@ -53,10 +58,15 @@
                             <label for="correoPropietario">Escribe la direccion del propietario</label>
                             <input type="text" name="direccionPropietario" id="direccionPropietario" placeholder="Direccion del propietario..." required>
                         </div>
-                        
-                    </div>
-                    <div class="datos-mascota">
-                        <h3>Datos de mascota</h3>
+
+                        <button type="submit" class="btn-guardardatos btn-guardarDatosPropietario">Guardar</button>
+                    </form>
+                </div>
+
+                <div class="registroPaciente" id="registroPaciente">
+
+                    <form action="">
+                        <h3>Datos Mascota</h3>
                         <div class="datos">
                             <label for="nombreMascota">Escribe nombre de la mascota: </label>
                             <input type="text" name="nombreMascota" id="nombreMascota" placeholder="Nombre de la mascota" required>
@@ -103,15 +113,13 @@
                             <label for="fechaPartosMascota">Escribe fecha de los partos de la mascota:</label>
                             <input type="date" name="fechaPartosMascota" id="fechaPartosMascota">
                         </div>
-                        
-                    </div>
 
+                        <button type="submit" class="btn-guardardatos btn-guardarDatosMascota">Guardar</button>
+                    </form>
+                    
                 </div>
-                <div class="boton">
-                    <button id="btn-guardardatosRegistro"  class="btn-guardardatos">Guardar</button>
-                </div>
-
-            </form>
+                
+            </section>
         </section>
     </main>
 
@@ -119,6 +127,7 @@
 
     </footer>
 
+    <script src="js/regPacientes_navegacion.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

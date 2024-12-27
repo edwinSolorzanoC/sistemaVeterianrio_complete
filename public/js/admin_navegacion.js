@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const irAPercilPacientes = document.getElementById("verpacientes");
 
     irAPercilPacientes.addEventListener('click', function(){
-        window.location.href = 'perfilPacientes.html';
+        window.location.href = '/perfilPacientes';
     });
 
     const cerrarSesion = document.getElementById("cerrarSesion");

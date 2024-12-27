@@ -41,21 +41,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="linea-tabla">
-                                    <td>Jack</td>
-                                    <td>Edwin Gerardo Solorzano Campos</td>
-                                    <td>10/10/24</td>
-                                </tr>
-                                <tr class="linea-tabla">
-                                    <td>Max</td>
-                                    <td>Saray Amanda Lejarza Gonzales</td>
-                                    <td>07/11/24</td>
-                                </tr>
-                                <tr class="linea-tabla">
-                                    <td>Chopper</td>
-                                    <td>Edwin Gerardo Solorzano Campos</td>
-                                    <td>04/24/24</td>
-                                </tr>
+
+                                <% datos_pacientes.forEach(dato => { %>
+                                    <tr class="linea-tabla">
+                                        <td><%= dato.tb_pacientes_col_nombre %></td>
+                                        <td><%= dato.tb_propietarios_col_nombre %></td>
+                                        <td><%= new Date(dato.tb_pacientes_col_fechaUltimaConsulta).toLocaleDateString('es-ES') %></td>                                    </tr>
+                                <% }); %>
                                
                             </tbody>
                         </table>
@@ -153,9 +145,8 @@
     </footer>
 
     <script src="js/admin_alertasforms.js"></script>
-    <script src="js/admin_opcionesMostrar.js"></script>
+    <script src="js/admin_navegacion.js"></script>
     <script src="js/admin_datosTablasMostrar.js"></script>
-
     <script src="js/main.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

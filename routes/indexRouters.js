@@ -8,13 +8,13 @@ Router.post('/login', (req, res) => {
 
     verificarUsuario(usuario, contrasenna, (error, results) => {
         if (error) {
-            
             console.log("ERROR EN LINEA 13 ROUTER LOGIN", error);
             return res.redirect('/');
         }
         if (results.length > 0) {
-            return res.redirect('/administracion');
+            return res.redirect('/ingresoexitoso');
         }else{
+            console.log("Usuario o contraseña incorrectos");
             return res.redirect('/');
         }
     });
