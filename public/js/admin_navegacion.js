@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     irARegsitropacientes.addEventListener('click', function(){
-        window.location.href = 'registroPaciente.html';
+        window.location.href = '/registroPacientes';
     });
 
     const irAPercilPacientes = document.getElementById("verpacientes");

@@ -1,4 +1,4 @@
-import conexion from '../db/conexion.js';
+import conexion from '../config/conexion.js';
 
 const traerDatosPropietario = async (req, res) => {
 
@@ -10,7 +10,7 @@ const traerDatosPropietario = async (req, res) => {
             return res.redirect('/');
 
         }else{
-            res.render('administracion', {datos_pacientes: result});
+            res.render('registroPacientes', {datos_pacientes: result});
         }
     });
 

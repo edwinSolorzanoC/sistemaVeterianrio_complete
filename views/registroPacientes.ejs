@@ -42,10 +42,12 @@
                         </thead>
                         <tbody>
 
-                            <tr class="linea-tabla">
-                                <td>208470215</td>
-                                <td>Edwin</td>                                   
-                            </tr>
+                            <% datos_pacientes.forEach(dato => { %>
+                                <tr class="linea-tabla">
+                                    <td><%= dato.tb_propietarios_col_cedula %></td>
+                                    <td><%= dato.tb_propietarios_col_nombre %></td>                                
+                                </tr>
+                            <% }); %>
                             
                         </tbody>
                     </table>
@@ -109,8 +111,12 @@
                                 <input type="number" name="pesoMascota" id="pesoMascota" placeholder="Solamente escribe el peso de la mascota..." required>
                             </div>
                             <div class="datos">
+                                <label for="fechaNacimientoMascota">Escribe fecha de naciemiento de la mascota:</label>
+                                <input type="date" name="fechaNacimientoMascota" id="fechaNacimientoMascota" required>
+                            </div>
+                            <div class="datos">
                                 <label for="edadMascota">Edad exacta de la mascota: </label>
-                                <input type="number" name="edadMascota" id="edadMascota" placeholder="Automatico..." disabled>
+                                <input type="number" step="0.1" min="0" name="edadMascota" id="edadMascota" placeholder="Automatico...">
                             </div>
                             <div class="datos">
                                 <label for="razaMascota">Escribe la raza de la mascota: </label>
@@ -123,10 +129,7 @@
                                     <option value="false">No esta castrada</option>
                                 </select>
                             </div>
-                            <div class="datos">
-                                <label for="fechaNacimientoMascota">Escribe fecha de naciemiento de la mascota:</label>
-                                <input type="date" name="fechaNacimientoMascota" id="fechaNacimientoMascota" required>
-                            </div>
+                            
                             <div class="datos">
                                 <label for="colorMascota">Escribe el color de la mascota:</label>
                                 <input type="text" name="colorMascota" id="colorMascota" placeholder="Color de mascota...">
@@ -140,8 +143,8 @@
                                 <input type="date" name="fechaPartosMascota" id="fechaPartosMascota">
                             </div>
                             <div class="datos">
-                                <label for="cedulaPropietarioMascota">Escribe fecha de los partos de la mascota:</label>
-                                <input type="number" name="cedulaPropietarioMascota" id="cedulaPropietarioMascota" placeholder="Cedula del propietario..." required disabled>
+                                <label for="cedulaPropietarioMascota">Cedula de propietario:</label>
+                                <input type="number" name="cedulaPropietarioMascota" id="cedulaPropietarioMascota" placeholder="Cedula del propietario..." required>
                             </div>
                             
                             <button type="submit" class="btn-guardardatos btn-guardarDatosMascota">Guardar</button>

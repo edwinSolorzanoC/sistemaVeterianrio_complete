@@ -1,8 +1,14 @@
 import { insertarMascota } from "../models/mascotas.js";
 import { insertarPropietario } from "../models/propietarios.js";
+import traerDatosPropietario from '../models/regPacientes.js';
+
+
 import express from 'express';
 
 const Router = express.Router();
+
+Router.get('/registroPacientes', traerDatosPropietario); 
+
 
 Router.post('/registrarPropietario', (req, res) => {
     const { cedulaPropietario, nombrePropietario, direccionPropietario, telefonoPropietario, correoPropietario } = req.body;
@@ -25,10 +31,11 @@ Router.post('/registrarPropietario', (req, res) => {
 
 Router.post('/registrarMascota', (req, res) => {
 
-    const { nombreMascota, tipoMascota, pesoMascota, edadMascota, razaMascota, castracionMascota, fechaNacimientoMascota, colorMascota, partosMascota, fechaPartosMascota } = req.body;
+    const { nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota,  colorMascota, partosMascota, fechaPartosMascota } = req.body;
     const idUsuarioActivoPredeterminado = 1;
 
-    insertarMascota(nombreMascota, tipoMascota, pesoMascota, edadMascota, razaMascota, castracionMascota, fechaNacimientoMascota, colorMascota, partosMascota, fechaPartosMascota, idUsuarioActivoPredeterminado, (error, results) => {
+    insertarMascota(nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, colorMascota, partosMascota, fechaPartosMascota, idUsuarioActivoPredeterminado, 
+        (error, results) => {
         if (error) {
             console.log("ERROR EN LINEA 11 ROUTER REGISTRAR MASCOTA", error);
             return res.redirect('/');
