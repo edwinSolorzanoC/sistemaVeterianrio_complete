@@ -29,8 +29,9 @@ app.get('/', (req, res) => { //mostrar el index
 });
 
 
-import loginRouterUsuarios from './routes/indexRouters.js';
-app.post('/login',loginRouterUsuarios);
+
+import indexRouters from './routes/indexRouters.js';
+app.post('/login', indexRouters);
 
 import administracionRouters from './routes/administracionRouters.js';
 app.get('/ingresoexitoso', administracionRouters);

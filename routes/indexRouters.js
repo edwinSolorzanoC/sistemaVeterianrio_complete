@@ -1,8 +1,12 @@
-import { verificarUsuario } from '../models/usuarios.js';
+// import { verificarUsuario } from '../models/usuarios.js';
 import express from 'express';
+import indexController from '../controllers/indexController.js'
+const router = express.Router();
 
-const Router = express.Router();
+router.post('/login', indexController.ingresarSitema);
 
+
+/*
 Router.post('/login', (req, res) => {
     const { usuario, contrasenna } = req.body;
 
@@ -21,4 +25,4 @@ Router.post('/login', (req, res) => {
 
 });
 
-export default Router;
+export default Router;*/
