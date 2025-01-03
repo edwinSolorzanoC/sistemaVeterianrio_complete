@@ -31,10 +31,16 @@ Router.post('/registrarPropietario', (req, res) => {
 
 Router.post('/registrarMascota', (req, res) => {
 
-    const { nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota,  colorMascota, partosMascota, fechaPartosMascota } = req.body;
-    const idUsuarioActivoPredeterminado = 1;
+    const { nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota,  colorMascota, partosMascota, fechaPartosMascota,idUsuarioActivoPredeterminado = 1, cedulaPropietarioMascota } = req.body;
+   
+    // Validar campos opcionales (por ejemplo, fechas)
+    const fechaNacimiento = fechaNacimientoMascota && fechaNacimientoMascota !== '' ? fechaNacimientoMascota : null;
+    const fechaPartos = fechaPartosMascota && fechaPartosMascota !== '' ? fechaPartosMascota : null;
 
-    insertarMascota(nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, colorMascota, partosMascota, fechaPartosMascota, idUsuarioActivoPredeterminado, 
+    const castrado = castracionMascota === 'true' ? 'Si esta castrado' : 'No esta castrado'; // Guardar como "Si" o "No"
+
+
+    insertarMascota(nombreMascota, tipoMascota, pesoMascota, fechaNacimiento, edadMascota, razaMascota, castrado, colorMascota, partosMascota, fechaPartos, idUsuarioActivoPredeterminado, cedulaPropietarioMascota,
         (error, results) => {
         if (error) {
             console.log("ERROR EN LINEA 11 ROUTER REGISTRAR MASCOTA", error);
