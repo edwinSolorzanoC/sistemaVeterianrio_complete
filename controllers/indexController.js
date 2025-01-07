@@ -1,20 +1,28 @@
-import indexModel from '../models/indexModel.js';
+import validarUsuario from '../models/indexModel.js';
 
-const ingresarSistema = async (req, res) => {
+const verificarCrendenciales = async (req, res) => {
+    const {usuario, contrasenna} = req.body;
+
+    if(!usuario || !contrasenna){
+        
+        console.log('Usuario y contraseña son requeridos');
+    }
 
     try{
-        const { usuario, contrasenna } = req.body;
 
-        const datosAgrupados = {
-            usuario,
-            contrasenna
+        const resultado = await validarUsuario(usuario, contrasenna);
+        
+        if(resultado){
+            console.log("Usuario y contraseña correctos");
+        }else{
+            console.log("Usuario y contraseña incorrectos");
         }
-        const resultadoFormulario = await indexModel.validarDatos(datosAgrupados);
 
     }catch{
-        console.log("Error en el controlador del index")
+
+        console.log('Error en la validacion de usuario y contraseña');
+
     }
-    
 }
 
-export { resultadoFormulario}
+export default {verificarCrendenciales};
