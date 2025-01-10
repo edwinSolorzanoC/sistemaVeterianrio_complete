@@ -32,15 +32,3 @@ app.get('/', (req, res) => { //mostrar el index
 
 import indexRouters from './routes/indexRouters.js';
 app.post('/login', indexRouters);
-
-import administracionRouters from './routes/administracionRouters.js';
-app.get('/ingresoexitoso', administracionRouters);
-app.get('/administracion', administracionRouters);
-
-import pPacientesRouters from './routes/pPacientesRouters.js';
-app.get('/perfilPacientes', pPacientesRouters);
-
-import regPacientesRouters from './routes/regPacientesRouters.js';
-app.post('/registrarPropietario', regPacientesRouters);
-app.post('/registrarMascota', regPacientesRouters);
-app.get('/registroPacientes', regPacientesRouters);

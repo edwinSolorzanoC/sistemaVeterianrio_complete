@@ -1,7 +1,8 @@
 import express from 'express';
-import indexController from '../controllers/indexController.js'
 const router = express.Router();
 
-router.post('/login', indexController.verificarCrendenciales);
+import usuarioController from '../controllers/indexController.js';
+
+router.post('/login', usuarioController.iniciarSesion);
 
 export default router;
