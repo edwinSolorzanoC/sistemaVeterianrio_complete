@@ -45,7 +45,7 @@
                                 <% datos_pacientes.forEach(dato => { %>
                                     <tr class="linea-tabla">
                                         <td><%= dato.tb_pacientes_col_nombre %></td>
-                                        <td><%= dato.tb_propietarios_col_nombre %></td>
+                                        <td><%= dato.tb_propietarios_col_nombre %></td> 
                                         <td><%= new Date(dato.tb_pacientes_col_fechaUltimaConsulta).toLocaleDateString('es-ES') %></td>                                    
                                     </tr>
                                 <% }); %>
