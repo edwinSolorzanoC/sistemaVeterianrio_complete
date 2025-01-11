@@ -38,3 +38,6 @@ app.get('/administracion', administracionRouters);
 
 import registroPacientesRouters from './routes/registroPacientesRouters.js';
 app.get('/registroPacientes', registroPacientesRouters);
+
+import perfilPacientesRouters from './routes/perfilPacientesRouters.js';
+app.get('/perfilPacientes', perfilPacientesRouters);

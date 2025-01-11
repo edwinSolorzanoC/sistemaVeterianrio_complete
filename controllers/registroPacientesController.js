@@ -7,7 +7,6 @@ registroPacientesController.inicioRegistroPacientes = (req, res) => {
 
     registroPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
         try{
-            console.log(results)
             res.render('registroPacientes',{datos_pacientes: results})
         }catch{
             console.log("error al pedir los datos")
