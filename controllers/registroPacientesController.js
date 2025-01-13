@@ -63,8 +63,9 @@ registroPacientesController.registrarMascotas = (req, res) => {
         colorMascota,
         partosMascota,
         fechaPartosMascota,
-        cedulaPropietarioMascota,
-        idVeterinaria = 1
+        fechaConsultaMascota,
+        idVeterinaria = 1,
+        cedulaPropietarioMascota
     } = req.body;
 
     registroPacientesModel.insertarMascota(
@@ -77,15 +78,19 @@ registroPacientesController.registrarMascotas = (req, res) => {
         castracionMascota,
         colorMascota,
         partosMascota,
-        fechaPartosMascota,
-        cedulaPropietarioMascota,
-        idVeterinaria, (error, results) => {
+        fechaPartosMascota || null,
+        fechaConsultaMascota,
+        idVeterinaria,
+        cedulaPropietarioMascota,(error, results) => {
             if (error) {
+                console.log(results)
                 console.log("Ocurrió un error al insertar mascota.", error);
             } else {
                 try {
+                    console.log(results)
                     registroPacientesController.inicioRegistroPacientes(req, res);
                 } catch (errorRender) {
+                    console.log(results)
                     console.log("Error al renderizar la página:", errorRender);
                 }
             }

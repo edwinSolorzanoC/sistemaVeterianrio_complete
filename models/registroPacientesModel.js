@@ -34,6 +34,7 @@ registroPacientesModel.insertarMascota = (
     colorMascota, 
     partosMascota, 
     fechaPartosMascota, 
+    fechaConsultaMascota,
     idVeterinaria, 
     cedulaPropietarioMascota, callback) => {
 
@@ -41,20 +42,20 @@ registroPacientesModel.insertarMascota = (
         (tb_pacientes_col_nombre, 
         tb_pacientes_col_tipo,
         tb_pacientes_col_peso,
+        tb_pacientes_col_fechaNacimiento,
         tb_pacientes_col_edad,
         tb_pacientes_col_raza,
         tb_pacientes_col_castrado,
-        tb_pacientes_col_fechaNacimiento,
         tb_pacientes_col_color,
         tb_pacientes_col_partos,
         tb_pacientes_col_fechaPartos,
         tb_pacientes_col_fechaUltimaConsulta,
         tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
         tb_propietarios_tb_propietarios_col_cedula) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
         connection.query(peticion, [nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, 
-            colorMascota, partosMascota, fechaPartosMascota, idVeterinaria, cedulaPropietarioMascota], callback);
+            colorMascota, partosMascota, fechaPartosMascota,fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota], callback);
 
 
 }
