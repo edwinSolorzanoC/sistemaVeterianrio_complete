@@ -35,6 +35,9 @@ app.post('/login', indexRouters);
 
 import administracionRouters from './routes/administracionRouters.js';
 app.get('/administracion', administracionRouters);
+app.post('/consultageneral', administracionRouters);
+app.post('/consultavacunacion', administracionRouters);
+
 
 import registroPacientesRouters from './routes/registroPacientesRouters.js';
 app.get('/registroPacientes', registroPacientesRouters);

@@ -1,11 +1,11 @@
-import inicioAdministracion from "../models/administracionModel.js";
+import administracionModel from "../models/administracionModel.js";
 
-const consultaDatosUsuario = {};
+const administracionController = {};
 
-consultaDatosUsuario.obtenerDatos = (req, res) => {
+administracionController.inicioAdministracion = (req, res) => {
     const idVeterinaria = 1; //este datos ahorita es estatico pero se va a usar un manejo de sesion
 
-    inicioAdministracion.consulaUsuarioBaseDatos(idVeterinaria, (error, results) => {
+    administracionModel.consultaInicio(idVeterinaria, (error, results) => {
 
         try{
 
@@ -19,4 +19,70 @@ consultaDatosUsuario.obtenerDatos = (req, res) => {
 
 }
 
-export default consultaDatosUsuario;
+
+administracionController.insertarConsultaGeneralSinPaciente = (req, res) => {
+    const {nombrePropietarioConsulta,
+        nombrePacienteConsulta,
+        motivoConsulta,
+        medicamentosConsulta,
+        pesoConsultaGeneral,
+        fechaAutomatica = new Date().toISOString().slice(0, 10), // Formato: YYYY-MM-DD,
+        idVeterinaria = 1
+    } = req.body;
+
+    administracionModel.consultaGeneralSinPaciente(nombrePropietarioConsulta,
+        nombrePacienteConsulta,
+        motivoConsulta,
+        medicamentosConsulta,
+        pesoConsultaGeneral,
+        fechaAutomatica,
+        idVeterinaria, (error, results) => {
+            if (error) {
+                console.log(results)
+                console.log("Ocurrió un error al insertar consulta sin paciente.", error);
+            } else {
+                try {
+                    console.log("Insercion de consulta sin paciente exitosa", results)
+                    administracionController.inicioAdministracion(req, res);
+                } catch (errorRender) {
+                    console.log(results)
+                    console.log("Error al renderizar la página:", errorRender);
+                }
+            }
+        })
+}
+
+administracionController.insertaVacunacionSinPacinte = (req, res) => {
+
+    const {nombrePropietarioVacunacion,
+        nombrePacienteVacunacion,
+        pesoVacunacion,
+        nombreInyeccionVacunacion,
+        nombreInyeccionDesparacitacion,
+        fechaAutomatica = new Date().toISOString().slice(0, 10), // Formato: YYYY-MM-DD,,
+        idVeterinaria = 1
+    } = req.body;
+
+    administracionModel.consultaVacunacionSinPaciente(nombrePropietarioVacunacion,
+        nombrePacienteVacunacion,
+        pesoVacunacion,
+        nombreInyeccionVacunacion,
+        nombreInyeccionDesparacitacion,
+        fechaAutomatica,
+        idVeterinaria, (error, results) => {
+            if(error){
+                console.log(results, "error en insertar vacunacion sin paciente", error);
+            }else{
+                try{
+                    console.log("insercion de vacunascion sin paciente exitosa", results)
+                    administracionController.inicioAdministracion(req,res);
+                }catch(errorRender){
+                    console.log(results)
+                    console.log("Error al renderizar la página:", errorRender);
+                }
+            }
+        })
+
+}
+
+export default administracionController;

@@ -35,7 +35,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Nombre paciente</th>
+                                    <th>Paciente</th>
                                     <th>Propietario</th>
                                     <th>Ultima consulta</th>
                                 </tr>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="motivo-consulta" id="motivo-consulta">
                 
-                    <form action="#" autocomplete="off" id="formulario-general">
+                    <form action="/consultageneral" method="post" autocomplete="off" id="formulario-general">
                         <h1>CONSULTA GENERAL <i class="fa-solid fa-paste"></i></h1>
                         <div class="propietario">
                             <label for="nombrePropietarioConsulta">Nombre propietario: </label>
@@ -98,7 +98,7 @@
                         </div>
                     </form>
 
-                    <form action="#" class="formulario-vacunas" id="formulario-vacunas" autocomplete="off">
+                    <form action="/consultavacunacion" method="post" class="formulario-vacunas" id="formulario-vacunas" autocomplete="off">
                         <h1>CONSULTA VACUNACION Y/O DESPARACITACION <i class="fa-solid fa-syringe"></i></h1>
                         <div class="propietario">
                             <label for="nombrePropietarioVacunacion">Nombre propietario: </label>
