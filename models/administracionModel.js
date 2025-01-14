@@ -47,7 +47,7 @@ administracionModel.consultaGeneralSinPaciente = (nombrePropietarioConsulta,
             idVeterinaria], callback);
 }
 
-administracionModel.consultaVacunacionSinPaciente = (idVeterinaria, callback) => (
+administracionModel.consultaVacunacionSinPaciente = (
     nombrePropietarioVacunacion,
     nombrePacienteVacunacion,
     pesoVacunacion,
