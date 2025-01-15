@@ -13,7 +13,7 @@ administracionModel.consultaInicio = (idVeterinaria, callback) => {
 
 };
 
-administracionModel.consultaGeneralSinPaciente = (nombrePropietarioConsulta,
+administracionModel.consultaGeneral = (nombrePropietarioConsulta,
     nombrePacienteConsulta,
     motivoConsulta,
     medicamentosConsulta,
@@ -97,7 +97,7 @@ administracionModel.consultaGeneralSinPaciente = (nombrePropietarioConsulta,
         
 }
 
-administracionModel.consultaVacunacionSinPaciente = (
+administracionModel.consultaVacunacion = (
     nombrePropietarioVacunacion,
     nombrePacienteVacunacion,
     pesoVacunacion,
@@ -106,31 +106,87 @@ administracionModel.consultaVacunacionSinPaciente = (
     fechaAutomatica,
     idVeterinaria, callback) => {
 
-    const peticion = `INSERT INTO tb_consultaVacunacion (
-        tb_consultaVacunacion_col_nombrePropietario, 
-        tb_consultaVacunacion_col_nombrePaciente,
-        tb_consultaVacunacion_col_actualizacionPeso,
-        tb_consultaVacunacion_col_vacunacion, 
-        tb_consultaVacunacion_col_desparacitacion,
-        tb_consultaVacunacion_col_fecha,
-        tb_usuariosVeterinaria_idtb_usuariosVeterinaria)
-        VALUES(
-        ?,
-        ?,
-        ?,
-        ?,
-        ?,
-        ?,
-        ?
-        );`;
 
-        connection.query(peticion, [nombrePropietarioVacunacion,
-            nombrePacienteVacunacion,
-            pesoVacunacion,
-            nombreInyeccionVacunacion,
-            nombreInyeccionDesparacitacion,
-            fechaAutomatica,
-            idVeterinaria], callback);
+        const verificarExistenciaPacientes = `SELECT  idtb_pacientes
+        FROM tb_pacientes
+        JOIN tb_propietarios
+        ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+        WHERE tb_pacientes_col_nombre = ? && tb_propietarios_col_nombre = ?;`;
+
+        connection.query(verificarExistenciaPacientes, [nombrePacienteVacunacion, nombrePropietarioVacunacion], (error, results) =>{
+
+            console.log("resutados pedidos", results)
+            if(error){
+                console.log("error en la consulta de existencia de pacientes");
+            }else{
+                if(results.length > 0){
+                    console.log("Si se ejecuto la consulta en vacunacion y si hay conicidencias, se inserta con paciente");
+                    const idMascota = results[0].idtb_pacientes;
+
+                    const peticionConMascota = `INSERT INTO tb_consultaVacunacion (
+                        tb_consultaVacunacion_col_nombrePropietario, 
+                        tb_consultaVacunacion_col_nombrePaciente,
+                        tb_consultaVacunacion_col_actualizacionPeso,
+                        tb_consultaVacunacion_col_vacunacion, 
+                        tb_consultaVacunacion_col_desparacitacion,
+                        tb_consultaVacunacion_col_fecha,
+                        tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
+                        tb_pacientes_idtb_pacientes)
+                        VALUES(
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?
+                        );`;
+                
+                        connection.query(peticionConMascota, [nombrePropietarioVacunacion,
+                            nombrePacienteVacunacion,
+                            pesoVacunacion,
+                            nombreInyeccionVacunacion,
+                            nombreInyeccionDesparacitacion,
+                            fechaAutomatica,
+                            idVeterinaria,
+                            idMascota], callback);
+                
+                }else{
+                    console.log("Si se ejecuto la consulta en vacunacion pero no hay conicidencias, se inserta sin paciente");
+
+                    const peticion = `INSERT INTO tb_consultaVacunacion (
+                        tb_consultaVacunacion_col_nombrePropietario, 
+                        tb_consultaVacunacion_col_nombrePaciente,
+                        tb_consultaVacunacion_col_actualizacionPeso,
+                        tb_consultaVacunacion_col_vacunacion, 
+                        tb_consultaVacunacion_col_desparacitacion,
+                        tb_consultaVacunacion_col_fecha,
+                        tb_usuariosVeterinaria_idtb_usuariosVeterinaria)
+                        VALUES(
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?,
+                        ?
+                        );`;
+                
+                        connection.query(peticion, [nombrePropietarioVacunacion,
+                            nombrePacienteVacunacion,
+                            pesoVacunacion,
+                            nombreInyeccionVacunacion,
+                            nombreInyeccionDesparacitacion,
+                            fechaAutomatica,
+                            idVeterinaria], callback);
+                }
+                
+            }
+        })
+        
+        
+        
         
 }
 

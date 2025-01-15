@@ -20,7 +20,7 @@ administracionController.inicioAdministracion = (req, res) => {
 }
 
 
-administracionController.insertarConsultaGeneralSinPaciente = (req, res) => {
+administracionController.insertarConsultaGeneral = (req, res) => {
     const {nombrePropietarioConsulta,
         nombrePacienteConsulta,
         motivoConsulta,
@@ -30,7 +30,7 @@ administracionController.insertarConsultaGeneralSinPaciente = (req, res) => {
         idVeterinaria = 1
     } = req.body;
 
-    administracionModel.consultaGeneralSinPaciente(nombrePropietarioConsulta,
+    administracionModel.consultaGeneral(nombrePropietarioConsulta,
         nombrePacienteConsulta,
         motivoConsulta,
         medicamentosConsulta,
@@ -52,7 +52,7 @@ administracionController.insertarConsultaGeneralSinPaciente = (req, res) => {
         })
 }
 
-administracionController.insertaVacunacionSinPacinte = (req, res) => {
+administracionController.insertaVacunacion = (req, res) => {
 
     const {nombrePropietarioVacunacion,
         nombrePacienteVacunacion,
@@ -63,7 +63,7 @@ administracionController.insertaVacunacionSinPacinte = (req, res) => {
         idVeterinaria = 1
     } = req.body;
 
-    administracionModel.consultaVacunacionSinPaciente(nombrePropietarioVacunacion,
+    administracionModel.consultaVacunacion(nombrePropietarioVacunacion,
         nombrePacienteVacunacion,
         pesoVacunacion,
         nombreInyeccionVacunacion,
