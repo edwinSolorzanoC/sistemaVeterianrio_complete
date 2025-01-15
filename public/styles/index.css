@@ -121,3 +121,60 @@ header{
     }
 
 }
+
+.obtener{
+    margin: 2% 1%;
+    color: white;
+}
+.obtener .titulo{
+    font-size: 7vh;
+}
+.obtener .subtitulo{
+    font-size: 3vh;
+}
+.obtener form{
+    margin: 1%;
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0.121);
+    border-radius: 10px;
+
+    width: 95%;
+    display: flex;
+}
+.obtener form input{
+    padding: 1.5%;
+}
+.obtener form .bloque-uno{
+    width: 70%;
+}
+.obtener form .bloque-dos{
+    width: 30%;
+}
+
+@media screen and (max-width:700px){
+    .obtener form{
+        display: block;
+        text-align: center;
+    }
+    .obtener form input{
+        padding: 1.5%;
+
+        width: 95%;
+        border-radius: 5px;
+        padding: 2%;
+        margin: 1% 0%;
+    }
+    .obtener button{
+        padding: 2% 10%;
+    }
+    .obtener form .bloque-uno{
+        width: 100%;
+    }
+    .obtener form .bloque-dos{
+        width: 100%;
+    }
+    .obtener form .bloque-dos{
+        text-align: start;
+    }
+    
+}
