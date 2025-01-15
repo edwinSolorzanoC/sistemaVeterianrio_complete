@@ -135,7 +135,8 @@ header{
 .obtener form{
     margin: 1%;
     padding: 1%;
-    background-color: rgba(255, 255, 255, 0.121);
+    color: rgba(0, 0, 0, 0.762);
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
 
     width: 95%;
@@ -149,6 +150,7 @@ header{
 }
 .obtener form .bloque-dos{
     width: 30%;
+    
 }
 
 @media screen and (max-width:700px){
