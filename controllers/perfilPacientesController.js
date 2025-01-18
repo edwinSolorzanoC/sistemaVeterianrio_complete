@@ -7,7 +7,7 @@ perfilPacientesController.inicioPerfilPacientes = (req, res) => {
 
     perfilPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
             try{
-                res.render('perfilPacientes',{datos_pacientes: results, paciente_solicitado: null})
+                res.render('perfilPacientes',{datos_pacientes: results})
             }catch{
                 console.log("error al pedir los datos")
             }
@@ -25,13 +25,12 @@ perfilPacientesController.mostrarDatosSeleccionados = (req, res) => {
             console.log("hay error", error)
         }else{
             try{
-                res.render('perfilPacientes',{datos_pacientes: [],paciente_solicitado: results[0] || {}})
-                
+                res.render('perfilPacientes',{paciente_solicitado: results})
+                console.log("Estoy en el controlador ", results)                
             }catch{
                 console.log("error al pedir los datos")
             }
         }
-        console.log("Lo que se envia a la vista es...", results[0] || {} )
         
     })
 }

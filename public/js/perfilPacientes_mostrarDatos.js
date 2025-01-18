@@ -21,7 +21,7 @@ document.querySelectorAll("#tabla-pacientes tr").forEach((fila, index) => {
                     console.log("Respuesta del controlador:", data); // Mostrar respuesta del servidor
                 })
                 .catch(error => {
-                    console.error("Error al enviar los datos:", error); // Manejar errores
+                    console.error("Error al enviar los datos:"); // Manejar errores
                 });
 
         })

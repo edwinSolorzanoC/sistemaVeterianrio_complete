@@ -61,15 +61,10 @@
                         <div class="bloque">
                             
                             <div class="divicion">
-                                <% if (paciente_solicitado && Object.keys(paciente_solicitado).length > 0) { %>
+    
                                 <div class="dato-infromacion">
                                     <label for="nombreMascota">Nombre Paciente: </label>
-                                    <input type="text" name="nombreMascota" id="nombreMascota" disabled value='<%= paciente_solicitado.tb_pacientes_col_nombre %>''>
-                                    <li>Nombre: <%= paciente_solicitado.tb_pacientes_col_nombre %></li>
-                                </div>
-                                <% } else { %>
-                                    <p>No se encontraron datos del paciente solicitado.</p>
-                                <% } %>
+                                    <input type="text" name="nombreMascota" id="nombreMascota" disabled value="">                                </div>
                                 <div class="dato-infromacion">
                                     <label for="tipoMascota">Tipo</label>
                                     <input type="text" name="tipoMascota" id="tipoMascota" disabled>
