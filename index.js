@@ -46,3 +46,4 @@ app.post('/registrarMascota', registroPacientesRouters);
 
 import perfilPacientesRouters from './routes/perfilPacientesRouters.js';
 app.get('/perfilPacientes', perfilPacientesRouters);
+app.post('/enviodedatos', perfilPacientesRouters);

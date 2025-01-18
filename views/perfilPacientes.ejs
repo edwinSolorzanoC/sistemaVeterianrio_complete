@@ -25,7 +25,7 @@
     
             <section class="bloque">
                 <div class="tabla-pacientes" id="tabla-pacientes">
-                    <h1>Registro de pacientes</h1>
+                    <h1>Tabla de pacientes</h1>
                     <p class=""><i class="fa-solid fa-bell"></i> Seleccion un paciente para ver mas infromacion...</p>
                     <table>
                         <thead>
@@ -36,7 +36,7 @@
                         </thead>
                         <tbody>
                             <% datos_pacientes.forEach(dato => { %>
-                                <tr class="linea-tabla">
+                                <tr class="linea-tabla" >
                                     <td><%= dato.tb_pacientes_col_nombre %></td>
                                     <td><%= dato.tb_propietarios_col_nombre %></td>
                                 </tr>
@@ -61,15 +61,15 @@
                         <div class="bloque">
                             
                             <div class="divicion">
-    
-                                <div class="dato-informacion">
-                                    <label for="nombrePropietario">Nombre Propietario: </label>
-                                    <input type="text" name="nombrePropietario" id="nombrePropietario" disabled>
-                                </div>
+                                <% if (paciente_solicitado && Object.keys(paciente_solicitado).length > 0) { %>
                                 <div class="dato-infromacion">
                                     <label for="nombreMascota">Nombre Paciente: </label>
-                                    <input type="text" name="nombreMascota" id="nombreMascota" disabled>
+                                    <input type="text" name="nombreMascota" id="nombreMascota" disabled value='<%= paciente_solicitado.tb_pacientes_col_nombre %>''>
+                                    <li>Nombre: <%= paciente_solicitado.tb_pacientes_col_nombre %></li>
                                 </div>
+                                <% } else { %>
+                                    <p>No se encontraron datos del paciente solicitado.</p>
+                                <% } %>
                                 <div class="dato-infromacion">
                                     <label for="tipoMascota">Tipo</label>
                                     <input type="text" name="tipoMascota" id="tipoMascota" disabled>
@@ -227,8 +227,8 @@
 
     </footer>
 
-    <script src="js/perPacientes_navegacion.js"></script>
-    <script src="js/perPacientes_mostrarDatos.js"></script>
+    <script src="js/perfilPacientes_navegacion.js"></script>
+    <script src="js/perfilPacientes_mostrarDatos.js"></script>
 
     <script src="js/main.js"></script>
 

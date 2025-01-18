@@ -10,7 +10,6 @@ administracionModel.consultaInicio = (idVeterinaria, callback) => {
     WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = 1;`
 
     connection.query(queryDatosUsuario, [idVeterinaria], callback);
-
 };
 
 administracionModel.consultaGeneral = (nombrePropietarioConsulta,
@@ -31,11 +30,9 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
             if(error){
                 console.log("error en la consulta de existencia de pacientes");
             }else{
-                
                 if(results.length > 0){
                     console.log("si se ejcutó el select y si se encontro paciente");
                     const idMascota = results[0].idtb_pacientes;
-
                     const peticionConMascota = `INSERT INTO tb_consultageneral (
                     tb_consultaGeneral_col_nombrePropietario, 
                     tb_consultaGeneral_col_nombrePaciente,
@@ -106,7 +103,6 @@ administracionModel.consultaVacunacion = (
     fechaAutomatica,
     idVeterinaria, callback) => {
 
-
         const verificarExistenciaPacientes = `SELECT  idtb_pacientes
         FROM tb_pacientes
         JOIN tb_propietarios
@@ -122,7 +118,6 @@ administracionModel.consultaVacunacion = (
                 if(results.length > 0){
                     console.log("Si se ejecuto la consulta en vacunacion y si hay conicidencias, se inserta con paciente");
                     const idMascota = results[0].idtb_pacientes;
-
                     const peticionConMascota = `INSERT INTO tb_consultaVacunacion (
                         tb_consultaVacunacion_col_nombrePropietario, 
                         tb_consultaVacunacion_col_nombrePaciente,
@@ -154,7 +149,6 @@ administracionModel.consultaVacunacion = (
                 
                 }else{
                     console.log("Si se ejecuto la consulta en vacunacion pero no hay conicidencias, se inserta sin paciente");
-
                     const peticion = `INSERT INTO tb_consultaVacunacion (
                         tb_consultaVacunacion_col_nombrePropietario, 
                         tb_consultaVacunacion_col_nombrePaciente,
