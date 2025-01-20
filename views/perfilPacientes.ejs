@@ -35,12 +35,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% datos_pacientes.forEach(dato => { %>
-                                <tr class="linea-tabla" >
-                                    <td><%= dato.tb_pacientes_col_nombre %></td>
-                                    <td><%= dato.tb_propietarios_col_nombre %></td>
-                                </tr>
-                            <% }); %>
+                            
+                                <% datos_pacientes.forEach(dato => { %>
+                                    <tr class="linea-tabla" >
+                                        <td><%= dato.tb_pacientes_col_nombre %></td>
+                                        <td><%= dato.tb_propietarios_col_nombre %></td>
+                                    </tr>
+                                <% }); %>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -64,14 +66,15 @@
     
                                 <div class="dato-infromacion">
                                     <label for="nombreMascota">Nombre Paciente: </label>
-                                    <input type="text" name="nombreMascota" id="nombreMascota" disabled value="">                                </div>
+                                    <input type="text" name="nombreMascota" id="nombreMascota" disabled>                                
+                                </div>
                                 <div class="dato-infromacion">
                                     <label for="tipoMascota">Tipo</label>
                                     <input type="text" name="tipoMascota" id="tipoMascota" disabled>
                                 </div>
                                 <div class="dato-infromacion">
                                     <label for="razaMascota">Raza</label>
-                                    <input type="text" name="razMascota" id="razMascota" disabled>
+                                    <input type="text" name="razaMascota" id="razaMascota" disabled>
                                 </div>
                                 <div class="dato-informacion">
                                     <label for="fechaNacimiento">Fecha Naciemiento</label>
@@ -191,7 +194,7 @@
                         <h1>Informacion Propierario</h1>
                         <div class="dato-informacion">
                             <label for="nombrePropietario">Nombre Propierario</label>
-                            <input type="text" name="nombrePropietario" id="nombrePropietario2" disabled>
+                            <input type="text" name="nombrePropietario" id="nombrePropietario" disabled>
                         </div>
                         <div class="dato-informacion">
                             <label for="cedulaPropietario">Cedula</label>
@@ -223,7 +226,7 @@
     </footer>
 
     <script src="js/perfilPacientes_navegacion.js"></script>
-    <script src="js/perfilPacientes_mostrarDatos.js"></script>
+    <script src="js/perfilPacientes_AJAX.js"></script>
 
     <script src="js/main.js"></script>
 
