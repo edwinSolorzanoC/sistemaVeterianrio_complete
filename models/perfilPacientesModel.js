@@ -28,12 +28,24 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
     tb_propietarios_col_cedula,
     tb_propietarios_col_direccion,
     tb_propietarios_col_numeroTelefono,
-    tb_propietarios_col_correoElectronico
+    tb_propietarios_col_correoElectronico,
+    tb_consultageneral_col_fecha,
+    tb_consultageneral_col_motivo,
+    tb_consultageneral_col_medicamentosUtilizados,
+    tb_consultavacunacion_col_fecha,
+    tb_consultavacunacion_col_desparacitacion,
+    tb_consultavacunacion_col_vacunacion
 
     FROM tb_pacientes
 
-    INNER JOIN tb_propietarios 
+    LEFT JOIN tb_propietarios 
     ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+
+    LEFT JOIN tb_consultageneral
+    ON tb_pacientes.idtb_pacientes = tb_consultageneral.tb_pacientes_idtb_pacientes
+
+    LEFT JOIN tb_consultavacunacion
+    ON tb_pacientes.idtb_pacientes = tb_consultavacunacion.tb_pacientes_idtb_pacientes
 
     WHERE 
     tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ? AND

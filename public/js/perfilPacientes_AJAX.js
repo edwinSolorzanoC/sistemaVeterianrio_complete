@@ -37,6 +37,29 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById('telefonoPropietario').value = data.tb_propietarios_col_direccion;
                     document.getElementById('correoElectronico').value = data.tb_propietarios_col_correoElectronico;
 
+                    document.getElementById('nombrePropietario').value = data.tb_propietarios_col_nombre;
+                    document.getElementById('nombrePropietario').value = data.tb_propietarios_col_nombre;
+                    document.getElementById('nombrePropietario').value = data.tb_propietarios_col_nombre;
+
+                    const tablaResultados = document.getElementById('tabla-resultados-consultas').querySelector('tbody');; // Tabla donde se agregarán los datos
+                    tablaResultados.innerHTML = ""; // Borra todas las filas
+                    const nuevaFila = tablaResultados.insertRow(); // Crear una nueva fila
+
+                    nuevaFila.insertCell(0).textContent = formatearFecha(data.tb_consultageneral_col_fecha);
+                    nuevaFila.insertCell(1).textContent = data.tb_consultageneral_col_motivo;
+                    nuevaFila.insertCell(2).textContent = data.tb_consultageneral_col_medicamentosUtilizados;
+
+                    const tablaResultadosVacunacion = document.getElementById('tabla-resultados-vacunacion').querySelector('tbody');; // Tabla donde se agregarán los datos
+                    tablaResultadosVacunacion.innerHTML = ""; // Borra todas las filas
+                    const nuevaFilaVacunacion = tablaResultadosVacunacion.insertRow(); // Crear una nueva fila
+
+                    nuevaFilaVacunacion.insertCell(0).textContent = formatearFecha(data.tb_consultavacunacion_col_fecha);
+                    nuevaFilaVacunacion.insertCell(1).textContent = data.tb_consultavacunacion_col_desparacitacion;
+                    nuevaFilaVacunacion.insertCell(2).textContent = data.tb_consultavacunacion_col_vacunacion;
+
+
+
+
                 })
                 .catch(err => {
                     console.log("Error al enviar los datos", err);
@@ -44,4 +67,27 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
+
+    function formatearFecha(fechaISO) {
+        // Convierte la fecha en un objeto Date
+        if (!fechaISO) {
+            return ""; // Retorna una cadena vacía si no hay dato
+        }
+    
+        // Convierte la fecha en un objeto Date
+        const fecha = new Date(fechaISO);
+    
+        // Verifica si la fecha es inválida
+        if (isNaN(fecha)) {
+            return ""; // Retorna una cadena vacía si la fecha no es válida
+        }
+    
+        // Extrae el día, mes y año
+        const dia = fecha.getDate().toString().padStart(2, '0'); // Asegura que tenga dos dígitos
+        const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses empiezan en 0
+        const anio = fecha.getFullYear();
+    
+        // Retorna en el formato deseado (dd/mm/yyyy)
+        return `${dia}/${mes}/${anio}`;
+    }
 });
