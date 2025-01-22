@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById('tipoMascota').value = data.tb_pacientes_col_tipo;
                     document.getElementById('razaMascota').value = data.tb_pacientes_col_raza;
                     document.getElementById('fechaNacimiento').value = data.tb_pacientes_col_fechaNacimiento;
+                    document.getElementById('sexoMascota').value = data.tb_pacientes_col_sexo;
                     document.getElementById('colorMascota').value = data.tb_pacientes_col_color;
                     document.getElementById('castradoMascota').value = data.tb_pacientes_col_castrado;
                     document.getElementById('edadMascota').value = data.tb_pacientes_col_edad;

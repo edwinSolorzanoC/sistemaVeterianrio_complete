@@ -63,7 +63,8 @@ registroPacientesController.registrarMascotas = (req, res) => {
         colorMascota,
         partosMascota,
         fechaPartosMascota,
-        fechaConsultaMascota,
+        sexoMascota,
+        fechaConsultaMascota  = new Date().toISOString().slice(0, 10),
         idVeterinaria = 1,
         cedulaPropietarioMascota
     } = req.body;
@@ -77,8 +78,9 @@ registroPacientesController.registrarMascotas = (req, res) => {
         razaMascota,
         castracionMascota,
         colorMascota,
-        partosMascota,
+        partosMascota || 0,
         fechaPartosMascota || null,
+        sexoMascota,
         fechaConsultaMascota,
         idVeterinaria,
         cedulaPropietarioMascota,(error, results) => {

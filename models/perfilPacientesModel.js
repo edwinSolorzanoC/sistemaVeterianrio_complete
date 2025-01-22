@@ -17,6 +17,7 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
     tb_pacientes_col_tipo, 
     tb_pacientes_col_raza, 
     tb_pacientes_col_fechaNacimiento,
+    tb_pacientes_col_sexo,
     tb_pacientes_col_color,
     tb_pacientes_col_castrado,
     tb_pacientes_col_edad,
