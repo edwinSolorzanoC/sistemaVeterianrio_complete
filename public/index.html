@@ -12,7 +12,7 @@
 
         <section class="bloque">
             <section class="titulo-header">
-                <h1>CONTROL PET SYSTEM</h1>
+                <h1>VETCON</h1>
             </section>
             
             <section class="navegacion-header" id="navegacion-header">
@@ -31,25 +31,54 @@
 
             <div class="presentacion">
                 <h1 class="titulo">Sistema de control Veterinario</h1>
-                <h1 class="subtitulo">CONTROL PET SYSTEM</h1>
+                <h1 class="subtitulo">VETCON</h1>
 
                 <div class="opciones">
                     <button class="btn-iniciarSesion" id="btn-iniciarSesion">Ingresar al sistema</button>
+                    <button class="btn-crearCuenta" id="btn-crearCuenta">Crear cuenta para sistema</button>
                 </div>
 
                 <section class="formulario-iniciosesion" id="formulario-iniciosesion">
-                    <h1>Inicio de sesion</h1>
+                    <h1>Inicia sesion con tus datos creados</h1>
 
                     <form action="/login" method="POST" autocomplete="off">
                         <div class="usuario">
-                            <label for="username">Esribe tu usuario</label>
+                            <label for="username">Esribe tu usuario creado</label>
                             <input name="username" type="text" placeholder="Usuario..." required>
                         </div>
                         <div class="contrasenna">
-                            <label for="password">Escribe tu contraseña</label>
+                            <label for="password">Escribe tu contraseña personal</label>
                             <input name="password" type="password" placeholder="Contraseña..." required>
                         </div>
                         <button type="submit" id="ingresar-sistema" class="ingresar-sistema">Aceptar</button>
+                    </form>
+                </section>
+
+                <section class="formulario-crearCuenta" id="formulario-crearCuenta">
+                    <h1>Crear Cuenta para Sistema</h1>
+
+                    <form action="/crearCuenta" method="POST" autocomplete="off">
+                        <div class="claveSeguridad">
+                            <label for="claveSeguridad">Esribe tu clave de seguridad brindada</label>
+                            <input name="claveSeguridad" type="password" placeholder="Clave de seguridad..." required>
+                        </div>
+                        <div class="usuario">
+                            <label for="username">Crea tu Usuario de Sistema</label>
+                            <input name="username" type="text" placeholder="Usuario..." required>
+                        </div>
+                        <div class="contrasenna">
+                            <label for="password">Crea una Contraseña segura</label>
+                            <input name="password" type="password" placeholder="Contraseña..." required>
+                        </div>
+                        <div class="correoElectronico">
+                            <label for="correoElectronico">Escribe tu correo electronico</label>
+                            <input name="correoElectronico" type="email" placeholder="Correo electronico..." required>
+                        </div>
+                        <div class="numeroTelefono">
+                            <label for="numeroTelefono">Escribe tu numero telefono</label>
+                            <input name="numeroTelefono" type="number" placeholder="Numero de telefono..." required>
+                        </div>
+                        <button type="submit" id="ingresar-sistema" class="ingresar-sistema">Crear cuenta</button>
                     </form>
                 </section>
 
@@ -60,7 +89,7 @@
 
         <section class="obtener">
 
-            <h1 class="titulo">Obtener usuario</h1>
+            <h1 class="titulo">Obtener clave de seguridad</h1>
             <p class="subtitulo">Si desea obtener acceso a nuestro sistema y/o solicitar informacion, llena el formulario y nos 
                 pondremos en contacto contigo !!
             </p>

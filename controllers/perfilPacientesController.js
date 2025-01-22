@@ -26,7 +26,6 @@ perfilPacientesController.mostrarDatosSeleccionados = (req, res) => {
             try {
                 // Pasamos los datos a la vista
                 res.json(results[0]);
-                console.log("Datos obtenidos para el paciente solicitado", results);
             } catch (err) {
                 console.log("Error al procesar los datos", err);
             }
