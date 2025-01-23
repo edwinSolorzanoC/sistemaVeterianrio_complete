@@ -11,7 +11,7 @@
     <header>
 
         <section class="titulo-header">
-            <h1>CONTROL PET SYSTEM</h1>
+            <h1>VETCON</h1>
         </section>
         <section class="opciones-header">
             <button id="volver"><i class="fa-solid fa-arrow-left"></i> Volver</button>
@@ -84,10 +84,9 @@
                                 <label for="correoPropietario">Escribe correo electronico del propietario</label>
                                 <input type="email" name="correoPropietario" id="correoPropietario" placeholder="Correo electronico del propietario..." required autocomplete="off">
                             </div>
-                            
-                            
-    
+                         
                             <button type="submit" class="btn-guardardatos btn-guardarDatosPropietario">Guardar</button>
+                            <button type="button" class="btn-cancelardatos" id="cancelardatos-propietarios"><i class="fa-solid fa-newspaper"></i> Limpiar Formulario</button>
                         </form>
                     </div>
     
@@ -125,8 +124,8 @@
                             <div class="datos">
                                 <label for="castracionMascota">Selecciona si las mascota es castrada o no</label>
                                 <select name="castracionMascota" id="castracionMascota" required>
-                                    <option value="true">Si esta castrada</option>
-                                    <option value="false">No esta castrada</option>
+                                    <option value="No">No esta castrada</option>
+                                    <option value="Si">Si esta castrada</option>
                                 </select>
                             </div>
                             
@@ -144,7 +143,7 @@
                             </div>
                             <div class="datos">
                                 <label for="sexoMascota">Escribe el sexo de la mascota:</label>
-                                <input type="text" name="sexoMascota" id="sexoMascota" placeholder="Color de mascota..." required>
+                                <input type="text" name="sexoMascota" id="" placeholder="Color de mascota..." required>
                             </div>
                             <div class="datos">
                                 <label for="cedulaPropietarioMascota">Cedula de propietario:</label>
@@ -152,6 +151,8 @@
                             </div>
                             
                             <button type="submit" class="btn-guardardatos btn-guardarDatosMascota">Guardar</button>
+                            <button type="button" class="btn-cancelardatos" id="cancelardatos-mascotas"><i class="fa-solid fa-newspaper"></i> Limpiar Formulario</button>
+
                         </form>
                         
                     </div>

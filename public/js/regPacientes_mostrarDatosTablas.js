@@ -31,5 +31,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 
+    const limpiarRegistroPropietarios = document.getElementById("cancelardatos-propietarios");
+
+    limpiarRegistroPropietarios.addEventListener('click', function(){
+        document.getElementById('cedulaPropietario').value = "";
+        document.getElementById('nombrePropietario').value = "";
+        document.getElementById('direccionPropietario').value = "";
+        document.getElementById('telefonoPropietario').value = "";
+        document.getElementById('correoPropietario').value = "";
+    })
+
+    const limpiarRegistroMascotas = document.getElementById("cancelardatos-mascotas");
+
+    limpiarRegistroMascotas.addEventListener('click', function(){
+        document.getElementById('nombreMascota').value = "";
+        document.getElementById('tipoMascota').value = "";
+        document.getElementById('pesoMascota').value = "";
+        document.getElementById('fechaNacimientoMascota').value = "";
+        document.getElementById('edadMascota').value = "";
+        document.getElementById('razaMascota').value = "";
+        document.getElementById('castracionMascota').value = "";
+        document.getElementById('colorMascota').value = "";
+        document.getElementById('partosMascota').value = "";
+        document.getElementById('fechaPartosMascota').value = "";
+        document.getElementById('sexoMascota').value = "";
+        document.getElementById('cedulaPropietarioMascota').value = "";
+
+    })
+
+
 }) 
 

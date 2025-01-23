@@ -25,7 +25,12 @@ perfilPacientesController.mostrarDatosSeleccionados = (req, res) => {
         } else {
             try {
                 // Pasamos los datos a la vista
-                res.json(results[0]);
+                // console.log("CONTORLADOR : ", results.datosPaciente, results.consultasGenerales, results.vacunacion )
+                res.json({
+                    datosPaciente: results.datosPaciente,         // Datos del paciente y propietario
+                    consultasGenerales: results.consultasGenerales,    // Consultas generales
+                    vacunacion: results.vacunacion                 // Vacunación
+                });
             } catch (err) {
                 console.log("Error al procesar los datos", err);
             }
