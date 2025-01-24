@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const formulariogeneral = document.getElementById("formulario-general");
     const formulariovacunas = document.getElementById("formulario-vacunas");
 
-
+   
 
 
     //muestra el formulario de consulta general
@@ -39,6 +39,12 @@ document.addEventListener('DOMContentLoaded', function(){
     irAPercilPacientes.addEventListener('click', function(){
         window.location.href = '/perfilPacientes';
     });
+
+    const verconsultas = document.getElementById("verconsultas");
+
+    verconsultas.addEventListener('click', function(){
+        window.location.href = '/consultas'
+    })
 
     const cerrarSesion = document.getElementById("cerrarSesion");
     cerrarSesion.addEventListener('click', function(){

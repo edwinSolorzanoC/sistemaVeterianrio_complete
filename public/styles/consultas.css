@@ -1,0 +1,29 @@
+@import url(main.css);
+
+.mostrarTablas{
+    background-color: white;
+    margin: 1%;
+    padding: 1%;
+    min-height: 70vh;
+    max-height: 100%;
+}
+.mostrarTablas .navegacion{
+    text-align: end;
+}
+.tipoconsulta .consultageneral, .tipoconsulta .consultavacunacion{
+    width: 100%;
+    text-align: center;
+}
+.tipoconsulta .consultageneral .motivo{
+    width: 100vh;
+}
+.tipoconsulta .consultageneral .tratamiento{
+    width: 30vh;
+}
+.tipoconsulta .consultageneral .propietario{
+    width: 20vh;
+}
+
+#consultavacunacion{
+    display: none;
+}

@@ -53,50 +53,50 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
 
     const queryDatosConsultaGeneral = new Promise((resolve, reject) => {
         const peticionDatosConsultaGeneral = `SELECT 
-        tb_consultaGeneral_col_fecha, 
-        tb_consultaGeneral_col_motivo, 
-        tb_consultaGeneral_col_medicamentosUtilizados
-    
-        FROM tb_consultageneral
-    
-        JOIN tb_pacientes 
-        ON tb_pacientes.idtb_pacientes = tb_consultageneral.tb_pacientes_idtb_pacientes
-    
-        JOIN tb_propietarios
-        ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
-    
-        WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
-        AND tb_pacientes.tb_pacientes_col_nombre = ?
-        AND tb_propietarios.tb_propietarios_col_nombre = ?;`
+            tb_consultaGeneral_col_fecha, 
+            tb_consultaGeneral_col_motivo, 
+            tb_consultaGeneral_col_medicamentosUtilizados
+        
+            FROM tb_consultageneral
+        
+            JOIN tb_pacientes 
+            ON tb_pacientes.idtb_pacientes = tb_consultageneral.tb_pacientes_idtb_pacientes
+        
+            JOIN tb_propietarios
+            ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+        
+            WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
+            AND tb_pacientes.tb_pacientes_col_nombre = ?
+            AND tb_propietarios.tb_propietarios_col_nombre = ?;`
 
-        connection.query(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
-            if (error) reject(error);
-            resolve(results);
-        });
+            connection.query(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
+                if (error) reject(error);
+                resolve(results);
+            });
 
     })
 
     const queryDatosConsultaVacunacion = new Promise((resolve, reject)=> {
         const peticionVacunacion = `SELECT 
-        tb_consultaVacunacion_col_fecha,
-        tb_consultaVacunacion_col_desparacitacion,
-        tb_consultaVacunacion_col_vacunacion
-        
-        FROM tb_consultaVacunacion
-        
-        JOIN tb_pacientes 
-        ON tb_pacientes.idtb_pacientes = tb_consultaVacunacion.tb_pacientes_idtb_pacientes
-        
-        JOIN tb_propietarios
-        ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
-        
-        WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
-        AND tb_pacientes.tb_pacientes_col_nombre = ?
-        AND tb_propietarios.tb_propietarios_col_nombre = ?;`
+            tb_consultaVacunacion_col_fecha,
+            tb_consultaVacunacion_col_desparacitacion,
+            tb_consultaVacunacion_col_vacunacion
+            
+            FROM tb_consultaVacunacion
+            
+            JOIN tb_pacientes 
+            ON tb_pacientes.idtb_pacientes = tb_consultaVacunacion.tb_pacientes_idtb_pacientes
+            
+            JOIN tb_propietarios
+            ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+            
+            WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
+            AND tb_pacientes.tb_pacientes_col_nombre = ?
+            AND tb_propietarios.tb_propietarios_col_nombre = ?;`
 
-        connection.query(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
-            if (error) reject(error);
-            resolve(results);
+            connection.query(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
+                if (error) reject(error);
+                resolve(results);
         });
     })
 
@@ -113,8 +113,7 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
                 consultasGenerales: results[1],    // Consultas generales
                 vacunacion: results[2]             // Vacunación
             });
-        })
-        .catch(error => {
+        }).catch(error => {
             callback(error);
         });
 

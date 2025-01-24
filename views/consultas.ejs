@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="styles/consultas.css">
+
+</head>
+<body>
+    <header>
+
+        <section class="titulo-header">
+            <h1>VETCONT</h1>
+        </section>
+        <section class="opciones-header">
+            <button id="volver"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+        </section>
+
+    </header>
+    
+    <main>
+
+        <section class="mostrarTablas">
+
+            <div class="navegacion">
+                <button id="mostrarconsultas" class="btn-mostrarconsultas">Consulta General <i class="fa-solid fa-notes-medical"></i></button>
+                <button id="mostrarvacunas" class="btn-mostrarvacunas"> Cosulta Vacunacion <i class="fa-solid fa-syringe"></i></button>
+            </div>
+
+            <div class="tipoconsulta">
+                <div class="consultageneral" id="consultageneral">
+                    <h1>Consultas Generales sin pacientes asignados</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Paciente</th>
+                                <th>Propietario</th>
+                                <th>Motivo</th>
+                                <th>Tratamiento</th>
+                                <th>Peso </th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                                <% datosConsultaGeneral.forEach(dato => { %>
+                                <tr>
+
+                                    <td><%= new Date(dato.tb_consultaGeneral_col_fecha).toLocaleDateString('es-ES') %></td>
+                                    <td><%=dato.tb_consultaGeneral_col_nombrePaciente %></td>
+                                    <td class="propietario"><%=dato.tb_consultaGeneral_col_nombrePropietario %></td>
+                                    <td class="motivo"><%=dato.tb_consultaGeneral_col_motivo %></td>
+                                    <td class="tratamiento"><%=dato.tb_consultaGeneral_col_medicamentosUtilizados %></td>
+                                    <td><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
+                                
+                                </tr>
+                                <%}); %>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="consultavacunacion" id="consultavacunacion">
+                    <h1>Consultas vacunacion sin pacientes asignados</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha de consulta</th>
+                                <th>Paciente</th>
+                                <th>Propietario</th>
+                                <th>Vacunacion</th>
+                                <th>Despacitacion</th>
+                                <th>Peso</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <% datosConsultaVacunacion.forEach(dato => { %>
+                                <tr>
+                                    <td><%= new Date(dato.tb_consultaVacunacion_col_fecha).toLocaleDateString('es-ES') %></td>
+                                    <td><%=dato.tb_consultaVacunacion_col_nombrePaciente %></td>
+                                    <td><%=dato.tb_consultaVacunacion_col_nombrePropietario %></td>
+                                    <td><%=dato.tb_consultaVacunacion_col_vacunacion %></td>
+                                    <td><%=dato.tb_consultaVacunacion_col_desparacitacion %></td>
+                                    <td><%=dato.tb_consultaVacunacion_col_actualizacionPeso %></td>
+                                </tr>
+                            <%}); %>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="js/consultas.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+</html>
