@@ -1,9 +1,9 @@
 import connection from '../config/conexion.js';
 
-const consultaInicioSesion = {};
+const indexModel = {};
 
 // Método para consultar un usuario por su nombre de usuario
-consultaInicioSesion.consultaBaseDatos = (username, callback) => {
+indexModel.consultaBaseDatos = (username, callback) => {
     if (!/^[a-zA-Z0-9_]+$/.test(username)) {
         return callback(new Error('Nombre de usuario inválido'));
     }
@@ -15,4 +15,36 @@ consultaInicioSesion.consultaBaseDatos = (username, callback) => {
     connection.query(query, [username], callback);
 };
 
-export default consultaInicioSesion;
+indexModel.crearUsuario = (
+    nombreUsuario,
+    nombreSistema,
+    password,
+    correoElectronico,
+    numeroTelefono,
+    direccion,
+    claveSeguridad,
+    callback
+  ) => {
+    const crearUsuario = `
+      UPDATE tb_usuariosVeterinaria
+      SET
+        tb_usuariosVeterinaria_col_nombre = ?,
+        tb_usuariosVeterinaria_col_usuario = ?,
+        tb_usuariosVeterinaria_col_contrasenna = ?,
+        tb_usuariosVeterinaria_col_correoElectronico = ?,
+        tb_usuariosVeterinaria_col_numeroTelefono = ?,
+        tb_usuariosVeterinaria_col_direccion = ?
+      WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?;
+    `;
+
+    connection.query(crearUsuario, [
+        nombreUsuario,
+        nombreSistema,
+        password,
+        correoElectronico,
+        numeroTelefono,
+        direccion,
+        claveSeguridad], callback);
+ };
+
+export default indexModel;

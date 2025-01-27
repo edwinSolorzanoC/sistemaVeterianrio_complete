@@ -32,6 +32,7 @@ app.get('/', (req, res) => { //mostrar el index
 
 import indexRouters from './routes/indexRouters.js';
 app.post('/login', indexRouters);
+app.post('/crearCuenta', indexRouters);
 
 import administracionRouters from './routes/administracionRouters.js';
 app.get('/administracion', administracionRouters);

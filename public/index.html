@@ -39,7 +39,7 @@
                 </div>
 
                 <section class="formulario-iniciosesion" id="formulario-iniciosesion">
-                    <h1>Inicia sesion con tus datos creados</h1>
+                    <h1>Inicia sesion</h1>
 
                     <form action="/login" method="POST" autocomplete="off">
                         <div class="usuario">
@@ -57,21 +57,18 @@
                 <section class="formulario-crearCuenta" id="formulario-crearCuenta">
                     <h1>Crear Cuenta para Sistema</h1>
 
-                    <form action="/crearCuenta" method="POST" autocomplete="off">
+                    <form action="/crearCuenta" method="post" autocomplete="off">
+                        
                         <div class="bloque">
-                            <label for="claveSeguridad">Esribe tu clave de seguridad brindada</label>
-                            <input name="claveSeguridad" type="password" placeholder="Clave de seguridad..." required>
+                            <label for="nombreUsuario">Escribe tu completo</label>
+                            <input name="nombreUsuario" type="text" placeholder="Nombre Completo..." required>
                         </div>
                         <div class="bloque">
-                            <label for="username">Nombre completo</label>
-                            <input name="username" type="text" placeholder="Nombre Completo..." required>
+                            <label for="nombreSistema">Crea un nombre usuario para la plataforma</label>
+                            <input name="nombreSistema" type="text" placeholder="Usuario de sistema..." required>
                         </div>
                         <div class="bloque">
-                            <label for="username">Crea un usuario para el sistema</label>
-                            <input name="username" type="text" placeholder="Usuario de sistema..." required>
-                        </div>
-                        <div class="bloque">
-                            <label for="password">Crea una contraseña segura</label>
+                            <label for="password">Crea una contraseña segura para la plataforma</label>
                             <input name="password" type="password" placeholder="Contraseña de sistema..." required>
                         </div>
                         <div class="bloque">
@@ -79,12 +76,16 @@
                             <input name="correoElectronico" type="email" placeholder="Correo electronico..." required>
                         </div>
                         <div class="bloque">
-                            <label for="numeroTelefono">Escribe tu numero telefono</label>
+                            <label for="numeroTelefono">Escribe tu numero de telefono</label>
                             <input name="numeroTelefono" type="number" placeholder="Numero de telefono..." required>
                         </div>
                         <div class="bloque">
-                            <label for="">Escribe la direccion de la veterinaria</label>
-                            <input type="text" name="" id="" required placeholder="Dieccion extacta del consultorio...">
+                            <label for="direccion">Escribe la direccion de la veterinaria</label>
+                            <input type="text" name="direccion" id="direccion" required placeholder="Dieccion extacta del consultorio...">
+                        </div>
+                        <div class="bloque">
+                            <label for="claveSeguridad">Esribe tu clave de seguridad brindada</label>
+                            <input name="claveSeguridad" type="password" placeholder="Clave de seguridad..." required>
                         </div>
                         <button type="submit" id="btn-crearCuentacuenta" class="btn-crearCuenta">Crear cuenta</button>
                     </form>

@@ -1,8 +1,9 @@
 import express from 'express';
 const router = express.Router();
 
-import usuarioController from '../controllers/indexController.js';
+import indexController from '../controllers/indexController.js';
 
-router.post('/login', usuarioController.iniciarSesion);
+router.post('/login', indexController.iniciarSesion);
+router.post('/crearCuenta', indexController.crearUsuario);
 
 export default router;

@@ -1,12 +1,12 @@
-import consultaInicioSesion from '../models/indexModel.js';
+import indexModel from '../models/indexModel.js';
 
-const usuarioController = {};
+const indexController = {};
 
 // Método para manejar el inicio de sesión
-usuarioController.iniciarSesion = (req, res) => {
+indexController.iniciarSesion = (req, res) => {
     const { username, password } = req.body;
 
-    consultaInicioSesion.consultaBaseDatos(username, (error, results) => {
+    indexModel.consultaBaseDatos(username, (error, results) => {
         try {
             if (error) {
                 console.error("Error en la consulta a la base de datos:", error);
@@ -33,4 +33,34 @@ usuarioController.iniciarSesion = (req, res) => {
     });
 };
 
-export default usuarioController;
+indexController.crearUsuario = (req, res) => {
+    const {
+        nombreUsuario,
+        nombreSistema,
+        password,
+        correoElectronico,
+        numeroTelefono,
+        direccion,
+        claveSeguridad,
+    } = req.body;
+  
+    indexModel.crearUsuario(
+      nombreUsuario,
+      nombreSistema,
+      password,
+      correoElectronico,
+      numeroTelefono,
+      direccion,
+      claveSeguridad,
+      (error, results) => {
+        if (error) {
+          console.log("Error en la creación de usuario/controller", results);
+        } else {
+          console.log("Usuario creado exitosamente:", results);
+          res.redirect("/");
+        }
+      }
+    );
+  };
+
+export default indexController;
