@@ -75,7 +75,6 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                     ?,
                     ?
                     );`;
-
                     connection.query(peticionConMascota, [nombrePropietarioConsulta,
                         nombrePacienteConsulta,
                         motivoConsulta,
@@ -83,7 +82,13 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                         pesoConsultaGeneral,
                         fechaAutomatica,
                         idVeterinaria,
-                        idMascota], callback);
+                        idMascota], (err, results) => {
+                            if(err){
+                                console.log("Error en peticion model administracion, consulta sin mascota")
+                            }
+                            callback(null, results)
+                        });
+
                 }else{
 
                     const peticion = `INSERT INTO tb_consultageneral (
@@ -109,7 +114,12 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                         medicamentosConsulta,
                         pesoConsultaGeneral,
                         fechaAutomatica,
-                        idVeterinaria], callback);
+                        idVeterinaria], (err, results) => {
+                            if(err){
+                                console.log("Error en peticion model administracion, consulta con mascota")
+                            }
+                            callback(null, results)
+                        });;
                     
                 }
             }
@@ -167,7 +177,12 @@ administracionModel.consultaVacunacion = (
                             nombreInyeccionDesparacitacion,
                             fechaAutomatica,
                             idVeterinaria,
-                            idMascota], callback);
+                            idMascota], (err, results) => {
+                                if(err){
+                                    console.log("Error en peticion model administracion, consulta vacunacion sin mascota")
+                                }
+                                callback(null, results)
+                            });
                 
                 }else{
                     const peticion = `INSERT INTO tb_consultaVacunacion (
@@ -194,7 +209,12 @@ administracionModel.consultaVacunacion = (
                             nombreInyeccionVacunacion,
                             nombreInyeccionDesparacitacion,
                             fechaAutomatica,
-                            idVeterinaria], callback);
+                            idVeterinaria], (err, results) => {
+                                if(err){
+                                    console.log("Error en peticion model administracion, consulta com mascota")
+                                }
+                                callback(null, results)
+                            });
                 }
                 
             }

@@ -4,15 +4,22 @@ const indexModel = {};
 
 // Método para consultar un usuario por su nombre de usuario
 indexModel.consultaBaseDatos = (username, callback) => {
-    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-        return callback(new Error('Nombre de usuario inválido'));
+  const query = `
+  SELECT 
+  idtb_usuariosVeterinaria, 
+  tb_usuariosVeterinaria_col_usuario, 
+  tb_usuariosVeterinaria_col_contrasenna 
+  
+  FROM tb_usuariosVeterinaria 
+  
+  WHERE tb_usuariosVeterinaria_col_usuario = ?;`;
+  
+  connection.query(query, [username], (err, results) => {
+    if(err){
+      console.log("Error en peticion model index")
     }
-    
-    const query = `SELECT idtb_usuariosVeterinaria, tb_usuariosVeterinaria_col_usuario, tb_usuariosVeterinaria_col_contrasenna 
-    FROM tb_usuariosVeterinaria 
-    WHERE tb_usuariosVeterinaria_col_usuario = ?;`;
-
-    connection.query(query, [username], callback);
+    callback(null, results)
+  });
 };
 
 indexModel.crearUsuario = (
@@ -44,7 +51,12 @@ indexModel.crearUsuario = (
         correoElectronico,
         numeroTelefono,
         direccion,
-        claveSeguridad], callback);
+        claveSeguridad], (err, results) => {
+          if(err){
+              console.log("Error en peticion insercion model index, insercion registor de usuario")
+          }
+          callback(null, results)
+      });
  };
 
 export default indexModel;

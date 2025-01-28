@@ -9,7 +9,12 @@ perfilPacientesModel.consultaInicio = (idVeterinaria, callback) => {
     JOIN tb_propietarios ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios_col_cedula 
     WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`
 
-    connection.query(peticion, [idVeterinaria], callback);
+    connection.query(peticion, [idVeterinaria], (err, results) => {
+        if(err){
+            console.log("Error en peticion model perfilPacientes, consulta de inicio")
+        }
+        callback(null, results)
+    });
 }
 
 perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietario, callback) => {

@@ -7,7 +7,12 @@ registroPacientesModel.consultaInicio = (idVeterinaria, callback) => {
     FROM tb_propietarios 
     WHERE tb_usuariosVeterinaria_idtb_usuariosVeterinaria = 1;`
 
-    connection.query(peticion, [idVeterinaria], callback);
+    connection.query(peticion, [idVeterinaria], (err, results) => {
+        if(err){
+            console.log("Error en peticion model registorPacientes, consulta inicio")
+        }
+        callback(null, results)
+    });
 }
 
 registroPacientesModel.insertarPropietario = (cedulaPropietario, nombrePropietario, 
@@ -19,7 +24,12 @@ registroPacientesModel.insertarPropietario = (cedulaPropietario, nombrePropietar
         VALUES (?, ?, ?, ?, ?, ?)`;
 
         connection.query(peticion, [cedulaPropietario, nombrePropietario, 
-            direccionPropietario, telefonoPropietario, correoPropietario, idVeterinaria], callback);
+            direccionPropietario, telefonoPropietario, correoPropietario, idVeterinaria], (err, results) => {
+                if(err){
+                    console.log("Error en peticion insercion model registro pacientes, insercion de propietario")
+                }
+                callback(null, results)
+            });
 
 }
 
@@ -57,7 +67,12 @@ registroPacientesModel.insertarMascota = (
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
         connection.query(peticion, [nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, 
-            colorMascota, partosMascota, fechaPartosMascota, sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota], callback);
+            colorMascota, partosMascota, fechaPartosMascota, sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota], (err, results) => {
+                if(err){
+                    console.log("Error en peticion insercion model registro pacientes, insercion de mascota")
+                }
+                callback(null, results)
+            });
 
 
 }
