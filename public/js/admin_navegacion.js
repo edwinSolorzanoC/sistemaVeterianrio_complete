@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
 
+
     //opciones de consultas
     const mostrarconsultas = document.getElementById("mostrarconsultas");
     const mostrarvacunas = document.getElementById("mostrarvacunas");
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
     //formularios de consultas
     const formulariogeneral = document.getElementById("formulario-general");
     const formulariovacunas = document.getElementById("formulario-vacunas");
+
 
    
 
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const cerrarSesion = document.getElementById("cerrarSesion");
     cerrarSesion.addEventListener('click', function(){
-        window.location.href = 'index.html'
+        window.location.href = '/logout'
     })
 
 

@@ -7,4 +7,14 @@ router.get('/administracion', administracionController.inicioAdministracion);
 router.post('/consultageneral', administracionController.insertarConsultaGeneral);
 router.post('/consultavacunacion', administracionController.insertaVacunacion);
 
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if(err){
+            console.log("error en la destruccion de la sesion", err)
+            return res.redirect('/');
+        }
+        res.redirect('/')
+    })
+})
+
 export default router;
