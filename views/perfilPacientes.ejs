@@ -27,24 +27,28 @@
                 <div class="tabla-pacientes" id="tabla-pacientes">
                     <h1>Tabla de pacientes</h1>
                     <p class=""><i class="fa-solid fa-bell"></i> Seleccion un paciente para ver mas infromacion...</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Paciente</th>
-                                <th>Propietario</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                                <% datos_pacientes.forEach(dato => { %>
-                                    <tr class="linea-tabla" >
-                                        <td><%= dato.tb_pacientes_col_nombre %></td>
-                                        <td><%= dato.tb_propietarios_col_nombre %></td>
-                                    </tr>
-                                <% }); %>
-                            
-                        </tbody>
-                    </table>
+                    
+                    <div class="scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Paciente</th>
+                                    <th>Propietario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    <% datos_pacientes.forEach(dato => { %>
+                                        <tr class="linea-tabla" >
+                                            <td><%= dato.tb_pacientes_col_nombre %></td>
+                                            <td><%= dato.tb_propietarios_col_nombre %></td>
+                                        </tr>
+                                    <% }); %>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
     
                 <div class="ver-informacion">

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById('castradoMascota').value = data.datosPaciente[0].tb_pacientes_col_castrado;
                     document.getElementById('edadMascota').value = data.datosPaciente[0].tb_pacientes_col_edad;
                     document.getElementById('cantidadPartos').value = data.datosPaciente[0].tb_pacientes_col_partos;
-                    document.getElementById('fechaPartos').value = data.datosPaciente[0].tb_pacientes_col_fechaPartos;
+                    document.getElementById('fechaPartos').value = formatearFecha(data.datosPaciente[0].tb_pacientes_col_fechaPartos);
                     document.getElementById('pesoMascota').value = data.datosPaciente[0].tb_pacientes_col_peso;
                     document.getElementById('ultimaConsulta').value = formatearFecha(data.datosPaciente[0].tb_pacientes_col_fechaUltimaConsulta);
                 

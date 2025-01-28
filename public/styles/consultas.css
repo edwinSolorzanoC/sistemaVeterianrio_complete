@@ -1,5 +1,7 @@
 @import url(main.css);
 
+
+
 .mostrarTablas{
     background-color: white;
     margin: 1%;
@@ -27,3 +29,4 @@
 #consultavacunacion{
     display: none;
 }
+

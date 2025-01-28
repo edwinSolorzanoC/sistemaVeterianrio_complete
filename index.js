@@ -6,6 +6,14 @@ import session from 'express-session';
 
 const app = express();
 
+// Configuración de express-session
+app.use(session({
+    secret: 'mi_clave_secreta',  // Cambia esto por una clave secreta
+    resave: false,               // No volver a guardar la sesión si no ha cambiado
+    saveUninitialized: true,     // Guardar una sesión nueva si no tiene valores
+    cookie: { secure: false }    // Si usas HTTPS, cambia 'false' por 'true'
+}));
+
 app.use(express.urlencoded({ extended: true })); //esto es para que el servidor entienda los formatos de los formularios
 app.use(express.json());//esto es para que el servidor entienda los formatos json
 

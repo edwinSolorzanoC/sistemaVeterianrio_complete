@@ -3,7 +3,7 @@ import registroPacientesModel from "../models/registroPacientesModel.js";
 const registroPacientesController = {};
 
 registroPacientesController.inicioRegistroPacientes = (req, res) => {
-    const idVeterinaria = 1;
+    const idVeterinaria = req.session.user.id;
 
     registroPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
         if (error) {
@@ -28,7 +28,7 @@ registroPacientesController.registrarPropietarios = (req, res) => {
         direccionPropietario,
         telefonoPropietario,
         correoPropietario,
-        idVeterinaria = 1
+        idVeterinaria = req.session.user.id
     } = req.body;
 
     registroPacientesModel.insertarPropietario(
@@ -65,7 +65,7 @@ registroPacientesController.registrarMascotas = (req, res) => {
         fechaPartosMascota,
         sexoMascota,
         fechaConsultaMascota  = new Date().toISOString().slice(0, 10),
-        idVeterinaria = 1,
+        idVeterinaria = req.session.user.id,
         cedulaPropietarioMascota
     } = req.body;
 

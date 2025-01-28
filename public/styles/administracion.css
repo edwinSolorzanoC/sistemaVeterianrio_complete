@@ -1,19 +1,5 @@
 @import url(main.css);
 
-.busqueda{
-    display: flex;
-    margin: 1%;
-}
-.busqueda .buscar{
-    background-color: white;
-    padding: 1%;
-    width: 28%;
-}
-.busqueda .buscar input{
-    width: 90%;
-    padding: 2%;
-}
-
 .bloque{
     display: flex;
     justify-content: space-between;
@@ -24,6 +10,7 @@
     padding: 1%;
     margin: 1%;
 }
+
 .bloque .tipo-consulta{
     width: 70%;
     background-color: white;
@@ -31,9 +18,6 @@
     margin: 1%;
 }
 
-.lista-pacientes .opciones{
-    text-align: end;
-}
 
 
 

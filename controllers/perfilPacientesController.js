@@ -3,7 +3,7 @@ import perfilPacientesModel from "../models/perfilPacientesModel.js";
 const perfilPacientesController = {};
 
 perfilPacientesController.inicioPerfilPacientes = (req, res) => {
-    const idVeterinaria = 1;
+    const idVeterinaria = req.session.user.id;
 
     perfilPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
             try{
@@ -16,7 +16,7 @@ perfilPacientesController.inicioPerfilPacientes = (req, res) => {
 
 
 perfilPacientesController.mostrarDatosSeleccionados = (req, res) => {
-    const idVeterinaria = 1;
+    const idVeterinaria = req.session.user.id;
     const { nombreMascota, nombrePropietario } = req.body;
 
     perfilPacientesModel.obtenerDatos(idVeterinaria, nombreMascota, nombrePropietario, (error, results) => {

@@ -3,7 +3,7 @@ import consultasModel from "../models/consultasModel.js";
 const consultasController = {};
 
 consultasController.inicioConsultas = (req, res) => {
-    const idVeterinaria = 1; // Puedes obtener este valor dinámicamente desde `req` si es necesario.
+    const idVeterinaria = req.session.user.id; 
 
     consultasModel.consultaInicio(idVeterinaria, (error, results) => {
         if (error) {

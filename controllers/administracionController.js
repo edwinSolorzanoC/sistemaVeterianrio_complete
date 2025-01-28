@@ -3,7 +3,7 @@ import administracionModel from "../models/administracionModel.js";
 const administracionController = {};
 
 administracionController.inicioAdministracion = (req, res) => {
-    const idVeterinaria = 1; //este datos ahorita es estatico pero se va a usar un manejo de sesion
+    const idVeterinaria = req.session.user.id; //este datos ahorita es estatico pero se va a usar un manejo de sesion
 
     administracionModel.consultaInicio(idVeterinaria, (error, results) => {
         try{
@@ -23,7 +23,7 @@ administracionController.insertarConsultaGeneral = (req, res) => {
         medicamentosConsulta,
         pesoConsultaGeneral,
         fechaAutomatica = new Date().toISOString().slice(0, 10), // Formato: YYYY-MM-DD,
-        idVeterinaria = 1
+        idVeterinaria = req.session.user.id
     } = req.body;
 
     administracionModel.consultaGeneral(nombrePropietarioConsulta,
@@ -55,7 +55,7 @@ administracionController.insertaVacunacion = (req, res) => {
         nombreInyeccionVacunacion,
         nombreInyeccionDesparacitacion,
         fechaAutomatica = new Date().toISOString().slice(0, 10), // Formato: YYYY-MM-DD,,
-        idVeterinaria = 1
+        idVeterinaria = req.session.user.id
     } = req.body;
 
     administracionModel.consultaVacunacion(nombrePropietarioVacunacion,
