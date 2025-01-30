@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById('nombrePropietario').value = data.datosPaciente[0].tb_propietarios_col_nombre;
                     document.getElementById('cedulaPropietario').value = data.datosPaciente[0].tb_propietarios_col_cedula;
                     document.getElementById('diereccionPropietario').value = data.datosPaciente[0].tb_propietarios_col_direccion;
-                    document.getElementById('telefonoPropietario').value = data.datosPaciente[0].tb_propietarios_col_direccion;
+                    document.getElementById('telefonoPropietario').value = data.datosPaciente[0].tb_propietarios_col_numeroTelefono;
                     document.getElementById('correoElectronico').value = data.datosPaciente[0].tb_propietarios_col_correoElectronico;
 
 
