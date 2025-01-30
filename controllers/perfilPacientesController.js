@@ -6,12 +6,15 @@ perfilPacientesController.inicioPerfilPacientes = (req, res) => {
     const idVeterinaria = req.session.user.id;
 
     perfilPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
-            try{
-                res.render('perfilPacientes',{datos_pacientes: results})
-            }catch{
-                console.log("error al pedir los datos")
-            }
-        })
+        if(error){
+            console.log("Error en el contorller/perfilpacientes/inico de panel")
+        }
+        try{
+            res.render('perfilPacientes',{datos_pacientes: results})
+        }catch{
+            console.log("error al pedir los datos")
+        }
+    })
 }
 
 

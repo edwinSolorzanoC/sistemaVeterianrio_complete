@@ -6,6 +6,9 @@ administracionController.inicioAdministracion = (req, res) => {
     const idVeterinaria = req.session.user.id; //este datos ahorita es estatico pero se va a usar un manejo de sesion
 
     administracionModel.consultaInicio(idVeterinaria, (error, results) => {
+        if(error){
+            console.log("Error en el controlador/administracion/inico de panel")
+        }
         try{
             res.render('administracion', {datos_pacientes: results})
 
