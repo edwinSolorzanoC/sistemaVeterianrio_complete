@@ -8,8 +8,7 @@
     "express-rate-limit": "^7.5.0",
     "express-session": "^1.18.1",
     "jspdf": "^2.5.2",
-    "mysql2": "^3.11.5",
-    "sweetalert2": "^11.15.10"
+    "mysql2": "^3.11.5"
   },
   "name": "sistema-veterinario",
   "version": "1.0.0",

@@ -1,4 +1,3 @@
-import flash from "express-flash";
 
 document.addEventListener('DOMContentLoaded', function(){
 

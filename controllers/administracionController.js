@@ -10,6 +10,7 @@ administracionController.inicioAdministracion = (req, res) => {
             console.log("Error en el controlador/administracion/inico de panel")
         }
         try{
+            
             res.render('administracion', {datos_pacientes: results})
 
         }catch(error){
