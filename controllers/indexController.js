@@ -39,6 +39,7 @@ indexController.iniciarSesion = (req, res) => {
                         // Contraseña correcta
                         console.log("Inicio de sesión exitoso");
                         return res.redirect('/administracion');
+                        
                     } else {
                         // Contraseña incorrecta
                         console.log("Contraseña incorrecta");
