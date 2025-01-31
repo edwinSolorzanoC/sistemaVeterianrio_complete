@@ -5,7 +5,7 @@ header{
     padding: 2% 1% !important;
 }
 main{
-    background: linear-gradient(135deg, #47839d, #828c91);
+     background: linear-gradient(135deg, #47839d, #828c91);
 }
 
 .bienvenida{
@@ -67,6 +67,10 @@ main{
     margin-bottom: 1.5%;
 }
 
+.formulario-iniciosesion .opciones-form{
+    display: flex;
+    align-items: center;
+}
 
 /*----------------------*/
 @media screen and (max-width: 1500px){

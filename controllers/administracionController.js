@@ -3,16 +3,21 @@ import administracionModel from "../models/administracionModel.js";
 const administracionController = {};
 
 administracionController.inicioAdministracion = (req, res) => {
-    const idVeterinaria = req.session.user.id; //este datos ahorita es estatico pero se va a usar un manejo de sesion
+
+    const idVeterinaria = req.session.user.id; 
 
     administracionModel.consultaInicio(idVeterinaria, (error, results) => {
         if(error){
             console.log("Error en el controlador/administracion/inico de panel")
         }
         try{
-            
-            res.render('administracion', {datos_pacientes: results})
+            let alert = req.session.alert || { message: '¡Panel Administrativo!', type: 'success' };;
+            delete req.session.alert; // Borra la alerta después de usarla para que no se muestre repetidamente
 
+            res.render('administracion', {
+                datos_pacientes: results,
+                alert: alert // Pasar la alerta a la vista
+            });
         }catch(error){
             console.log("Error al obtener datos de pacienets y usuarios", error)
         }
@@ -42,8 +47,10 @@ administracionController.insertarConsultaGeneral = (req, res) => {
                 console.log("Ocurrió un error al insertar consulta sin paciente.", error);
             } else {
                 try {
-                    console.log("Insercion de consulta sin paciente exitosa", results)
-                    administracionController.inicioAdministracion(req, res);
+
+                    req.session.alert = { message: '¡Consulta registrada exitosamente!', type: 'success' };
+                    res.redirect('/administracion');
+
                 } catch (errorRender) {
                     console.log(results)
                     console.log("Error al renderizar la página:", errorRender);
@@ -73,8 +80,10 @@ administracionController.insertaVacunacion = (req, res) => {
                 console.log(results, "error en insertar vacunacion sin paciente", error);
             }else{
                 try{
-                    console.log("insercion de vacunascion sin paciente exitosa", results)
-                    administracionController.inicioAdministracion(req,res);
+                    
+                    req.session.alert = { message: '¡Consulta vacunacion registrada exitosamente!', type: 'success' };
+                    res.redirect('/administracion');
+
                 }catch(errorRender){
                     console.log(results)
                     console.log("Error al renderizar la página:", errorRender);

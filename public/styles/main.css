@@ -160,3 +160,28 @@ table tbody tr:hover{
 }
 
 
+/* Estilo de contenedor de la alerta */
+#alert-container {
+    display: none; /* Se oculta por defecto */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  /* Alerta de éxito */
+  .success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  /* Alerta de error */
+  .error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  
+  /* Estilo para el icono dentro de la alerta */
+  #alert-icon {
+    display: inline-block;
+  }
+  
+  
