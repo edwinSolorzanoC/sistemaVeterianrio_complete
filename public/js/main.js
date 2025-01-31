@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
       // Después de 4 segundos, ocultar la alerta
       setTimeout(() => {
         alertContainer.style.display = 'none';
-      }, 2500);
+      }, 2000);
     }
   });
   

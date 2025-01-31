@@ -7,13 +7,17 @@ registroPacientesController.inicioRegistroPacientes = (req, res) => {
 
     registroPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
         if (error) {
-            console.log("Ocurrió un error al obtener los datos.", error);
+            res.redirect('/administracion')
         }else{
             try {
-                res.render('registroPacientes', { datos_pacientes: results });
+
+                let alert = req.session.alert || { message: '¡Panel registro pacientes!', type: 'success' };;
+                delete req.session.alert; // Borra la alerta después de usarla para que no se muestre repetidamente
+                
+                res.render('registroPacientes', { datos_pacientes: results,  alert: alert });
+            
             } catch (errorRender) {
-                console.log("Error al renderizar la página:", errorRender);
-                console.log("Ocurrió un error al renderizar la página.");
+                res.redirect('/')
             }
         }
         
@@ -39,12 +43,14 @@ registroPacientesController.registrarPropietarios = (req, res) => {
         correoPropietario,
         idVeterinaria, (error, results) => {
             if (error) {
-                console.log("Ocurrió un error al insertar el propietario.", error);
+                req.session.alert = { message: '¡Error al registrar propietario!', type: 'error' };
+                res.redirect('/registroPacientes');
             } else {
                 try {
-                    registroPacientesController.inicioRegistroPacientes(req, res);
+                    req.session.alert = { message: '¡Propietario registrado exitosamente!', type: 'success' };
+                    res.redirect('/registroPacientes');
                 } catch (errorRender) {
-                    console.log("Error al renderizar la página:", errorRender);
+                    res.redirect('/')
                 }
             }
         })
@@ -85,15 +91,14 @@ registroPacientesController.registrarMascotas = (req, res) => {
         idVeterinaria,
         cedulaPropietarioMascota,(error, results) => {
             if (error) {
-                console.log(results)
-                console.log("Ocurrió un error al insertar mascota.", error);
+                req.session.alert = { message: '¡Error al registrar mascota!', type: 'error' };
+                res.redirect('/registroPacientes');
             } else {
                 try {
-                    console.log(results)
-                    registroPacientesController.inicioRegistroPacientes(req, res);
+                    req.session.alert = { message: '¡Mascota registrada exitosamente!', type: 'success' };
+                    res.redirect('/registroPacientes');
                 } catch (errorRender) {
-                    console.log(results)
-                    console.log("Error al renderizar la página:", errorRender);
+                    res.redirect('/')
                 }
             }
         })

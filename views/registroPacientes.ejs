@@ -13,6 +13,19 @@
         <section class="titulo-header">
             <h1>VETCONT</h1>
         </section>
+        <div id="alert-container" style="display:none;">
+            <div id="alert-message" class="alert-message">
+              <span id="alert-icon"></span>
+              <span id="alert-text"></span>
+            </div>
+          </div>
+          
+        <% if (alert) { %>
+            <div id="alert-data" 
+                 data-message="<%= alert.message %>" 
+                 data-type="<%= alert.type %>" 
+                 style="display:none;"></div>
+          <% } %>
         <section class="opciones-header">
             <button id="volver"><i class="fa-solid fa-arrow-left"></i> Volver</button>
         </section>
