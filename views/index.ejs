@@ -43,7 +43,7 @@
 
                     <form action="/login" method="POST" autocomplete="off">
                         <div class="usuario">
-                            <label for="username">Esribe tu usuario creado</label>
+                            <label for="username">Escribe tu usuario creado</label>
                             <input name="username" type="text" placeholder="Usuario..." required>
                         </div>
                         <div class="contrasenna">
@@ -52,6 +52,30 @@
                         </div>
                         <div class="opciones-form">
                             <button type="submit" id="ingresar-sistema" class="ingresar-sistema">Aceptar</button>
+                            <button type="button" id="reestablecer-contrasenna" class="reestablecer-contrasenna">Recuperar contraseña</button>
+                        </div>
+                        
+                    </form>
+                </section>
+
+                <section class="formulario-recuperarcontrasenna" id="formulario-recuperarcontrasenna">
+                    <h1>Reestablecer contraseña</h1>
+
+                    <form action="/updatepass" method="post" autocomplete="off">
+                        <div class="claveSeguridadRes">
+                            <label for="claveSeguridadRes">Escribe tu clave de seguridad</label>
+                            <input name="claveSeguridadRes" id="claveSeguridadRes" class="claveSeguridadRes" type="password" placeholder="Clave secreta de seguridad..." required>
+                        </div>
+                        <div class="usuarioRes">
+                            <label for="usernameRes">Escribe tu usuario</label>
+                            <input name="usernameRes" type="text" placeholder="Usuario..." required>
+                        </div>
+                        <div class="contrasennaRes">
+                            <label for="passwordRes">Escribe tu nueva contraseña</label>
+                            <input name="passwordRes" type="password" placeholder="Nueva contraseña..." required>
+                        </div>
+                        <div class="opciones-form">
+                            <button type="submit" id="btn-reestablecer" class="btn-reestablecer">Aceptar</button>
                         </div>
                         
                     </form>

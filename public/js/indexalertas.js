@@ -70,6 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Inicio de sesión exitoso",
                 text: "Has iniciado sesión correctamente. Bienvenido a tu panel de administración.",
             });
+        }else if(successType === "passUpdate"){
+            Swal.fire({
+                icon: "success",
+                title: "Actualización de datos exitoso",
+                text: "Has actualizado tu contraseña correctamente",
+            });
         }
     }
 

@@ -7,6 +7,7 @@ const indexController = {};
 indexController.inciarPage = (req, res) => {
     res.render('index')
 }
+
 indexController.iniciarSesion = (req, res) => {
 
     const { username, password } = req.body;
@@ -117,8 +118,42 @@ indexController.crearUsuario = (req, res) => {
             );
         });
     }
-
-    
 };
+
+indexController.reestablecerContrasenna = (req, res) => {
+    const {claveSeguridadRes, usernameRes, passwordRes} = req.body
+
+    // Validaciones de la contraseña
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+    if (!passwordRegex.test(passwordRes)) {
+        console.log("La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula y un número.");
+        return res.redirect('/?error=invalidPassword');
+    }
+
+    bcrypt.hash(passwordRes, 10, (error, hashedPassword) => {
+        if (error) {
+            console.log("Error en la encriptación de la contraseña.");
+        }
+
+        indexModel.actualizarContrasenna(claveSeguridadRes, usernameRes, hashedPassword, (error, results) => {
+            if (error) {
+                console.log("Error en la actualizacion de password/controller", results);
+                return res.status(500).send("Error al actualizar el usuario.");
+            } 
+            
+            if (results.error === "invalidKey") {
+                console.log("Clave de seguridad incorrecta.");
+                return res.redirect('/?error=invalidKey');
+            }
+
+            console.log("Clave actualizada exitosamente:");
+            return res.redirect("/?success=passUpdate");  
+        })
+
+
+    })
+
+}
 
 export default indexController;

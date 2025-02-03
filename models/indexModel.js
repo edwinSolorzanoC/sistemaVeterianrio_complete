@@ -60,11 +60,33 @@ indexModel.crearUsuario = (
         if (results.affectedRows === 0) {
           return callback(null, { error: "invalidKey" });
       }
-
+      
+      
       callback(null, results);
+    
+    });
+  
+  };
+
+  indexModel.actualizarContrasenna = (claveSeguridadRes, usernameRes, passwordRes, callback) => {
+    const queryActualizar = `
+        UPDATE tb_usuariosveterinaria
+        SET tb_usuariosVeterinaria_col_contrasenna = ?
+        WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?
+        AND tb_usuariosVeterinaria_col_usuario = ?
+    `;
+
+    connection.query(queryActualizar, [passwordRes, claveSeguridadRes, usernameRes], (err, results) => {
+        if (err) {
+            console.error("Error al actualizar contraseña:", err);
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
+    
 
 
-      });
- };
 
 export default indexModel;
