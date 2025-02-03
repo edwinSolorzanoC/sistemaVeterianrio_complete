@@ -32,13 +32,13 @@ app.set('views', path.join(process.cwd(), 'views'));
 
 
 // estas son las rutas de la aplicacion para ejecutar las paginas 
-app.get('/', (req, res) => { //mostrar el index
-    res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
-});
+// app.get('/', (req, res) => { res.render('index'); });
 
+app.get('/', indexRouters)
 
 
 import indexRouters from './routes/indexRouters.js';
+
 app.post('/login', indexRouters);
 app.post('/crearCuenta', indexRouters);
 

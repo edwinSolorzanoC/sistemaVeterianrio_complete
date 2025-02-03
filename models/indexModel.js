@@ -55,7 +55,15 @@ indexModel.crearUsuario = (
           if(err){
               console.log("Error en peticion insercion model index, insercion registor de usuario")
           }
-          callback(null, results)
+          
+           // Verificamos si no se afectó ninguna fila
+        if (results.affectedRows === 0) {
+          return callback(null, { error: "invalidKey" });
+      }
+
+      callback(null, results);
+
+
       });
  };
 

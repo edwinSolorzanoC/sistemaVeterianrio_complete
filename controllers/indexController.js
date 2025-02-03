@@ -3,6 +3,11 @@ import bcrypt from 'bcryptjs';
 
 const indexController = {};
 
+
+indexController.inciarPage = (req, res) => {
+    res.render('index')
+}
+
 // Método para manejar el inicio de sesión
 indexController.iniciarSesion = (req, res) => {
 
@@ -13,7 +18,7 @@ indexController.iniciarSesion = (req, res) => {
         try {
     
             if (error) {
-    
+                
                 console.error("Error en la consulta a la base de datos:", error);
                 return res.redirect('/');
             }
@@ -37,6 +42,7 @@ indexController.iniciarSesion = (req, res) => {
                         };
 
                         // Contraseña correcta
+                        console.log("Inicio de sesión exitoso");
                         return res.redirect('/administracion');
                         
                     } else {
@@ -64,6 +70,7 @@ indexController.iniciarSesion = (req, res) => {
 
 };
 
+
 indexController.crearUsuario = (req, res) => {
     const {
         nombreUsuario,
@@ -75,33 +82,47 @@ indexController.crearUsuario = (req, res) => {
         claveSeguridad,
     } = req.body;
 
+    // Validaciones de la contraseña
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-    bcrypt.hash(password, 10, (error, hashedPassword) => {
-        if(error){
-            console.log("Error en la encriptacion de password")
-        }
-
-        indexModel.crearUsuario(
-            nombreUsuario,
-            nombreSistema,
-            hashedPassword,
-            correoElectronico,
-            numeroTelefono,
-            direccion,
-            claveSeguridad,
-            (error, results) => {
-              if (error) {
-                console.log("Error en la creación de usuario/controller", results);
-              } else {
-                console.log("Usuario creado exitosamente:", results);
-                res.redirect("/");
-              }
-            }
-          );
-          
-    })
-  
+    if (!passwordRegex.test(password)) {
+        console.log("La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula y un número.");
+        return res.redirect('/?error=invalidPassword');
     
-  };
+    }else{
+
+        bcrypt.hash(password, 10, (error, hashedPassword) => {
+            if (error) {
+                console.log("Error en la encriptación de la contraseña.");
+            }
+    
+            indexModel.crearUsuario(
+                nombreUsuario,
+                nombreSistema,
+                hashedPassword,
+                correoElectronico,
+                numeroTelefono,
+                direccion,
+                claveSeguridad,
+                (error, results) => {
+                    if (error) {
+                        console.log("Error en la creación de usuario/controller", results);
+                        return res.status(500).send("Error al crear el usuario.");
+                    } 
+                    
+                    if (results.error === "invalidKey") {
+                        console.log("Clave de seguridad incorrecta.");
+                        return res.redirect('/?error=invalidKey');
+                    }
+
+                    console.log("Usuario creado exitosamente:");
+                    return res.redirect("/?success=userCreated");                    
+                }
+            );
+        });
+    }
+
+    
+};
 
 export default indexController;
