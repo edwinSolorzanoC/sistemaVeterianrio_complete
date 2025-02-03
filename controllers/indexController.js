@@ -7,31 +7,28 @@ const indexController = {};
 indexController.inciarPage = (req, res) => {
     res.render('index')
 }
-
-// Método para manejar el inicio de sesión
 indexController.iniciarSesion = (req, res) => {
 
     const { username, password } = req.body;
 
     indexModel.consultaBaseDatos(username, (error, results) => {
-    
+
         try {
-    
+
             if (error) {
-                
                 console.error("Error en la consulta a la base de datos:", error);
-                return res.redirect('/');
+                return res.redirect('/?error=databaseError');
             }
 
             if (results.length > 0) {
-    
+
                 const usuario = results[0];
-    
+
                 // Comparar la contraseña en texto plano con la encriptada en la base de datos
                 bcrypt.compare(password, usuario.tb_usuariosVeterinaria_col_contrasenna, (err, isMatch) => {
                     if (err) {
                         console.error("Error al comparar la contraseña:", err);
-                        return res.redirect('/');
+                        return res.redirect('/?error=passwordCompareError');
                     }
 
                     if (isMatch) {
@@ -41,34 +38,33 @@ indexController.iniciarSesion = (req, res) => {
                             nombreSistema: usuario.tb_usuariosVeterinaria_col_nombre,
                         };
 
-                        // Contraseña correcta
+                        // Inicio de sesión exitoso
                         console.log("Inicio de sesión exitoso");
-                        return res.redirect('/administracion');
+                        return res.redirect('/administracion?success=loginSuccess');
                         
                     } else {
                         // Contraseña incorrecta
                         console.log("Contraseña incorrecta");
-                        return res.redirect('/');
+                        return res.redirect('/?error=incorrectPassword');
                     }
                 });
-    
-            } else {
-    
-                console.log("Usuario no encontrado");
-                return res.redirect('/');
-    
-            }
-    
-        } catch (error) {
-    
-            console.error("Error en el controlador:", error);
-            return res.redirect('/');
-    
-        }
-    
-    });
 
+            } else {
+                // Usuario no encontrado
+                console.log("Usuario no encontrado");
+                return res.redirect('/?error=userNotFound');
+            }
+
+        } catch (error) {
+
+            console.error("Error en el controlador:", error);
+            return res.redirect('/?error=internalError');
+
+        }
+
+    });
 };
+
 
 
 indexController.crearUsuario = (req, res) => {

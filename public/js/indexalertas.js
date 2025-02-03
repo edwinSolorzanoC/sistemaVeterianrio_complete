@@ -22,6 +22,36 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Error interno",
                 text: "Hubo un problema al encriptar la contraseña. Inténtelo de nuevo.",
             });
+        }else if (errorType === "incorrectPassword") {
+            Swal.fire({
+                icon: "error",
+                title: "Contraseña incorrecta",
+                text: "La contraseña que ingresaste es incorrecta.",
+            });
+        } else if (errorType === "userNotFound") {
+            Swal.fire({
+                icon: "error",
+                title: "Usuario no encontrado",
+                text: "No se encontró un usuario con ese nombre de usuario.",
+            });
+        } else if (errorType === "databaseError") {
+            Swal.fire({
+                icon: "error",
+                title: "Error en la base de datos",
+                text: "Hubo un problema al consultar la base de datos. Inténtalo nuevamente.",
+            });
+        } else if (errorType === "passwordCompareError") {
+            Swal.fire({
+                icon: "error",
+                title: "Error interno",
+                text: "Hubo un problema al comparar la contraseña. Inténtalo nuevamente.",
+            });
+        } else if (errorType === "internalError") {
+            Swal.fire({
+                icon: "error",
+                title: "Error interno",
+                text: "Ocurrió un error inesperado. Inténtalo de nuevo.",
+            });
         }
     } 
     
@@ -33,6 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 icon: "success",
                 title: "Usuario creado",
                 text: "El usuario se ha registrado exitosamente.",
+            });
+        }else if (successType === "loginSuccess") {
+            Swal.fire({
+                icon: "success",
+                title: "Inicio de sesión exitoso",
+                text: "Has iniciado sesión correctamente. Bienvenido a tu panel de administración.",
             });
         }
     }
