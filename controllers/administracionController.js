@@ -9,6 +9,7 @@ administracionController.inicioAdministracion = (req, res) => {
     administracionModel.consultaInicio(idVeterinaria, (error, results) => {
         if(error){
             console.log("Error en el controlador/administracion/inico de panel")
+            res.redirect('/?error=internalError');
         }
         try{
             let alert = req.session.alert || { message: '¡Panel Administrativo!', type: 'success' };;
@@ -20,6 +21,7 @@ administracionController.inicioAdministracion = (req, res) => {
             });
         }catch(error){
             console.log("Error al obtener datos de pacienets y usuarios", error)
+            res.redirect('/?error=internalError');
         }
     })
 }
@@ -54,6 +56,7 @@ administracionController.insertarConsultaGeneral = (req, res) => {
                 } catch (errorRender) {
                     console.log(results)
                     console.log("Error al renderizar la página:", errorRender);
+                    res.redirect('/?error=internalError');
                 }
             }
         })
@@ -87,6 +90,7 @@ administracionController.insertaVacunacion = (req, res) => {
                 }catch(errorRender){
                     console.log(results)
                     console.log("Error al renderizar la página:", errorRender);
+                    res.redirect('/?error=internalError');
                 }
             }
         })

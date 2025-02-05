@@ -1,14 +1,32 @@
 import mysql from 'mysql2';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 const pool = mysql.createPool({
-    host: 'vetcont-database.cbayq2mkk3jt.us-east-1.rds.amazonaws.com',  // Endpoint de Amazon RDS
-    user: 'edwinSolorzano',  // Usuario de la BD en RDS
-    password: 'vetcont_database_amazon',  // Contraseña de la BD en RDS
-    database: 'bd_sistema_veterinario',  // Nombre de la base de datos
-    port: 3306,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
+});
+
+
+// Detectar errores en la conexión y reconectar automáticamente
+pool.on('error', (err) => {
+    console.error('❌ Error en la conexión MySQL:', err);
+
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+        console.error('🔄 Conexión perdida, intentando reconectar...');
+    } else if (err.code === 'ECONNRESET') {
+        console.error('🔄 Conexión reseteada, reintentando...');
+    } else if (err.code === 'ETIMEDOUT') {
+        console.error('⏳ Conexión expirada, intentando reconectar...');
+    }
 });
 
 // Prueba la conexión
@@ -17,7 +35,6 @@ pool.getConnection((err, connection) => {
         console.error('❌ Error en la conexión a MySQL:', err);
         return;
     }
-    console.log('✅ Conexión exitosa a MySQL en Amazon RDS');
     connection.release();
 });
 

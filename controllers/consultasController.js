@@ -8,7 +8,7 @@ consultasController.inicioConsultas = (req, res) => {
     consultasModel.consultaInicio(idVeterinaria, (error, results) => {
         if (error) {
             console.error("Error en el controlador de consultas:", error);
-            res.redirect("/");
+            res.redirect('/?error=internalError');
         }
 
         try {
@@ -18,7 +18,7 @@ consultasController.inicioConsultas = (req, res) => {
             });
         } catch (err) {
             console.error("Error al renderizar la vista de consultas:", err);
-            res.redirect("/");
+            res.redirect('/?error=internalError');
         }
     });
 };
