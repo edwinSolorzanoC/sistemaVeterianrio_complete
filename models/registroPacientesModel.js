@@ -1,4 +1,4 @@
-import connection from "../config/conexion.js";
+import pool from "../config/conexion.js";
 
 const registroPacientesModel = {};
 
@@ -7,7 +7,7 @@ registroPacientesModel.consultaInicio = (idVeterinaria, callback) => {
     FROM tb_propietarios 
     WHERE tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`
 
-    connection.query(peticion, [idVeterinaria], (err, results) => {
+    pool.query(peticion, [idVeterinaria], (err, results) => {
         if(err){
             console.log("Error en peticion model registorPacientes, consulta inicio")
         }
@@ -23,7 +23,7 @@ registroPacientesModel.insertarPropietario = (cedulaPropietario, nombrePropietar
         tb_propietarios_col_correoElectronico, tb_usuariosVeterinaria_idtb_usuariosVeterinaria) 
         VALUES (?, ?, ?, ?, ?, ?)`;
 
-        connection.query(peticion, [cedulaPropietario, nombrePropietario, 
+        pool.query(peticion, [cedulaPropietario, nombrePropietario, 
             direccionPropietario, telefonoPropietario, correoPropietario, idVeterinaria], (err, results) => {
                 if(err){
                     console.log("Error en peticion insercion model registro pacientes, insercion de propietario")
@@ -66,7 +66,7 @@ registroPacientesModel.insertarMascota = (
         tb_propietarios_tb_propietarios_col_cedula) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-        connection.query(peticion, [nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, 
+        pool.query(peticion, [nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, 
             colorMascota, partosMascota, fechaPartosMascota, sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota], (err, results) => {
                 if(err){
                     console.log("Error en peticion insercion model registro pacientes, insercion de mascota")

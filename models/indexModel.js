@@ -1,4 +1,4 @@
-import connection from '../config/conexion.js';
+import pool from "../config/conexion.js";
 
 const indexModel = {};
 
@@ -10,11 +10,11 @@ indexModel.consultaBaseDatos = (username, callback) => {
   tb_usuariosVeterinaria_col_usuario, 
   tb_usuariosVeterinaria_col_contrasenna 
   
-  FROM tb_usuariosVeterinaria 
+  FROM tb_usuariosveterinaria
   
   WHERE tb_usuariosVeterinaria_col_usuario = ?;`;
   
-  connection.query(query, [username], (err, results) => {
+  pool.query(query, [username], (err, results) => {
     if(err){
       console.log("Error en peticion model index")
     }
@@ -33,7 +33,7 @@ indexModel.crearUsuario = (
     callback
   ) => {
     const crearUsuario = `
-      UPDATE tb_usuariosVeterinaria
+      UPDATE tb_usuariosveterinaria
       SET
         tb_usuariosVeterinaria_col_nombre = ?,
         tb_usuariosVeterinaria_col_usuario = ?,
@@ -44,7 +44,7 @@ indexModel.crearUsuario = (
       WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?;
     `;
 
-    connection.query(crearUsuario, [
+    pool.query(crearUsuario, [
         nombreUsuario,
         nombreSistema,
         password,
@@ -76,7 +76,7 @@ indexModel.crearUsuario = (
         AND tb_usuariosVeterinaria_col_usuario = ?
     `;
 
-    connection.query(queryActualizar, [passwordRes, claveSeguridadRes, usernameRes], (err, results) => {
+    pool.query(queryActualizar, [passwordRes, claveSeguridadRes, usernameRes], (err, results) => {
         if (err) {
             console.error("Error al actualizar contraseña:", err);
             return callback(err, null);

@@ -1,4 +1,4 @@
-import connection from "../config/conexion.js";
+import pool from "../config/conexion.js";
 
 const administracionModel = {};
 
@@ -14,7 +14,7 @@ administracionModel.consultaInicio = (idVeterinaria, callback) => {
     ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios_col_cedula 
     WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`
 
-    connection.query(queryDatosUsuario, [idVeterinaria], (error, results) => {
+    pool.query(queryDatosUsuario, [idVeterinaria], (error, results) => {
         if (error) {
             console.error("Error en la consulta:", error.message);
             return callback(error); // Devuelve el error al cliente
@@ -41,14 +41,14 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
         ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
         WHERE tb_pacientes_col_nombre = ? && tb_propietarios_col_nombre = ?;`;
 
-        connection.query(
+        pool.query(
             verificarExistenciaPacientes,
             [nombrePacienteConsulta,nombrePropietarioConsulta], 
             (error, results) => {
 
             if(error){
 
-                console.log("error en la consulta de existencia de pacientes");
+                console.log("error en la consulta de existencia de pacientes", error);
 
             } else{
 
@@ -75,7 +75,7 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                     ?,
                     ?
                     );`;
-                    connection.query(peticionConMascota, [nombrePropietarioConsulta,
+                    pool.query(peticionConMascota, [nombrePropietarioConsulta,
                         nombrePacienteConsulta,
                         motivoConsulta,
                         medicamentosConsulta,
@@ -84,7 +84,7 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                         idVeterinaria,
                         idMascota], (err, results) => {
                             if(err){
-                                console.log("Error en peticion model administracion, consulta sin mascota")
+                                console.log("Error en peticion model administracion, consulta con mascota", err)
                             }
                             callback(null, results)
                         });
@@ -108,7 +108,7 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                     ?
                     );`;
             
-                    connection.query(peticion, [nombrePropietarioConsulta,
+                    pool.query(peticion, [nombrePropietarioConsulta,
                         nombrePacienteConsulta,
                         motivoConsulta,
                         medicamentosConsulta,
@@ -116,7 +116,7 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                         fechaAutomatica,
                         idVeterinaria], (err, results) => {
                             if(err){
-                                console.log("Error en peticion model administracion, consulta con mascota")
+                                console.log("Error en peticion model administracion, consulta sin mascota")
                             }
                             callback(null, results)
                         });;
@@ -143,14 +143,14 @@ administracionModel.consultaVacunacion = (
         ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
         WHERE tb_pacientes_col_nombre = ? && tb_propietarios_col_nombre = ?;`;
 
-        connection.query(verificarExistenciaPacientes, [nombrePacienteVacunacion, nombrePropietarioVacunacion], (error, results) =>{
+        pool.query(verificarExistenciaPacientes, [nombrePacienteVacunacion, nombrePropietarioVacunacion], (error, results) =>{
 
             if(error){
                 console.log("error en la consulta de existencia de pacientes");
             }else{
                 if(results.length > 0){
                     const idMascota = results[0].idtb_pacientes;
-                    const peticionConMascota = `INSERT INTO tb_consultaVacunacion (
+                    const peticionConMascota = `INSERT INTO tb_consultavacunacion (
                         tb_consultaVacunacion_col_nombrePropietario, 
                         tb_consultaVacunacion_col_nombrePaciente,
                         tb_consultaVacunacion_col_actualizacionPeso,
@@ -170,7 +170,7 @@ administracionModel.consultaVacunacion = (
                         ?
                         );`;
                 
-                        connection.query(peticionConMascota, [nombrePropietarioVacunacion,
+                        pool.query(peticionConMascota, [nombrePropietarioVacunacion,
                             nombrePacienteVacunacion,
                             pesoVacunacion,
                             nombreInyeccionVacunacion,
@@ -185,7 +185,7 @@ administracionModel.consultaVacunacion = (
                             });
                 
                 }else{
-                    const peticion = `INSERT INTO tb_consultaVacunacion (
+                    const peticion = `INSERT INTO tb_consultavacunacion (
                         tb_consultaVacunacion_col_nombrePropietario, 
                         tb_consultaVacunacion_col_nombrePaciente,
                         tb_consultaVacunacion_col_actualizacionPeso,
@@ -203,7 +203,7 @@ administracionModel.consultaVacunacion = (
                         ?
                         );`;
                 
-                        connection.query(peticion, [nombrePropietarioVacunacion,
+                        pool.query(peticion, [nombrePropietarioVacunacion,
                             nombrePacienteVacunacion,
                             pesoVacunacion,
                             nombreInyeccionVacunacion,

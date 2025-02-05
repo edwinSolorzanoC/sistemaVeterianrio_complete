@@ -1,4 +1,5 @@
-import connection from "../config/conexion.js";
+import pool from "../config/conexion.js";
+
 
 const perfilPacientesModel = {};
 
@@ -9,7 +10,7 @@ perfilPacientesModel.consultaInicio = (idVeterinaria, callback) => {
     JOIN tb_propietarios ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios_col_cedula 
     WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`
 
-    connection.query(peticion, [idVeterinaria], (err, results) => {
+    pool.query(peticion, [idVeterinaria], (err, results) => {
         if(err){
             console.log("Error en peticion model perfilPacientes, consulta de inicio")
         }
@@ -49,7 +50,7 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
         tb_pacientes_col_nombre = ? AND
         tb_propietarios_col_nombre = ?;`
 
-        connection.query(peticionDatosUnicos, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
+        pool.query(peticionDatosUnicos, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
             if (error) reject(error);
             resolve(results);
         });
@@ -74,7 +75,7 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
             AND tb_pacientes.tb_pacientes_col_nombre = ?
             AND tb_propietarios.tb_propietarios_col_nombre = ?;`
 
-            connection.query(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
+            pool.query(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
                 if (error) reject(error);
                 resolve(results);
             });
@@ -87,10 +88,10 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
             tb_consultaVacunacion_col_desparacitacion,
             tb_consultaVacunacion_col_vacunacion
             
-            FROM tb_consultaVacunacion
+            FROM tb_consultavacunacion
             
             JOIN tb_pacientes 
-            ON tb_pacientes.idtb_pacientes = tb_consultaVacunacion.tb_pacientes_idtb_pacientes
+            ON tb_pacientes.idtb_pacientes = tb_consultavacunacion.tb_pacientes_idtb_pacientes
             
             JOIN tb_propietarios
             ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
@@ -99,7 +100,7 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
             AND tb_pacientes.tb_pacientes_col_nombre = ?
             AND tb_propietarios.tb_propietarios_col_nombre = ?;`
 
-            connection.query(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
+            pool.query(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
                 if (error) reject(error);
                 resolve(results);
         });

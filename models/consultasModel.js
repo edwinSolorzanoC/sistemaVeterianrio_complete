@@ -1,4 +1,4 @@
-import connection from "../config/conexion.js";
+import pool from "../config/conexion.js";
 
 const consultasModel = {}
 
@@ -18,7 +18,7 @@ consultasModel.consultaInicio = (idVeterinaria, callback) => {
                 tb_pacientes_idtb_pacientes IS NULL 
                 AND tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`;
         
-        connection.query(peticionDatos, [idVeterinaria], (error, results) => {
+                pool.query(peticionDatos, [idVeterinaria], (error, results) => {
             if (error) return reject(error);
             resolve(results);
         });
@@ -39,7 +39,7 @@ consultasModel.consultaInicio = (idVeterinaria, callback) => {
                 tb_pacientes_idtb_pacientes IS NULL 
                 AND tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`;
         
-        connection.query(peticionDatos, [idVeterinaria], (error, results) => {
+                pool.query(peticionDatos, [idVeterinaria], (error, results) => {
             if (error) return reject(error);
             resolve(results);
         });
