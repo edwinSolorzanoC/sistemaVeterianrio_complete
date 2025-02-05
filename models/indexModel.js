@@ -3,7 +3,8 @@ import pool from "../config/conexion.js";
 const indexModel = {};
 
 // Método para consultar un usuario por su nombre de usuario
-indexModel.consultaBaseDatos = (username, callback) => {
+indexModel.consultaBaseDatos = async (username) => {
+
   const query = `
   SELECT 
   idtb_usuariosVeterinaria, 
@@ -14,13 +15,16 @@ indexModel.consultaBaseDatos = (username, callback) => {
   
   WHERE tb_usuariosVeterinaria_col_usuario = ?;`;
   
-  pool.query(query, [username], (err, results) => {
-    if(err){
-      console.log("Error en peticion model index")
-    }
-    callback(null, results)
-  });
+  try {
+    const [results] = await pool.execute(query, [username]);
+    return results;
+
+  } catch (err) {
+    console.error("Error en la consulta:", err);
+  }
+
 };
+
 
 indexModel.crearUsuario = (
     nombreUsuario,

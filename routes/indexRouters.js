@@ -1,7 +1,6 @@
 import express from 'express';
 const router = express.Router();
 
-// Middleware de Rate Limit para el login
 
 import indexController from '../controllers/indexController.js';
 

@@ -8,64 +8,45 @@ indexController.inciarPage = (req, res) => {
     res.render('index')
 }
 
-indexController.iniciarSesion = (req, res) => {
-
+indexController.iniciarSesion = async (req, res) => {
     const { username, password } = req.body;
 
-    indexModel.consultaBaseDatos(username, (error, results) => {
+    try {
+        // Llamada al modelo para consultar el usuario
+        const results = await indexModel.consultaBaseDatos(username);
 
-        try {
+        if (results.length > 0) {
+            const usuario = results[0];
 
-            if (error) {
-                console.error("Error en la consulta a la base de datos:", error);
-                return res.redirect('/?error=databaseError');
-            }
+            // Comparar la contraseña en texto plano con la encriptada en la base de datos
+            const isMatch = await bcrypt.compare(password, usuario.tb_usuariosVeterinaria_col_contrasenna);
+            
+            if (isMatch) {
+                req.session.user = {
+                    id: usuario.idtb_usuariosVeterinaria,
+                    nombreSistema: usuario.tb_usuariosVeterinaria_col_nombre,
+                };
 
-            if (results.length > 0) {
-
-                const usuario = results[0];
-
-                // Comparar la contraseña en texto plano con la encriptada en la base de datos
-                bcrypt.compare(password, usuario.tb_usuariosVeterinaria_col_contrasenna, (err, isMatch) => {
-                    if (err) {
-                        console.error("Error al comparar la contraseña:", err);
-                        return res.redirect('/?error=passwordCompareError');
-                    }
-
-                    if (isMatch) {
-
-                        req.session.user = {
-                            id: usuario.idtb_usuariosVeterinaria,
-                            nombreSistema: usuario.tb_usuariosVeterinaria_col_nombre,
-                        };
-
-                        // Inicio de sesión exitoso
-                        console.log("Inicio de sesión exitoso");
-                        return res.redirect('/administracion?success=loginSuccess');
-                        
-                    } else {
-                        // Contraseña incorrecta
-                        console.log("Contraseña incorrecta");
-                        return res.redirect('/?error=incorrectPassword');
-                    }
-                });
-
+                // Inicio de sesión exitoso
+                console.log("Inicio de sesión exitoso");
+                return res.redirect('/administracion?success=loginSuccess');
+                
             } else {
-                // Usuario no encontrado
-                console.log("Usuario no encontrado");
-                return res.redirect('/?error=userNotFound');
+                // Contraseña incorrecta
+                console.log("Contraseña incorrecta");
+                return res.redirect('/?error=incorrectPassword');
             }
-
-        } catch (error) {
-
-            console.error("Error en el controlador:", error);
-            return res.redirect('/?error=internalError');
-
+        } else {
+            // Usuario no encontrado
+            console.log("Usuario no encontrado");
+            return res.redirect('/?error=userNotFound');
         }
-
-    });
+    } catch (error) {
+        // Manejo de errores en el controlador
+        console.error("Error en el controlador:", error);
+        return res.redirect('/?error=internalError');
+    }
 };
-
 
 
 indexController.crearUsuario = (req, res) => {

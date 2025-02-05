@@ -1,33 +1,29 @@
 import administracionModel from "../models/administracionModel.js";
 
 const administracionController = {};
-
-administracionController.inicioAdministracion = (req, res) => {
-
+administracionController.inicioAdministracion = async (req, res) => {
     const idVeterinaria = req.session.user.id; 
 
-    administracionModel.consultaInicio(idVeterinaria, (error, results) => {
-        if(error){
-            console.log("Error en el controlador/administracion/inico de panel")
-            res.redirect('/?error=internalError');
-        }
-        try{
-            let alert = req.session.alert || { message: '¡Panel Administrativo!', type: 'success' };;
-            delete req.session.alert; // Borra la alerta después de usarla para que no se muestre repetidamente
+    try {
+        // Llamada al modelo para obtener los datos
+        const results = await administracionModel.consultaInicio(idVeterinaria);
+        
+        let alert = req.session.alert || { message: '¡Panel Administrativo!', type: 'success' };
+        delete req.session.alert; // Borra la alerta después de usarla para que no se muestre repetidamente
 
-            res.render('administracion', {
-                datos_pacientes: results,
-                alert: alert // Pasar la alerta a la vista
-            });
-        }catch(error){
-            console.log("Error al obtener datos de pacienets y usuarios", error)
-            res.redirect('/?error=internalError');
-        }
-    })
-}
-
+        // Renderizar la vista con los resultados y la alerta
+        res.render('administracion', {
+            datos_pacientes: results,
+            alert: alert // Pasar la alerta a la vista
+        });
+    } catch (error) {
+        console.error("Error al obtener datos de pacientes y usuarios:", error);
+        res.redirect('/?error=internalError');
+    }
+};
 
 administracionController.insertarConsultaGeneral = (req, res) => {
+    
     const {nombrePropietarioConsulta,
         nombrePacienteConsulta,
         motivoConsulta,

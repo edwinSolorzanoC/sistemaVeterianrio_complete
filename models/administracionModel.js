@@ -2,29 +2,26 @@ import pool from "../config/conexion.js";
 
 const administracionModel = {};
 
-administracionModel.consultaInicio = (idVeterinaria, callback) => {
-
+administracionModel.consultaInicio = async (idVeterinaria) => {
     if (!Number.isInteger(idVeterinaria)) {
-        return callback(new Error("El ID de la veterinaria debe ser un número entero"));
+        res.redirect('/?error=internalError');
+        console.log("El ID de la veterinaria debe ser un número entero");
     }
 
     const queryDatosUsuario = `SELECT tb_pacientes_col_nombre, tb_propietarios_col_nombre, tb_pacientes_col_fechaUltimaConsulta 
     FROM tb_pacientes 
     JOIN tb_propietarios 
     ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios_col_cedula 
-    WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`
+    WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`;
 
-    pool.query(queryDatosUsuario, [idVeterinaria], (error, results) => {
-        if (error) {
-            console.error("Error en la consulta:", error.message);
-            return callback(error); // Devuelve el error al cliente
-        }
-
-        // Si todo sale bien, devuelve los resultados
-        callback(null, results);
-    });
-    
+    try {
+        const [results] = await pool.execute(queryDatosUsuario, [idVeterinaria]);
+        return results;
+    } catch (error) {
+        console.error("Error en la consulta:", error.message);
+    }
 };
+
 
 administracionModel.consultaGeneral = (nombrePropietarioConsulta,
     nombrePacienteConsulta,
@@ -32,7 +29,7 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
     medicamentosConsulta,
     pesoConsultaGeneral,
     fechaAutomatica,
-    idVeterinaria, callback) => {
+    idVeterinaria) => {
 
 
         const verificarExistenciaPacientes = `SELECT  idtb_pacientes
@@ -57,24 +54,13 @@ administracionModel.consultaGeneral = (nombrePropietarioConsulta,
                     const idMascota = results[0].idtb_pacientes;
 
                     const peticionConMascota = `INSERT INTO tb_consultageneral (
-                    tb_consultaGeneral_col_nombrePropietario, 
-                    tb_consultaGeneral_col_nombrePaciente,
-                    tb_consultaGeneral_col_motivo, 
-                    tb_consultaGeneral_col_medicamentosUtilizados, 
-                    tb_consultaGeneral_col_actualizacionPeso,
-                    tb_consultaGeneral_col_fecha, 
-                    tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
-                    tb_pacientes_idtb_pacientes)
+                    tb_consultaGeneral_col_nombrePropietario, tb_consultaGeneral_col_nombrePaciente,
+                    tb_consultaGeneral_col_motivo, tb_consultaGeneral_col_medicamentosUtilizados, 
+                    tb_consultaGeneral_col_actualizacionPeso, tb_consultaGeneral_col_fecha, 
+                    tb_usuariosVeterinaria_idtb_usuariosVeterinaria, tb_pacientes_idtb_pacientes)
                     VALUES(
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?
-                    );`;
+                    ?, ?, ?, ?, ?, ?, ?, ?);`;
+
                     pool.query(peticionConMascota, [nombrePropietarioConsulta,
                         nombrePacienteConsulta,
                         motivoConsulta,
