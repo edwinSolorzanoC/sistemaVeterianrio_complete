@@ -2,26 +2,25 @@ import registroPacientesModel from "../models/registroPacientesModel.js";
 
 const registroPacientesController = {};
 
-registroPacientesController.inicioRegistroPacientes = (req, res) => {
+registroPacientesController.inicioRegistroPacientes = async (req, res) => {
     const idVeterinaria = req.session.user.id;
 
-    registroPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
-        if (error) {
-            res.redirect('/administracion')
-        }else{
-            try {
+    try{
 
-                let alert = req.session.alert || { message: '¡Panel registro pacientes!', type: 'success' };;
-                delete req.session.alert; // Borra la alerta después de usarla para que no se muestre repetidamente
-                
-                res.render('registroPacientes', { datos_pacientes: results,  alert: alert });
-            
-            } catch (errorRender) {
-                res.redirect('/')
-            }
-        }
+        const results = await registroPacientesModel.consultaInicio(idVeterinaria);
         
-    })
+        let alert = req.session.alert || { message: '¡Panel registro pacientes!', type: 'success' };;
+        delete req.session.alert; // Borra la alerta después de usarla para que no se muestre repetidamente
+        
+        res.render('registroPacientes', {
+            datos_pacientes: results,
+            alert: alert
+        });
+
+    }catch(error){
+        res.redirect('/?error=internalError');
+    }
+
 }
 
 registroPacientesController.registrarPropietarios = (req, res) => {

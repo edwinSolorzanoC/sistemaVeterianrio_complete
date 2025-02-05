@@ -3,12 +3,14 @@ import pool from "../config/conexion.js";
 const administracionModel = {};
 
 administracionModel.consultaInicio = async (idVeterinaria) => {
+
     if (!Number.isInteger(idVeterinaria)) {
         res.redirect('/?error=internalError');
         console.log("El ID de la veterinaria debe ser un número entero");
     }
 
-    const queryDatosUsuario = `SELECT tb_pacientes_col_nombre, tb_propietarios_col_nombre, tb_pacientes_col_fechaUltimaConsulta 
+    const queryDatosUsuario = `SELECT tb_pacientes_col_nombre, 
+    tb_propietarios_col_nombre, tb_pacientes_col_fechaUltimaConsulta 
     FROM tb_pacientes 
     JOIN tb_propietarios 
     ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios_col_cedula 

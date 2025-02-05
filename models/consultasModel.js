@@ -2,7 +2,7 @@ import pool from "../config/conexion.js";
 
 const consultasModel = {}
 
-consultasModel.consultaInicio = (idVeterinaria, callback) => {
+consultasModel.consultaInicio = (idVeterinaria) => {
     const queryConsultaGeneral = new Promise((resolve, reject) => {
         const peticionDatos = `
             SELECT 

@@ -4,18 +4,24 @@ import pool from "../config/conexion.js";
 const perfilPacientesModel = {};
 
 
-perfilPacientesModel.consultaInicio = (idVeterinaria, callback) => {
+perfilPacientesModel.consultaInicio = async (idVeterinaria) => {
+    
+    if (!Number.isInteger(idVeterinaria)) {
+        res.redirect('/?error=internalError');
+        console.log("El ID de la veterinaria debe ser un número entero");
+    }
+
     const peticion = `SELECT tb_pacientes_col_nombre, tb_propietarios_col_nombre 
     FROM tb_pacientes 
     JOIN tb_propietarios ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios_col_cedula 
     WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`
 
-    pool.query(peticion, [idVeterinaria], (err, results) => {
-        if(err){
-            console.log("Error en peticion model perfilPacientes, consulta de inicio")
-        }
-        callback(null, results)
-    });
+    try{
+        const [results] = await pool.execute(peticion, [idVeterinaria]);
+        return results;
+    }catch(error){
+        console.error("Error en la consulta:", error.message);
+    }
 }
 
 perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietario, callback) => {

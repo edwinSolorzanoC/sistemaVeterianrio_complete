@@ -2,20 +2,17 @@ import perfilPacientesModel from "../models/perfilPacientesModel.js";
 
 const perfilPacientesController = {};
 
-perfilPacientesController.inicioPerfilPacientes = (req, res) => {
+perfilPacientesController.inicioPerfilPacientes = async (req, res) => {
     const idVeterinaria = req.session.user.id;
 
-    perfilPacientesModel.consultaInicio(idVeterinaria, (error, results) => {
-        if(error){
-            console.log("Error en el contorller/perfilpacientes/inico de panel")
-        }
-        try{
-            res.render('perfilPacientes',{datos_pacientes: results})
-        }catch{
-            console.log("error al pedir los datos")
+    try{
+        const results = await perfilPacientesModel.consultaInicio(idVeterinaria)
+        res.render('perfilPacientes', {datos_pacientes: results})
+    }catch(error){
+        console.log("error al pedir los datos")
             res.redirect('/?error=internalError');
-        }
-    })
+    }
+
 }
 
 

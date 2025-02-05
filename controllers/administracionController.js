@@ -1,6 +1,7 @@
 import administracionModel from "../models/administracionModel.js";
 
 const administracionController = {};
+
 administracionController.inicioAdministracion = async (req, res) => {
     const idVeterinaria = req.session.user.id; 
 

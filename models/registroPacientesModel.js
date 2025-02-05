@@ -2,17 +2,23 @@ import pool from "../config/conexion.js";
 
 const registroPacientesModel = {};
 
-registroPacientesModel.consultaInicio = (idVeterinaria, callback) => {
+registroPacientesModel.consultaInicio = async (idVeterinaria) => {
+
+    if (!Number.isInteger(idVeterinaria)) {
+        res.redirect('/?error=internalError');
+        console.log("El ID de la veterinaria debe ser un número entero");
+    }
+
     const peticion = `SELECT tb_propietarios_col_cedula, tb_propietarios_col_nombre 
     FROM tb_propietarios 
     WHERE tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`
 
-    pool.query(peticion, [idVeterinaria], (err, results) => {
-        if(err){
-            console.log("Error en peticion model registorPacientes, consulta inicio")
-        }
-        callback(null, results)
-    });
+    try{
+        const [results] = await pool.execute(peticion, [idVeterinaria])
+        return results
+    }catch(error){
+        console.error("Error en la consulta:", error.message);
+    }
 }
 
 registroPacientesModel.insertarPropietario = (cedulaPropietario, nombrePropietario, 
