@@ -28,17 +28,14 @@ indexController.iniciarSesion = async (req, res) => {
                 };
 
                 // Inicio de sesión exitoso
-                console.log("Inicio de sesión exitoso");
                 return res.redirect('/administracion?success=loginSuccess');
                 
             } else {
                 // Contraseña incorrecta
-                console.log("Contraseña incorrecta");
                 return res.redirect('/?error=incorrectPassword');
             }
         } else {
             // Usuario no encontrado
-            console.log("Usuario no encontrado");
             return res.redirect('/?error=userNotFound');
         }
     } catch (error) {
@@ -49,91 +46,70 @@ indexController.iniciarSesion = async (req, res) => {
 };
 
 
-indexController.crearUsuario = (req, res) => {
+indexController.crearUsuario = async (req, res) => {
     const {
-        nombreUsuario,
-        nombreSistema,
-        password,
-        correoElectronico,
-        numeroTelefono,
-        direccion,
-        claveSeguridad,
-    } = req.body;
+        nombreUsuario, nombreSistema,
+        password, correoElectronico,
+        numeroTelefono, direccion,
+        claveSeguridad,} = req.body;
 
     // Validaciones de la contraseña
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
     if (!passwordRegex.test(password)) {
-        console.log("La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula y un número.");
+        // contraseña no validad
         return res.redirect('/?error=invalidPassword');
-    
-    }else{
+    }
 
-        bcrypt.hash(password, 10, (error, hashedPassword) => {
-            if (error) {
-                console.log("Error en la encriptación de la contraseña.");
-            }
-    
-            indexModel.crearUsuario(
-                nombreUsuario,
-                nombreSistema,
-                hashedPassword,
-                correoElectronico,
-                numeroTelefono,
-                direccion,
-                claveSeguridad,
-                (error, results) => {
-                    if (error) {
-                        console.log("Error en la creación de usuario/controller", results);
-                        return res.status(500).send("Error al crear el usuario.");
-                    } 
-                    
-                    if (results.error === "invalidKey") {
-                        console.log("Clave de seguridad incorrecta.");
-                        return res.redirect('/?error=invalidKey');
-                    }
-
-                    console.log("Usuario creado exitosamente:");
-                    return res.redirect("/?success=userCreated");                    
-                }
-            );
-        });
+    try{
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const results = await indexModel.crearUsuario(nombreUsuario, nombreSistema,
+            hashedPassword, correoElectronico,
+            numeroTelefono, direccion,
+            claveSeguridad
+        );
+        if(results.error === "invalidKey"){
+            // clave de seguridad incorrcta
+            return res.redirect('/?error=invalidKey')
+        }
+        // usuario creado exitosamente
+        return res.redirect('/?success=userCreated')
+    }catch(error){
+        //Error interno
+        console.log("Error en la creación de usuario/controller", error);
+        return res.redirect('/?success=internalError')
     }
 };
 
-indexController.reestablecerContrasenna = (req, res) => {
+indexController.reestablecerContrasenna = async (req, res) => {
     const {claveSeguridadRes, usernameRes, passwordRes} = req.body
 
     // Validaciones de la contraseña
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
     if (!passwordRegex.test(passwordRes)) {
-        console.log("La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula y un número.");
         return res.redirect('/?error=invalidPassword');
     }
 
-    bcrypt.hash(passwordRes, 10, (error, hashedPassword) => {
-        if (error) {
-            console.log("Error en la encriptación de la contraseña.");
+    try{
+
+        const hashedPassword = await bcrypt.hash(passwordRes, 10);
+        const results = await indexModel.actualizarContrasenna(claveSeguridadRes, usernameRes, hashedPassword);
+
+        if(results.error === "userpassNotFound"){
+            // clave de seguridad incorrcta
+            return res.redirect('/?error=invalidKey')
+        }
+        if (results.affectedRows === 0) {
+            console.log("No se encontró el usuario");
+            return res.redirect('/?error=userpassNotFound');
         }
 
-        indexModel.actualizarContrasenna(claveSeguridadRes, usernameRes, hashedPassword, (error, results) => {
-            if (error) {
-                console.log("Error en la actualizacion de password/controller", results);
-                return res.status(500).send("Error al actualizar el usuario.");
-            } 
-            
-            if (results.error === "invalidKey") {
-                console.log("Clave de seguridad incorrecta.");
-                return res.redirect('/?error=invalidKey');
-            }
-
-            console.log("Clave actualizada exitosamente:");
-            return res.redirect("/?success=passUpdate");  
-        })
-
-
-    })
+        //contraseña actualizada
+        return res.redirect("/?success=passUpdate");  
+    }catch(error){
+        console.log("Error en la actualizacion de password/controller", error);
+    }
 
 }
 

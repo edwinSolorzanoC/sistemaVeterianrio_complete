@@ -52,6 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Error interno",
                 text: "Ocurrió un error inesperado. Inténtalo de nuevo.",
             });
+        }else if (errorType === "userpassNotFound") {
+            Swal.fire({
+                icon: "error",
+                title: "Usuario y/o contraseña no coinciden",
+                text: "No se encontró un usuario y/o contraseña en los datos brindados",
+            });
         }
     } 
     

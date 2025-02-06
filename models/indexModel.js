@@ -26,67 +26,56 @@ indexModel.consultaBaseDatos = async (username) => {
 };
 
 
-indexModel.crearUsuario = (
-    nombreUsuario,
-    nombreSistema,
-    password,
-    correoElectronico,
-    numeroTelefono,
-    direccion,
-    claveSeguridad,
-    callback
+indexModel.crearUsuario = async (nombreUsuario, nombreSistema,
+  password, correoElectronico,
+  numeroTelefono, direccion,
+  claveSeguridad
   ) => {
-    const crearUsuario = `
-      UPDATE tb_usuariosveterinaria
-      SET
-        tb_usuariosVeterinaria_col_nombre = ?,
-        tb_usuariosVeterinaria_col_usuario = ?,
-        tb_usuariosVeterinaria_col_contrasenna = ?,
-        tb_usuariosVeterinaria_col_correoElectronico = ?,
-        tb_usuariosVeterinaria_col_numeroTelefono = ?,
-        tb_usuariosVeterinaria_col_direccion = ?
-      WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?;
+    
+    const crearUsuario = `UPDATE tb_usuariosveterinaria
+    SET
+    tb_usuariosVeterinaria_col_nombre = ?,
+    tb_usuariosVeterinaria_col_usuario = ?,
+    tb_usuariosVeterinaria_col_contrasenna = ?,
+    tb_usuariosVeterinaria_col_correoElectronico = ?,
+    tb_usuariosVeterinaria_col_numeroTelefono = ?,
+    tb_usuariosVeterinaria_col_direccion = ?
+    WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?;
     `;
 
-    pool.query(crearUsuario, [
-        nombreUsuario,
-        nombreSistema,
-        password,
-        correoElectronico,
-        numeroTelefono,
-        direccion,
-        claveSeguridad], (err, results) => {
-          if(err){
-              console.log("Error en peticion insercion model index, insercion registor de usuario")
-          }
-          
-           // Verificamos si no se afectó ninguna fila
-        if (results.affectedRows === 0) {
-          return callback(null, { error: "invalidKey" });
-      }
-      
-      
-      callback(null, results);
-    
-    });
+    try{
+
+      const [results] = await pool.execute(crearUsuario, [nombreUsuario,
+        nombreSistema, password,
+        correoElectronico, numeroTelefono,
+        direccion, claveSeguridad]);
+
+        if(results.affectedRows === 0){
+          return {error: "invalidKey"}
+        }
+
+        return results
+    }catch(error){
+      console.log("Error en el crear usuario/index model")
+    }
   
   };
 
-  indexModel.actualizarContrasenna = (claveSeguridadRes, usernameRes, passwordRes, callback) => {
-    const queryActualizar = `
-        UPDATE tb_usuariosveterinaria
-        SET tb_usuariosVeterinaria_col_contrasenna = ?
-        WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?
-        AND tb_usuariosVeterinaria_col_usuario = ?
-    `;
+  indexModel.actualizarContrasenna = async (claveSeguridadRes, usernameRes, passwordRes) => {
+    const queryActualizar = `UPDATE tb_usuariosveterinaria
+    SET tb_usuariosVeterinaria_col_contrasenna = ?
+    WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?
+    AND tb_usuariosVeterinaria_col_usuario = ?`;
 
-    pool.query(queryActualizar, [passwordRes, claveSeguridadRes, usernameRes], (err, results) => {
-        if (err) {
-            console.error("Error al actualizar contraseña:", err);
-            return callback(err, null);
-        }
-        callback(null, results);
-    });
+    try{
+
+      const [results] = await pool.execute(queryActualizar, [passwordRes, claveSeguridadRes, usernameRes]);
+      
+      return results
+
+    }catch(error){
+      console.error("Error al actualizar contraseña:", error);
+    }
 };
 
     
