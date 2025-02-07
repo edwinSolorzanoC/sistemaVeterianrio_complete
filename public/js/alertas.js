@@ -68,19 +68,28 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: "success",
                 title: "Usuario creado",
-                text: "El usuario se ha registrado exitosamente.",
+                showConfirmButton: false,
+                timer: 1500
             });
         }else if (successType === "loginSuccess") {
             Swal.fire({
                 icon: "success",
                 title: "Inicio de sesión exitoso",
-                text: "Has iniciado sesión correctamente. Bienvenido a tu panel de administración.",
+                showConfirmButton: false,
+                timer: 1500
             });
         }else if(successType === "passUpdate"){
             Swal.fire({
                 icon: "success",
                 title: "Actualización de datos exitoso",
                 text: "Has actualizado tu contraseña correctamente",
+            });
+        }else if(successType === "consultaUpdate"){
+            Swal.fire({
+                icon: "success",
+                title: "¡Consulta registrada exitosamente!",
+                showConfirmButton: false,
+                timer: 1500
             });
         }
     }

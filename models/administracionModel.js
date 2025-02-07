@@ -25,192 +25,100 @@ administracionModel.consultaInicio = async (idVeterinaria) => {
 };
 
 
-administracionModel.consultaGeneral = (nombrePropietarioConsulta,
-    nombrePacienteConsulta,
-    motivoConsulta,
-    medicamentosConsulta,
-    pesoConsultaGeneral,
-    fechaAutomatica,
-    idVeterinaria) => {
 
-
-        const verificarExistenciaPacientes = `SELECT  idtb_pacientes
+administracionModel.consultaGeneral = async (nombrePropietarioConsulta,
+    nombrePacienteConsulta, motivoConsulta,
+    medicamentosConsulta, pesoConsultaGeneral,
+    fechaAutomatica, idVeterinaria
+) => {
+    const verificarExistenciaPacientes = `
+        SELECT idtb_pacientes
         FROM tb_pacientes
         JOIN tb_propietarios
-        ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
-        WHERE tb_pacientes_col_nombre = ? && tb_propietarios_col_nombre = ?;`;
+        ON tb_propietarios.tb_propietarios_col_cedula = tb_pacientes.tb_propietarios_tb_propietarios_col_cedula
+        WHERE tb_pacientes_col_nombre = ? AND tb_propietarios_col_nombre = ?;
+    `;
 
-        pool.query(
-            verificarExistenciaPacientes,
-            [nombrePacienteConsulta,nombrePropietarioConsulta], 
-            (error, results) => {
+    try {
+        const [resultsBusqueda] = await pool.execute(verificarExistenciaPacientes, [
+            nombrePacienteConsulta,
+            nombrePropietarioConsulta
+        ]);
 
-            if(error){
+        let idMascota = null;
 
-                console.log("error en la consulta de existencia de pacientes", error);
+        if (resultsBusqueda.length) {
+            idMascota = resultsBusqueda[0].idtb_pacientes;
+        }
 
-            } else{
+        const peticionConsulta = `
+            INSERT INTO tb_consultageneral (
+                tb_consultaGeneral_col_nombrePropietario, 
+                tb_consultaGeneral_col_nombrePaciente,
+                tb_consultaGeneral_col_motivo, 
+                tb_consultaGeneral_col_medicamentosUtilizados, 
+                tb_consultaGeneral_col_actualizacionPeso,
+                tb_consultaGeneral_col_fecha, 
+                tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
+                tb_pacientes_idtb_pacientes
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+        `;
 
-                if(results.length > 0){
+        const [results] = await pool.execute(peticionConsulta, [nombrePropietarioConsulta,
+            nombrePacienteConsulta, motivoConsulta,
+            medicamentosConsulta, pesoConsultaGeneral,
+            fechaAutomatica, idVeterinaria,
+            idMascota // Si la mascota no existe, se insertará `NULL`
+        ]);
 
-                    const idMascota = results[0].idtb_pacientes;
+        return results;
+    } catch (error) {
+        console.error("Error en petición model administración, consultas:", error);
+    }
+};
 
-                    const peticionConMascota = `INSERT INTO tb_consultageneral (
-                    tb_consultaGeneral_col_nombrePropietario, tb_consultaGeneral_col_nombrePaciente,
-                    tb_consultaGeneral_col_motivo, tb_consultaGeneral_col_medicamentosUtilizados, 
-                    tb_consultaGeneral_col_actualizacionPeso, tb_consultaGeneral_col_fecha, 
-                    tb_usuariosVeterinaria_idtb_usuariosVeterinaria, tb_pacientes_idtb_pacientes)
-                    VALUES(
-                    ?, ?, ?, ?, ?, ?, ?, ?);`;
 
-                    pool.query(peticionConMascota, [nombrePropietarioConsulta,
-                        nombrePacienteConsulta,
-                        motivoConsulta,
-                        medicamentosConsulta,
-                        pesoConsultaGeneral,
-                        fechaAutomatica,
-                        idVeterinaria,
-                        idMascota], (err, results) => {
-                            if(err){
-                                console.log("Error en peticion model administracion, consulta con mascota", err)
-                            }
-                            callback(null, results)
-                        });
+administracionModel.consultaVacunacion = async (nombrePropietarioVacunacion,
+    nombrePacienteVacunacion, pesoVacunacion,
+    nombreInyeccionVacunacion, nombreInyeccionDesparacitacion,
+    fechaAutomatica,idVeterinaria,
+) => {
+    
+    const verificarExistenciaPacientes = `SELECT  idtb_pacientes
+    FROM tb_pacientes
+    JOIN tb_propietarios
+    ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+    WHERE tb_pacientes_col_nombre = ? AND tb_propietarios_col_nombre = ?;`;
+    
+    try{
+        const [resultsBusqueda] = await pool.execute(verificarExistenciaPacientes, [
+            nombrePacienteVacunacion, 
+            nombrePropietarioVacunacion
+        ])
 
-                }else{
+        let idMascota = null;
 
-                    const peticion = `INSERT INTO tb_consultageneral (
-                    tb_consultaGeneral_col_nombrePropietario, 
-                    tb_consultaGeneral_col_nombrePaciente,
-                    tb_consultaGeneral_col_motivo, 
-                    tb_consultaGeneral_col_medicamentosUtilizados, 
-                    tb_consultaGeneral_col_actualizacionPeso,
-                    tb_consultaGeneral_col_fecha, 
-                    tb_usuariosVeterinaria_idtb_usuariosVeterinaria)
-                    VALUES(?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?
-                    );`;
-            
-                    pool.query(peticion, [nombrePropietarioConsulta,
-                        nombrePacienteConsulta,
-                        motivoConsulta,
-                        medicamentosConsulta,
-                        pesoConsultaGeneral,
-                        fechaAutomatica,
-                        idVeterinaria], (err, results) => {
-                            if(err){
-                                console.log("Error en peticion model administracion, consulta sin mascota")
-                            }
-                            callback(null, results)
-                        });;
-                    
-                }
-            }
-        })
-        
-        
-}
+        if(resultsBusqueda.length){
+            idMascota = resultsBusqueda[0].idtb_pacientes;
+        }
 
-administracionModel.consultaVacunacion = (
-    nombrePropietarioVacunacion,
-    nombrePacienteVacunacion,
-    pesoVacunacion,
-    nombreInyeccionVacunacion,
-    nombreInyeccionDesparacitacion,
-    fechaAutomatica,
-    idVeterinaria, callback) => {
+        const peticionConsulta = `INSERT INTO tb_consultavacunacion (tb_consultaVacunacion_col_nombrePropietario, 
+        tb_consultaVacunacion_col_nombrePaciente, tb_consultaVacunacion_col_actualizacionPeso,
+        tb_consultaVacunacion_col_vacunacion, tb_consultaVacunacion_col_desparacitacion,
+        tb_consultaVacunacion_col_fecha,tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
+        tb_pacientes_idtb_pacientes)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?);`;
 
-        const verificarExistenciaPacientes = `SELECT  idtb_pacientes
-        FROM tb_pacientes
-        JOIN tb_propietarios
-        ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
-        WHERE tb_pacientes_col_nombre = ? && tb_propietarios_col_nombre = ?;`;
+        const [results] = await pool.execute(peticionConsulta, [nombrePropietarioVacunacion,
+            nombrePacienteVacunacion, pesoVacunacion,
+            nombreInyeccionVacunacion, nombreInyeccionDesparacitacion,
+            fechaAutomatica, idVeterinaria, idMascota]);
 
-        pool.query(verificarExistenciaPacientes, [nombrePacienteVacunacion, nombrePropietarioVacunacion], (error, results) =>{
+        return results
 
-            if(error){
-                console.log("error en la consulta de existencia de pacientes");
-            }else{
-                if(results.length > 0){
-                    const idMascota = results[0].idtb_pacientes;
-                    const peticionConMascota = `INSERT INTO tb_consultavacunacion (
-                        tb_consultaVacunacion_col_nombrePropietario, 
-                        tb_consultaVacunacion_col_nombrePaciente,
-                        tb_consultaVacunacion_col_actualizacionPeso,
-                        tb_consultaVacunacion_col_vacunacion, 
-                        tb_consultaVacunacion_col_desparacitacion,
-                        tb_consultaVacunacion_col_fecha,
-                        tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
-                        tb_pacientes_idtb_pacientes)
-                        VALUES(
-                        ?,
-                        ?,
-                        ?,
-                        ?,
-                        ?,
-                        ?,
-                        ?,
-                        ?
-                        );`;
-                
-                        pool.query(peticionConMascota, [nombrePropietarioVacunacion,
-                            nombrePacienteVacunacion,
-                            pesoVacunacion,
-                            nombreInyeccionVacunacion,
-                            nombreInyeccionDesparacitacion,
-                            fechaAutomatica,
-                            idVeterinaria,
-                            idMascota], (err, results) => {
-                                if(err){
-                                    console.log("Error en peticion model administracion, consulta vacunacion sin mascota")
-                                }
-                                callback(null, results)
-                            });
-                
-                }else{
-                    const peticion = `INSERT INTO tb_consultavacunacion (
-                        tb_consultaVacunacion_col_nombrePropietario, 
-                        tb_consultaVacunacion_col_nombrePaciente,
-                        tb_consultaVacunacion_col_actualizacionPeso,
-                        tb_consultaVacunacion_col_vacunacion, 
-                        tb_consultaVacunacion_col_desparacitacion,
-                        tb_consultaVacunacion_col_fecha,
-                        tb_usuariosVeterinaria_idtb_usuariosVeterinaria)
-                        VALUES(
-                        ?,
-                        ?,
-                        ?,
-                        ?,
-                        ?,
-                        ?,
-                        ?
-                        );`;
-                
-                        pool.query(peticion, [nombrePropietarioVacunacion,
-                            nombrePacienteVacunacion,
-                            pesoVacunacion,
-                            nombreInyeccionVacunacion,
-                            nombreInyeccionDesparacitacion,
-                            fechaAutomatica,
-                            idVeterinaria], (err, results) => {
-                                if(err){
-                                    console.log("Error en peticion model administracion, consulta com mascota")
-                                }
-                                callback(null, results)
-                            });
-                }
-                
-            }
-        })
-        
-        
-        
-        
+    }catch(error){
+        console.error("Error en petición model administración, consulta con mascota", error);
+    }
 }
 
 export default administracionModel;
