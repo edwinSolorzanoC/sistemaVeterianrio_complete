@@ -24,9 +24,10 @@ perfilPacientesModel.consultaInicio = async (idVeterinaria) => {
     }
 }
 
-perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietario, callback) => {
+perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePropietario) => {
 
-    const queryDatosPacientesYPropietarios = new Promise((resolve, reject) => {
+    try{
+
         const peticionDatosUnicos = ` SELECT 
         tb_pacientes_col_nombre, 
         tb_pacientes_col_tipo, 
@@ -55,15 +56,8 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
         tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ? AND
         tb_pacientes_col_nombre = ? AND
         tb_propietarios_col_nombre = ?;`
+        const [datosPaciente] = await pool.execute(peticionDatosUnicos, [idVeterinaria, nombreMascota, nombrePropietario])
 
-        pool.query(peticionDatosUnicos, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
-            if (error) reject(error);
-            resolve(results);
-        });
-
-    })
-
-    const queryDatosConsultaGeneral = new Promise((resolve, reject) => {
         const peticionDatosConsultaGeneral = `SELECT 
             tb_consultaGeneral_col_fecha, 
             tb_consultaGeneral_col_motivo, 
@@ -80,16 +74,9 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
             WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
             AND tb_pacientes.tb_pacientes_col_nombre = ?
             AND tb_propietarios.tb_propietarios_col_nombre = ?;`
+            const [consultasGenerales] = await pool.execute(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario])
 
-            pool.query(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
-                if (error) reject(error);
-                resolve(results);
-            });
-
-    })
-
-    const queryDatosConsultaVacunacion = new Promise((resolve, reject)=> {
-        const peticionVacunacion = `SELECT 
+            const peticionVacunacion = `SELECT 
             tb_consultaVacunacion_col_fecha,
             tb_consultaVacunacion_col_desparacitacion,
             tb_consultaVacunacion_col_vacunacion
@@ -106,11 +93,18 @@ perfilPacientesModel.obtenerDatos = (idVeterinaria,nombreMascota,nombrePropietar
             AND tb_pacientes.tb_pacientes_col_nombre = ?
             AND tb_propietarios.tb_propietarios_col_nombre = ?;`
 
-            pool.query(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario], (error, results) => {
-                if (error) reject(error);
-                resolve(results);
-        });
-    })
+            const [vacunacion] = await pool.execute(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario])
+
+            return{
+                datosPaciente,
+                consultasGenerales,
+                vacunacion
+            }
+
+    }catch(error){
+
+    }
+
 
     Promise.all([queryDatosPacientesYPropietarios, queryDatosConsultaGeneral, queryDatosConsultaVacunacion])
         .then(results => {

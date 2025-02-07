@@ -16,26 +16,23 @@ perfilPacientesController.inicioPerfilPacientes = async (req, res) => {
 }
 
 
-perfilPacientesController.mostrarDatosSeleccionados = (req, res) => {
+perfilPacientesController.mostrarDatosSeleccionados = async (req, res) => {
     const idVeterinaria = req.session.user.id;
     const { nombreMascota, nombrePropietario } = req.body;
 
-    perfilPacientesModel.obtenerDatos(idVeterinaria, nombreMascota, nombrePropietario, (error, results) => {
-        if (error) {
-            console.log("Error al obtener los datos", error);
-        } else {
-            try {
-                res.json({
-                    datosPaciente: results.datosPaciente,         
-                    consultasGenerales: results.consultasGenerales,   
-                    vacunacion: results.vacunacion                 
-                });
-            } catch (err) {
-                console.log("Error al procesar los datos", err);
-                res.redirect('/?error=internalError');
-            }
-        }
-    });
+    try{
+        const results = await perfilPacientesModel.obtenerDatos(idVeterinaria, nombreMascota, nombrePropietario)
+
+        res.json({
+            datosPaciente: results.datosPaciente,         
+            consultasGenerales: results.consultasGenerales,   
+            vacunacion: results.vacunacion                 
+        });
+    }catch(error){
+        onsole.log("Error al procesar los datos", err);
+        res.redirect('/?error=internalError');
+    }
+   
 }
 
 export default perfilPacientesController;
