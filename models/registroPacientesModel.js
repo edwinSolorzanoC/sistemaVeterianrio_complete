@@ -21,39 +21,34 @@ registroPacientesModel.consultaInicio = async (idVeterinaria) => {
     }
 }
 
-registroPacientesModel.insertarPropietario = (cedulaPropietario, nombrePropietario, 
-    direccionPropietario, telefonoPropietario, correoPropietario, idVeterinaria, callback) => {
-
+registroPacientesModel.insertarPropietario = async (cedulaPropietario, nombrePropietario, 
+    direccionPropietario, telefonoPropietario, correoPropietario, idVeterinaria) => {
+        
         const peticion = `INSERT INTO tb_propietarios 
         (tb_propietarios_col_cedula, tb_propietarios_col_nombre, tb_propietarios_col_direccion, tb_propietarios_col_numeroTelefono, 
         tb_propietarios_col_correoElectronico, tb_usuariosVeterinaria_idtb_usuariosVeterinaria) 
         VALUES (?, ?, ?, ?, ?, ?)`;
 
-        pool.query(peticion, [cedulaPropietario, nombrePropietario, 
-            direccionPropietario, telefonoPropietario, correoPropietario, idVeterinaria], (err, results) => {
-                if(err){
-                    console.log("Error en peticion insercion model registro pacientes, insercion de propietario")
-                }
-                callback(null, results)
-            });
+        try{
+            const [results] = await pool.execute(peticion, [cedulaPropietario, nombrePropietario,
+                direccionPropietario, telefonoPropietario, correoPropietario, idVeterinaria
+            ])
+            return results
+
+        }catch(error){
+            console.log("Error en peticion insercion model registro pacientes, insercion de propietario")
+        }
 
 }
 
-registroPacientesModel.insertarMascota = (
-    nombreMascota, 
-    tipoMascota, 
-    pesoMascota, 
-    fechaNacimientoMascota, 
-    edadMascota,
-    razaMascota,
-    castracionMascota, 
-    colorMascota, 
-    partosMascota, 
-    fechaPartosMascota, 
-    sexoMascota,
-    fechaConsultaMascota,
-    idVeterinaria, 
-    cedulaPropietarioMascota, callback) => {
+registroPacientesModel.insertarMascota = async (nombreMascota, 
+    tipoMascota, pesoMascota, 
+    fechaNacimientoMascota, edadMascota,
+    razaMascota,castracionMascota, 
+    colorMascota, partosMascota, 
+    fechaPartosMascota, sexoMascota,
+    fechaConsultaMascota, idVeterinaria, 
+    cedulaPropietarioMascota) => {
 
         const peticion = `INSERT INTO tb_pacientes 
         (tb_pacientes_col_nombre, 
@@ -72,14 +67,15 @@ registroPacientesModel.insertarMascota = (
         tb_propietarios_tb_propietarios_col_cedula) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-        pool.query(peticion, [nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, 
-            colorMascota, partosMascota, fechaPartosMascota, sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota], (err, results) => {
-                if(err){
-                    console.log("Error en peticion insercion model registro pacientes, insercion de mascota")
-                }
-                callback(null, results)
-            });
+        try{
+            const [results] = await pool.execute(peticion, [nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, 
+                colorMascota, partosMascota, fechaPartosMascota, sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota
+            ])
 
+            return results
+        }catch(error){
+            console.log("Error en peticion insercion model registro pacientes, insercion de mascota", error)
+        }
 
 }
 

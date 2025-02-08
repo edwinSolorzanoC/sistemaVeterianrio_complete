@@ -23,7 +23,7 @@ registroPacientesController.inicioRegistroPacientes = async (req, res) => {
 
 }
 
-registroPacientesController.registrarPropietarios = (req, res) => {
+registroPacientesController.registrarPropietarios = async (req, res) => {
 
     const {
         cedulaPropietario,
@@ -34,73 +34,47 @@ registroPacientesController.registrarPropietarios = (req, res) => {
         idVeterinaria = req.session.user.id
     } = req.body;
 
-    registroPacientesModel.insertarPropietario(
-        cedulaPropietario,
-        nombrePropietario,
-        direccionPropietario,
-        telefonoPropietario,
-        correoPropietario,
-        idVeterinaria, (error, results) => {
-            if (error) {
-                req.session.alert = { message: '¡Error al registrar propietario!', type: 'error' };
-                res.redirect('/registroPacientes');
-            } else {
-                try {
-                    req.session.alert = { message: '¡Propietario registrado exitosamente!', type: 'success' };
-                    res.redirect('/registroPacientes');
-                } catch (errorRender) {
-                    res.redirect('/')
-                }
-            }
-        })
+    try{
+
+        const results = await registroPacientesModel.insertarPropietario(cedulaPropietario,
+            nombrePropietario,
+            direccionPropietario,
+            telefonoPropietario,
+            correoPropietario,
+            idVeterinaria
+        );
+        return res.redirect('/registroPacientes?success=newRegister')
+    }catch(error){
+        return res.redirect('/registroPacientes?error=internalError')
+    }
 }
 
-registroPacientesController.registrarMascotas = (req, res) => {
+registroPacientesController.registrarMascotas = async (req, res) => {
 
-    const {
-        nombreMascota,
-        tipoMascota,
-        pesoMascota,
-        fechaNacimientoMascota,
-        edadMascota,
-        razaMascota,
-        castracionMascota,
-        colorMascota,
-        partosMascota,
-        fechaPartosMascota,
-        sexoMascota,
-        fechaConsultaMascota  = new Date().toISOString().slice(0, 10),
-        idVeterinaria = req.session.user.id,
-        cedulaPropietarioMascota
-    } = req.body;
+    try{
+        const {
+            nombreMascota,tipoMascota,
+            pesoMascota, fechaNacimientoMascota,
+            edadMascota, razaMascota, castracionMascota,
+            colorMascota, partosMascota, fechaPartosMascota,
+            sexoMascota, fechaConsultaMascota  = new Date().toISOString().slice(0, 10),
+            idVeterinaria = req.session.user.id, cedulaPropietarioMascota
+        } = req.body;
+    
+        const results = await registroPacientesModel.insertarMascota(
+            nombreMascota, tipoMascota, pesoMascota,
+            fechaNacimientoMascota, edadMascota,
+            razaMascota, castracionMascota, colorMascota,
+            partosMascota || 0, fechaPartosMascota || null,
+            sexoMascota, fechaConsultaMascota,
+            idVeterinaria, cedulaPropietarioMascota
+        )
+        return res.redirect('/registroPacientes?success=newRegister')
 
-    registroPacientesModel.insertarMascota(
-        nombreMascota,
-        tipoMascota,
-        pesoMascota,
-        fechaNacimientoMascota,
-        edadMascota,
-        razaMascota,
-        castracionMascota,
-        colorMascota,
-        partosMascota || 0,
-        fechaPartosMascota || null,
-        sexoMascota,
-        fechaConsultaMascota,
-        idVeterinaria,
-        cedulaPropietarioMascota,(error, results) => {
-            if (error) {
-                req.session.alert = { message: '¡Error al registrar mascota!', type: 'error' };
-                res.redirect('/registroPacientes');
-            } else {
-                try {
-                    req.session.alert = { message: '¡Mascota registrada exitosamente!', type: 'success' };
-                    res.redirect('/registroPacientes');
-                } catch (errorRender) {
-                    res.redirect('/')
-                }
-            }
-        })
+    }catch(error){
+        return res.redirect('/registroPacientes?error=internalError')
+    }
+    
 
 }
 

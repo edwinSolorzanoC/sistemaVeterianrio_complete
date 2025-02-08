@@ -91,6 +91,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 showConfirmButton: false,
                 timer: 1500
             });
+        }else if(successType === "newRegister"){
+            Swal.fire({
+                icon: "success",
+                title: "¡Registro exitoso!",
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     }
 
