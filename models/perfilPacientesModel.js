@@ -20,6 +20,7 @@ perfilPacientesModel.consultaInicio = async (idVeterinaria) => {
         const [results] = await pool.execute(peticion, [idVeterinaria]);
         return results;
     }catch(error){
+        console.log("ERROR:M:PERFIL:START: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -102,6 +103,7 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
             }
 
     }catch(error){
+        console.log("ERROR:M:PERFIL:GETDATES: ", error)
         res.redirect('/?error=internalError');
     }
 

@@ -19,6 +19,7 @@ administracionModel.consultaInicio = async (idVeterinaria) => {
         const [results] = await pool.execute(queryDatosUsuario, [idVeterinaria]);
         return results;
     } catch (error) {
+        console.log("ERROR:M:ADMIN:START: ", error)
         res.redirect('/?error=internalError');
     }
 };
@@ -72,6 +73,7 @@ administracionModel.consultaGeneral = async (nombrePropietarioConsulta,
 
         return results;
     } catch (error) {
+        console.log("ERROR:M:ADMIN:CONSULTA: ", error)
         res.redirect('/?error=internalError');
     }
 };
@@ -116,6 +118,7 @@ administracionModel.consultaVacunacion = async (nombrePropietarioVacunacion,
         return results
 
     }catch(error){
+        console.log("ERROR:M:ADMIN:CONSULTAVAC: ", error)
         res.redirect('/?error=internalError');
     }
 }

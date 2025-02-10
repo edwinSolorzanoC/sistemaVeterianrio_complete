@@ -19,7 +19,8 @@ indexModel.consultaBaseDatos = async (username) => {
     const [results] = await pool.execute(query, [username]);
     return results;
 
-  } catch (err) {
+  } catch (error) {
+    console.log("ERROR:M:INDEX:START: ", error)
     res.redirect('/?error=internalError');
   }
 
@@ -56,6 +57,7 @@ indexModel.crearUsuario = async (nombreUsuario, nombreSistema,
 
         return results
     }catch(error){
+      console.log("ERROR:M:INDEX:SINGIN: ", error)
       res.redirect('/?error=internalError');
     }
   
@@ -74,6 +76,7 @@ indexModel.crearUsuario = async (nombreUsuario, nombreSistema,
       return results
 
     }catch(error){
+      console.log("ERROR:M:INDEX:UPDATEPASS: ", error)
       res.redirect('/?error=internalError');
     }
 };

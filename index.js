@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-import bodyParser from 'body-parser';
 import session from 'express-session';
 
 
@@ -11,7 +10,7 @@ app.use(session({
     secret: 'mi_clave_secreta',  // Cambia esto por una clave secreta
     resave: false,               // No volver a guardar la sesión si no ha cambiado
     saveUninitialized: true,     // Guardar una sesión nueva si no tiene valores
-    cookie: { secure: false }    // Si usas HTTPS, cambia 'false' por 'true'
+    cookie: { secure: true }    // Si usas HTTPS, cambia 'false' por 'true'
 }));
 
 app.use(express.urlencoded({ extended: true })); //esto es para que el servidor entienda los formatos de los formularios

@@ -14,7 +14,8 @@ consultasController.inicioConsultas = async (req, res) => {
         });
 
     }catch(error){
-        console.log("Error en el controller consultas")
+        console.log("ERROR:CONSULTAS:START: ", error)
+        res.redirect('/administracion?error=internalError');
     }
 };
 

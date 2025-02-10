@@ -40,7 +40,7 @@ indexController.iniciarSesion = async (req, res) => {
         }
     } catch (error) {
         // Manejo de errores en el controlador
-        console.error("Error en el controlador:", error);
+        console.error("ERROR:NDEX:LOGIN: ", error);
         return res.redirect('/?error=internalError');
     }
 };
@@ -76,7 +76,7 @@ indexController.crearUsuario = async (req, res) => {
         return res.redirect('/?success=userCreated')
     }catch(error){
         //Error interno
-        console.log("Error en la creación de usuario/controller", error);
+        console.log("ERROR:INDEX:SINGIN: ", error);
         return res.redirect('/?success=internalError')
     }
 };
@@ -108,7 +108,8 @@ indexController.reestablecerContrasenna = async (req, res) => {
         //contraseña actualizada
         return res.redirect("/?success=passUpdate");  
     }catch(error){
-        console.log("Error en la actualizacion de password/controller", error);
+        console.log("ERROR:INDEX:UPDATEPASS: ", error);
+        return res.redirect('/?success=internalError')
     }
 
 }

@@ -32,6 +32,7 @@ consultasModel.consultaInicio = async (idVeterinaria) => {
             resultsConsultaGeneral, resultsConsultaVacunacion
         }
     }catch(error){
+        console.log("ERROR:M:CONSULTA:START: ", error)
         res.redirect('/?error=internalError');
     }
 

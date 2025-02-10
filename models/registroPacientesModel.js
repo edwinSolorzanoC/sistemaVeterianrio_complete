@@ -17,6 +17,7 @@ registroPacientesModel.consultaInicio = async (idVeterinaria) => {
         const [results] = await pool.execute(peticion, [idVeterinaria])
         return results
     }catch(error){
+        console.log("ERROR:M:REGISTRO:START: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -36,6 +37,7 @@ registroPacientesModel.insertarPropietario = async (cedulaPropietario, nombrePro
             return results
 
         }catch(error){
+            console.log("ERROR:M:REGISTRO:INSERT: ", error)
             res.redirect('/?error=internalError');
         }
 
@@ -74,6 +76,7 @@ registroPacientesModel.insertarMascota = async (nombreMascota,
 
             return results
         }catch(error){
+            console.log("ERROR:M:REGISTRO:INSERT: ", error)
             res.redirect('/?error=internalError');
         }
 

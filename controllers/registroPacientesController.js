@@ -18,6 +18,7 @@ registroPacientesController.inicioRegistroPacientes = async (req, res) => {
         });
 
     }catch(error){
+        console.log("ERROR:REGISTRO:START: ", error)
         res.redirect('/?error=internalError');
     }
 
@@ -45,6 +46,7 @@ registroPacientesController.registrarPropietarios = async (req, res) => {
         );
         return res.redirect('/registroPacientes?success=newRegister')
     }catch(error){
+        console.log("ERROR:REGISTRO:REGISTRAR: ", error)
         return res.redirect('/registroPacientes?error=internalError')
     }
 }
@@ -72,6 +74,7 @@ registroPacientesController.registrarMascotas = async (req, res) => {
         return res.redirect('/registroPacientes?success=newRegister')
 
     }catch(error){
+        console.log("ERROR:REGISTRO:REGISTRAR: ", error)
         return res.redirect('/registroPacientes?error=internalError')
     }
     

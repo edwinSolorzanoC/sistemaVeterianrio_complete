@@ -9,7 +9,7 @@ perfilPacientesController.inicioPerfilPacientes = async (req, res) => {
         const results = await perfilPacientesModel.consultaInicio(idVeterinaria)
         res.render('perfilPacientes', {datos_pacientes: results})
     }catch(error){
-        console.log("error al pedir los datos")
+        console.log("ERROR:PERFIL:START: ", error)
             res.redirect('/?error=internalError');
     }
 
@@ -29,7 +29,7 @@ perfilPacientesController.mostrarDatosSeleccionados = async (req, res) => {
             vacunacion: results.vacunacion                 
         });
     }catch(error){
-        onsole.log("Error al procesar los datos", err);
+        onsole.log("ERROR:PERFIL:SHOWDATES: ", error);
         res.redirect('/?error=internalError');
     }
    

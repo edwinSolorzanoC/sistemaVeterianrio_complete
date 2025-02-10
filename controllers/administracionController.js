@@ -12,7 +12,7 @@ administracionController.inicioAdministracion = async (req, res) => {
         // Renderizar la vista con los resultados y la alerta
         res.render('administracion', {datos_pacientes: results});
     } catch (error) {
-        console.error("Error al obtener datos de pacientes y usuarios:", error);
+        console.error("ERROR:ADMIN:STARTADMIN:", error);
         res.redirect('/?error=internalError');
     }
 };
@@ -38,7 +38,8 @@ administracionController.insertarConsultaGeneral = async (req, res) => {
         return res.redirect('/administracion?success=consultaUpdate');
 
     }catch(error){
-        console.log("Error al realizar consulta")
+        console.error("E:", error);
+        console.log("ERROR:ADMIN:INSERTCONSULTA: ", error)
         res.redirect('/administracion?error=internalError');
     }
     
@@ -61,6 +62,7 @@ administracionController.insertaVacunacion = async (req, res) => {
         return res.redirect('/administracion?success=consultaUpdate');
 
     }catch(error){
+        console.log("ERROR:ADMIN:CONSULTAVAC: ", error)
         res.redirect('/administracion?error=internalError');
     }
 
