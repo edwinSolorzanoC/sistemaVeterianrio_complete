@@ -75,6 +75,7 @@ main{
     margin-right: 1%;
 }
 
+
 /*----------------------*/
 @media screen and (max-width: 1500px){
     .bienvenida .presentacion{
@@ -95,13 +96,15 @@ main{
     min-height: 100vh;
     max-height: 100%;
     }
-
 }
 
 @media screen and (max-width:700px){
 
     .presentacion .titulo{
         font-size: 8vh;
+    }
+    .formulario-crearCuenta input{
+        padding: 3% 2% !important;
     }
 
 }

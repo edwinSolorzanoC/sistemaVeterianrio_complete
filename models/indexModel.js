@@ -20,7 +20,7 @@ indexModel.consultaBaseDatos = async (username) => {
     return results;
 
   } catch (err) {
-    console.error("Error en la consulta:", err);
+    res.redirect('/?error=internalError');
   }
 
 };
@@ -56,7 +56,7 @@ indexModel.crearUsuario = async (nombreUsuario, nombreSistema,
 
         return results
     }catch(error){
-      console.log("Error en el crear usuario/index model")
+      res.redirect('/?error=internalError');
     }
   
   };
@@ -74,7 +74,7 @@ indexModel.crearUsuario = async (nombreUsuario, nombreSistema,
       return results
 
     }catch(error){
-      console.error("Error al actualizar contraseña:", error);
+      res.redirect('/?error=internalError');
     }
 };
 

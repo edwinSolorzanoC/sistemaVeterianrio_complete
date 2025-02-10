@@ -6,7 +6,6 @@ administracionModel.consultaInicio = async (idVeterinaria) => {
 
     if (!Number.isInteger(idVeterinaria)) {
         res.redirect('/?error=internalError');
-        console.log("El ID de la veterinaria debe ser un número entero");
     }
 
     const queryDatosUsuario = `SELECT tb_pacientes_col_nombre, 
@@ -20,7 +19,7 @@ administracionModel.consultaInicio = async (idVeterinaria) => {
         const [results] = await pool.execute(queryDatosUsuario, [idVeterinaria]);
         return results;
     } catch (error) {
-        console.error("Error en la consulta:", error.message);
+        res.redirect('/?error=internalError');
     }
 };
 
@@ -73,7 +72,7 @@ administracionModel.consultaGeneral = async (nombrePropietarioConsulta,
 
         return results;
     } catch (error) {
-        console.error("Error en petición model administración, consultas:", error);
+        res.redirect('/?error=internalError');
     }
 };
 
@@ -117,7 +116,7 @@ administracionModel.consultaVacunacion = async (nombrePropietarioVacunacion,
         return results
 
     }catch(error){
-        console.error("Error en petición model administración, consulta con mascota", error);
+        res.redirect('/?error=internalError');
     }
 }
 

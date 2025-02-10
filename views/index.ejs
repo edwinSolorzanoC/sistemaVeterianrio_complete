@@ -16,9 +16,9 @@
             </section>
             
             <section class="navegacion-header" id="navegacion-header">
-                <a href="">Inicio</a>
-                <a href="">Informacion</a>
-                <a href="">Contactenos</a>
+                <a href="">INICIO</a>
+                <a href="">INFORMACION</a>
+                <a href="">CONTACTENOS</a>
             </section>
         </section>
         
@@ -35,7 +35,7 @@
 
                 <div class="opciones">
                     <button class="btn-iniciarSesion" id="btn-iniciarSesion">Ingresar al sistema</button>
-                    <button class="btn-crearCuenta" id="btn-crearCuenta">Crear cuenta para sistema</button>
+                    <button class="btn-crearCuenta" id="btn-crearCuenta">Crear cuenta vetcont</button>
                 </div>
 
                 <section class="formulario-iniciosesion" id="formulario-iniciosesion">
@@ -82,40 +82,51 @@
                 </section>
 
                 <section class="formulario-crearCuenta" id="formulario-crearCuenta">
-                    <h1>Crear Cuenta para Sistema</h1>
+                    <div class="form">
+                        <h1>Crear Cuenta para Sistema</h1>
 
-                    <form action="/crearCuenta" method="post" autocomplete="off">
-                        
-                        <div class="bloque">
-                            <label for="nombreUsuario">Escribe tu completo</label>
-                            <input name="nombreUsuario" type="text" placeholder="Nombre Completo..." required>
-                        </div>
-                        <div class="bloque">
-                            <label for="nombreSistema">Crea un nombre usuario para la plataforma</label>
-                            <input name="nombreSistema" type="text" placeholder="Usuario de sistema..." required>
-                        </div>
-                        <div class="bloque">
-                            <label for="password">Crea una contraseña segura para la plataforma</label>
-                            <input name="password" type="password" placeholder="Contraseña de sistema..." required>
-                        </div>
-                        <div class="bloque">
-                            <label for="correoElectronico">Escribe tu correo electronico</label>
-                            <input name="correoElectronico" type="email" placeholder="Correo electronico..." required>
-                        </div>
-                        <div class="bloque">
-                            <label for="numeroTelefono">Escribe tu numero de telefono</label>
-                            <input name="numeroTelefono" type="number" placeholder="Numero de telefono..." required>
-                        </div>
-                        <div class="bloque">
-                            <label for="direccion">Escribe la direccion de la veterinaria</label>
-                            <input type="text" name="direccion" id="direccion" required placeholder="Dieccion extacta del consultorio...">
-                        </div>
-                        <div class="bloque">
-                            <label for="claveSeguridad">Esribe tu clave de seguridad brindada</label>
-                            <input name="claveSeguridad" type="password" placeholder="Clave de seguridad..." required>
-                        </div>
-                        <button type="submit" id="btn-crearCuentacuenta" class="btn-crearCuenta">Crear cuenta</button>
-                    </form>
+                        <form action="/crearCuenta" method="post" autocomplete="off">
+                            
+                            <div class="bloque">
+                                <label for="nombreUsuario">Escribe tu completo</label>
+                                <input name="nombreUsuario" type="text" placeholder="Nombre Completo..." required>
+                            </div>
+                            <div class="bloque">
+                                <label for="nombreSistema">Crea un nombre usuario para la plataforma</label>
+                                <input name="nombreSistema" type="text" placeholder="Usuario de sistema..." required>
+                            </div>
+                            <div class="bloque">
+                                <label for="password">Crea una contraseña segura para la plataforma</label>
+                                <input name="password" type="password" placeholder="Contraseña de sistema..." required>
+                            </div>
+                            <div class="bloque">
+                                <label for="correoElectronico">Escribe tu correo electronico</label>
+                                <input name="correoElectronico" type="email" placeholder="Correo electronico..." required>
+                            </div>
+                            <div class="bloque">
+                                <label for="numeroTelefono">Escribe tu numero de telefono</label>
+                                <input name="numeroTelefono" type="number" placeholder="Numero de telefono..." required>
+                            </div>
+                            <div class="bloque">
+                                <label for="direccion">Escribe la direccion de la veterinaria</label>
+                                <input type="text" name="direccion" id="direccion" required placeholder="Dieccion extacta del consultorio...">
+                            </div>
+                            <div class="bloque">
+                                <label for="claveSeguridad">Esribe tu clave de seguridad brindada</label>
+                                <input name="claveSeguridad" type="password" placeholder="Clave de seguridad..." required>
+                            </div>
+                            <button type="submit" id="btn-crearCuentacuenta" class="btn-crearCuenta">Crear cuenta</button>
+                        </form>
+                    </div>
+                    
+
+                    <div class="consejos">
+                        <h2>Informacion para crear cuenta</h2>
+                        <p><i class="fa-solid fa-hand-point-up"></i> Ingresar nombre completo con ambos apellidos</p>
+                        <p><i class="fa-solid fa-hand-point-up"></i> La contraseña debe de contener al menos UNA LETRA MAYUSCULA y minimo UN NUMERO para sea una contraseña correcta</p>
+                        <p><i class="fa-solid fa-hand-point-up"></i> La contraseña debe ser distinta al nombre de usuario</p>
+                        <p><i class="fa-solid fa-hand-point-up"></i> Debe de tener una clave de seguridad valida para poder crear la cuenta</p>
+                    </div>
                 </section>
 
             </div>
@@ -123,50 +134,7 @@
             
         </section>
 
-        <section class="obtener">
-
-            <h1 class="titulo">Obtener clave de seguridad</h1>
-            <p class="subtitulo">Si desea obtener acceso a nuestro sistema y/o solicitar informacion, llena el formulario y nos 
-                pondremos en contacto contigo !!
-            </p>
-            <form action="" autocomplete="off">
-                <div class="bloque-uno">
-                    <div class="bloque">
-                        <h2>Formulario de contacto</h2>
-                    </div>
-                    <div class="bloque">
-                        <label for="">Nombre</label>
-                        <input type="text" name="" id="" required placeholder="Nombre publico de veterinaria y/o encargado(a)...">
-                    </div>
-                    <div class="bloque">
-                        <label for="">Correo electronico</label>
-                        <input type="email" name="" id="" required placeholder="Correeo electronico activo...">
-                    </div>
-                    <div class="bloque">
-                        <label for="">Numero de telefono</label>
-                        <input type="number" name="" id="" required placeholder="Numero de telefono activo...">
-                    </div>
-                    <div class="bloque">
-                        <label for="">Direccion de veterinaria</label>
-                        <input type="text" name="" id="" required placeholder="Dieccion extacta del consultorio...">
-                    </div>
-                    <div class="bloque">
-                        <button type="submit" id="btn-formulario" class="btn-formulario">Aceptar</button>
-
-                    </div>
-                </div>
-                <div class="bloque-dos">
-                    <div class="bloque">
-                       <h2><i class="fa-solid fa-circle-info"></i> Informacion adicional <br></h2>
-                    </div>
-                    <div class="bloque">
-                        <p><br><i class="fa-solid fa-hand-point-up"></i> Todos estos datos seran unicamente utilizados con fines de contacto</p>
-                        <p><i class="fa-solid fa-hand-point-up"></i> Por favor valide que los datos ingresados sean validos y estén activos para su uso de contacto</p>
-                    </div>
-                </div>
-            </form>
-        </section>
-
+        
         
     </main>
 

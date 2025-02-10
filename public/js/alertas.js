@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: "success",
                 title: "Inicio de sesión exitoso",
+                text: "Bienvenido a VETCONT",
                 showConfirmButton: false,
                 timer: 1500
             });

@@ -20,7 +20,7 @@ perfilPacientesModel.consultaInicio = async (idVeterinaria) => {
         const [results] = await pool.execute(peticion, [idVeterinaria]);
         return results;
     }catch(error){
-        console.error("Error en la consulta:", error.message);
+        res.redirect('/?error=internalError');
     }
 }
 
@@ -102,26 +102,8 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
             }
 
     }catch(error){
-
+        res.redirect('/?error=internalError');
     }
-
-
-    Promise.all([queryDatosPacientesYPropietarios, queryDatosConsultaGeneral, queryDatosConsultaVacunacion])
-        .then(results => {
-            // results[0] -> Resultados de la primera consulta
-            // results[1] -> Resultados de la segunda consulta
-            // results[2] -> Resultados de la tercera consulta
-
-            // console.log(results[0], results[1], results[2])
-            // Pasar los resultados a través del callback
-            callback(null, {
-                datosPaciente: results[0],         // Datos del paciente y propietario
-                consultasGenerales: results[1],    // Consultas generales
-                vacunacion: results[2]             // Vacunación
-            });
-        }).catch(error => {
-            callback(error);
-        });
 
 }
 
