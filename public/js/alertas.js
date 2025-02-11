@@ -58,6 +58,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Usuario y/o contraseña no coinciden",
                 text: "No se encontró un usuario y/o contraseña en los datos brindados",
             });
+        }else if (errorType === "sesionError") {
+            Swal.fire({
+                icon: "error",
+                title: "Error de sesion",
+                text: "Lo sentimos, error al encontrar la sesion iniciada",
+            });
         }
     } 
     

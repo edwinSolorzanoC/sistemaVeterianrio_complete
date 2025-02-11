@@ -3,15 +3,18 @@ import administracionModel from "../models/administracionModel.js";
 const administracionController = {};
 
 administracionController.inicioAdministracion = async (req, res) => {
+
     const idVeterinaria = req.session.user.id; 
 
     try {
+        
         // Llamada al modelo para obtener los datos
         const results = await administracionModel.consultaInicio(idVeterinaria);
         
         // Renderizar la vista con los resultados y la alerta
         res.render('administracion', {datos_pacientes: results});
     } catch (error) {
+        
         console.error("ERROR:ADMIN:STARTADMIN:", error);
         res.redirect('/?error=internalError');
     }

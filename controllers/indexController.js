@@ -22,9 +22,9 @@ indexController.iniciarSesion = async (req, res) => {
             const isMatch = await bcrypt.compare(password, usuario.tb_usuariosVeterinaria_col_contrasenna);
             
             if (isMatch) {
+                
                 req.session.user = {
                     id: usuario.idtb_usuariosVeterinaria,
-                    nombreSistema: usuario.tb_usuariosVeterinaria_col_nombre,
                 };
 
                 // Inicio de sesión exitoso
