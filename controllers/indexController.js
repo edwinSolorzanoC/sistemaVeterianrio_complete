@@ -9,6 +9,7 @@ indexController.inciarPage = (req, res) => {
 }
 
 indexController.iniciarSesion = async (req, res) => {
+    
     const { username, password } = req.body;
 
     try {

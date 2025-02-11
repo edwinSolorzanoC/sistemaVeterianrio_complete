@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: "error",
                 title: "Error de sesion",
-                text: "Lo sentimos, error al encontrar la sesion iniciada",
+                text: "Lo sentimos, inicia sesion nuevamente",
             });
         }
     } 

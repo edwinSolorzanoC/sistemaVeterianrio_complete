@@ -3,6 +3,10 @@ import perfilPacientesModel from "../models/perfilPacientesModel.js";
 const perfilPacientesController = {};
 
 perfilPacientesController.inicioPerfilPacientes = async (req, res) => {
+   
+    if (!req.session || !req.session.user || !req.session.user.id) {
+        return res.redirect('/?error=sesionError');
+    }
     const idVeterinaria = req.session.user.id;
 
     try{
@@ -10,7 +14,7 @@ perfilPacientesController.inicioPerfilPacientes = async (req, res) => {
         res.render('perfilPacientes', {datos_pacientes: results})
     }catch(error){
         console.log("ERROR:PERFIL:START: ", error)
-            res.redirect('/?error=internalError');
+        res.redirect('/?error=internalError');
     }
 
 }

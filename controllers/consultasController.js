@@ -3,6 +3,9 @@ import consultasModel from "../models/consultasModel.js";
 const consultasController = {};
 
 consultasController.inicioConsultas = async (req, res) => {
+    if (!req.session || !req.session.user || !req.session.user.id) {
+        return res.redirect('/?error=sesionError');
+    }
     const idVeterinaria = req.session.user.id; 
 
     try{

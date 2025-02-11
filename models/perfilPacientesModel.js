@@ -57,7 +57,7 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
         tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ? AND
         tb_pacientes_col_nombre = ? AND
         tb_propietarios_col_nombre = ?;`
-        const [datosPaciente] = await pool.execute(peticionDatosUnicos, [idVeterinaria, nombreMascota, nombrePropietario])
+        
 
         const peticionDatosConsultaGeneral = `SELECT 
             tb_consultaGeneral_col_fecha, 
@@ -75,7 +75,7 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
             WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
             AND tb_pacientes.tb_pacientes_col_nombre = ?
             AND tb_propietarios.tb_propietarios_col_nombre = ?;`
-            const [consultasGenerales] = await pool.execute(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario])
+            
 
             const peticionVacunacion = `SELECT 
             tb_consultaVacunacion_col_fecha,
@@ -93,9 +93,11 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
             WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
             AND tb_pacientes.tb_pacientes_col_nombre = ?
             AND tb_propietarios.tb_propietarios_col_nombre = ?;`
-
+            const [datosPaciente] = await pool.execute(peticionDatosUnicos, [idVeterinaria, nombreMascota, nombrePropietario])
+            const [consultasGenerales] = await pool.execute(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario])
             const [vacunacion] = await pool.execute(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario])
 
+            console.log("DATOS ENVIADOS DE MODEL: ", datosPaciente, consultasGenerales, vacunacion)
             return{
                 datosPaciente,
                 consultasGenerales,

@@ -3,7 +3,9 @@ import administracionModel from "../models/administracionModel.js";
 const administracionController = {};
 
 administracionController.inicioAdministracion = async (req, res) => {
-
+    if (!req.session || !req.session.user || !req.session.user.id) {
+        return res.redirect('/?error=sesionError');
+    }
     const idVeterinaria = req.session.user.id; 
 
     try {

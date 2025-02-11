@@ -3,6 +3,9 @@ import registroPacientesModel from "../models/registroPacientesModel.js";
 const registroPacientesController = {};
 
 registroPacientesController.inicioRegistroPacientes = async (req, res) => {
+    if (!req.session || !req.session.user || !req.session.user.id) {
+        return res.redirect('/?error=sesionError');
+    }
     const idVeterinaria = req.session.user.id;
 
     try{
