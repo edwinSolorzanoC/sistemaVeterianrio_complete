@@ -8,7 +8,7 @@ perfilPacientesModel.consultaInicio = async (idVeterinaria) => {
     
     if (!Number.isInteger(idVeterinaria)) {
         res.redirect('/?error=internalError');
-        console.log("El ID de la veterinaria debe ser un número entero");
+        console.log("ERROR:M:PERFIL:ID: ", error);
     }
 
     const peticion = `SELECT tb_pacientes_col_nombre, tb_propietarios_col_nombre 
@@ -97,7 +97,6 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
             const [consultasGenerales] = await pool.execute(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario])
             const [vacunacion] = await pool.execute(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario])
 
-            console.log("DATOS ENVIADOS DE MODEL: ", datosPaciente, consultasGenerales, vacunacion)
             return{
                 datosPaciente,
                 consultasGenerales,

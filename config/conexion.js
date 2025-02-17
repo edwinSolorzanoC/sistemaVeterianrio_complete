@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-
+/*
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -39,4 +39,22 @@ pool.getConnection((err, connection) => {
     connection.release();
 });
 
-export default pool.promise();
+*/
+
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'patodonal26',
+    database: 'bd_sistema_veterinario'
+})
+
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error('❌ Error en la conexión a MySQL:', err);
+        return;
+    }
+    connection.release();
+});
+
+
+ export default pool.promise();

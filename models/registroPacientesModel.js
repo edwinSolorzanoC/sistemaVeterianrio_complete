@@ -6,7 +6,7 @@ registroPacientesModel.consultaInicio = async (idVeterinaria) => {
 
     if (!Number.isInteger(idVeterinaria)) {
         res.redirect('/?error=internalError');
-        console.log("El ID de la veterinaria debe ser un número entero");
+        console.log("ERROR:M:REGISTRO:ID: ", error)
     }
 
     const peticion = `SELECT tb_propietarios_col_cedula, tb_propietarios_col_nombre 
@@ -52,27 +52,23 @@ registroPacientesModel.insertarMascota = async (nombreMascota,
     fechaConsultaMascota, idVeterinaria, 
     cedulaPropietarioMascota) => {
 
-        const peticion = `INSERT INTO tb_pacientes 
-        (tb_pacientes_col_nombre, 
-        tb_pacientes_col_tipo,
-        tb_pacientes_col_peso,
-        tb_pacientes_col_fechaNacimiento,
-        tb_pacientes_col_edad,
-        tb_pacientes_col_raza,
-        tb_pacientes_col_castrado,
-        tb_pacientes_col_color,
-        tb_pacientes_col_partos,
-        tb_pacientes_col_fechaPartos,
-        tb_pacientes_col_sexo,
-        tb_pacientes_col_fechaUltimaConsulta,
-        tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
+        const peticionMascota = `INSERT INTO tb_pacientes 
+        (tb_pacientes_col_nombre, tb_pacientes_col_tipo, tb_pacientes_col_peso, 
+        tb_pacientes_col_fechaNacimiento, tb_pacientes_col_edad, tb_pacientes_col_raza, 
+        tb_pacientes_col_castrado, tb_pacientes_col_color, tb_pacientes_col_sexo, 
+        tb_pacientes_col_fechaUltimaConsulta, tb_usuariosVeterinaria_idtb_usuariosVeterinaria, 
         tb_propietarios_tb_propietarios_col_cedula) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
 
         try{
-            const [results] = await pool.execute(peticion, [nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, edadMascota, razaMascota, castracionMascota, 
-                colorMascota, partosMascota, fechaPartosMascota, sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota
-            ])
+             const [results] = await pool.execute(peticionMascota, [
+            nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, 
+            edadMascota, razaMascota, castracionMascota, colorMascota, 
+            sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota
+        ]);
+
+        const idMascota = results.insertId; // Obtener el ID de la mascota recién insertada
 
             return results
         }catch(error){
