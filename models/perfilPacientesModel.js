@@ -29,17 +29,14 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
 
     try{
 
-        const peticionDatosUnicos = ` SELECT 
-        tb_pacientes_col_nombre, 
-        tb_pacientes_col_tipo, 
-        tb_pacientes_col_raza, 
-        tb_pacientes_col_fechaNacimiento,
+        const peticionDatosUnicos = `  SELECT tb_pacientes_col_nombre, tb_pacientes_col_tipo, 
+        tb_pacientes_col_raza,  tb_pacientes_col_fechaNacimiento,
         tb_pacientes_col_sexo,
         tb_pacientes_col_color,
         tb_pacientes_col_castrado,
         tb_pacientes_col_edad,
-        tb_pacientes_col_partos,
-        tb_pacientes_col_fechaPartos,
+        tb_partos_col_cantidad,
+        tb_partos_col_fechaParto,
         tb_pacientes_col_peso,
         tb_pacientes_col_fechaUltimaConsulta,
         tb_propietarios_col_nombre,
@@ -47,16 +44,16 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
         tb_propietarios_col_direccion,
         tb_propietarios_col_numeroTelefono,
         tb_propietarios_col_correoElectronico
-    
         FROM tb_pacientes
-    
         JOIN tb_propietarios 
         ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
-    
+        JOIN tb_partos
+        ON tb_pacientes.idtb_pacientes = tb_partos.tb_pacientes_idtb_pacientes
         WHERE 
         tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ? AND
         tb_pacientes_col_nombre = ? AND
-        tb_propietarios_col_nombre = ?;`
+        tb_propietarios_col_nombre = ? ;
+`
         
 
         const peticionDatosConsultaGeneral = `SELECT 
@@ -93,6 +90,7 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
             WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
             AND tb_pacientes.tb_pacientes_col_nombre = ?
             AND tb_propietarios.tb_propietarios_col_nombre = ?;`
+            
             const [datosPaciente] = await pool.execute(peticionDatosUnicos, [idVeterinaria, nombreMascota, nombrePropietario])
             const [consultasGenerales] = await pool.execute(peticionDatosConsultaGeneral, [idVeterinaria, nombreMascota, nombrePropietario])
             const [vacunacion] = await pool.execute(peticionVacunacion, [idVeterinaria, nombreMascota, nombrePropietario])
