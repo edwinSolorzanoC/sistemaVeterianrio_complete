@@ -4,20 +4,22 @@ document.addEventListener('DOMContentLoaded', function(){
     //opciones de consultas
     const mostrarconsultas = document.getElementById("mostrarconsultas");
     const mostrarvacunas = document.getElementById("mostrarvacunas");
+    const mostrarcostosconsultas = document.getElementById("btn-añadirCostosGeneral");
+    const mostrarcostosVacunacion = document.getElementById("btn-añadirCostosVacunacion");
 
     //formularios de consultas
     const formulariogeneral = document.getElementById("formulario-general");
     const formulariovacunas = document.getElementById("formulario-vacunas");
-
-
+    const formulariocostosconsultas = document.getElementById("form-costosGeneral");
+    const formulariocostosvacunacion = document.getElementById("form-costosVacunacion")
    
-
 
     //muestra el formulario de consulta general
     mostrarconsultas.addEventListener('click', function(){
         if (formulariogeneral.style.display === 'none' || formulariogeneral.style.display === '') {
             formulariogeneral.style.display = 'block';
             formulariovacunas.style.display = 'none'; 
+            formulariocostosvacunacion.style.display = 'none'
         }
     });
 
@@ -26,6 +28,25 @@ document.addEventListener('DOMContentLoaded', function(){
         if (formulariovacunas.style.display === 'none' || formulariovacunas.style.display === '') {
             formulariovacunas.style.display = 'block';
             formulariogeneral.style.display = 'none'; 
+            formulariocostosconsultas.style.display = 'none'
+        }
+    });
+
+    mostrarcostosconsultas.addEventListener('click', function(){
+        if(formulariocostosconsultas.style.display === 'none'){
+            formulariocostosconsultas.style.display = 'block'
+        }else{
+            formulariocostosconsultas.style.display = 'none'
+
+        }
+    });
+
+    mostrarcostosVacunacion.addEventListener('click', function(){
+        if(formulariocostosvacunacion.style.display === 'none'){
+            formulariocostosvacunacion.style.display = 'block'
+        }else{
+            formulariocostosvacunacion.style.display = 'none'
+
         }
     });
 

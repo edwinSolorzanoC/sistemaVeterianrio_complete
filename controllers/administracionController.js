@@ -43,7 +43,6 @@ administracionController.insertarConsultaGeneral = async (req, res) => {
         return res.redirect('/administracion?success=consultaUpdate');
 
     }catch(error){
-        console.error("E:", error);
         console.log("ERROR:ADMIN:INSERTCONSULTA: ", error)
         res.redirect('/administracion?error=internalError');
     }

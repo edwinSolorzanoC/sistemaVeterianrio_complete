@@ -75,6 +75,8 @@
                 <div class="motivo-consulta" id="motivo-consulta">
                 
                     <form action="/consultageneral" method="post" autocomplete="off" id="formulario-general">
+
+                        
                         <h1>CONSULTA GENERAL <i class="fa-solid fa-paste"></i></h1>
                         <div class="propietario">
                             <label for="nombrePropietarioConsulta">Nombre propietario: </label>
@@ -96,10 +98,41 @@
                             <label for="pesoConsultaGeneral">Peso: </label>
                             <input type="number" name="pesoConsultaGeneral" id="pesoConsultaGeneral" required placeholder="Peso de mascota...">
                         </div>
+                        
+                        <div class="añadirCostosGeneral">
+                            <button type="button" class="btn-añadirCostosGeneral" id="btn-añadirCostosGeneral"> <i class="fa-solid fa-cent-sign"></i> Añadir costos de consulta</button>
+                        </div>
+                        <div class="form-costosGeneral" id="form-costosGeneral">
+                            <h3>Costos de consulta <i class="fa-solid fa-comments-dollar"></i></h3>
+                            <div class="serviosCosoto">
+                                <label for="costoServiciosGeneral">Costo por servicios brindados: </label>
+                                <input type="number" name="costoServiciosGeneral" id="costoServiciosGeneral" placeholder="Costo de servicios..." ></input>
+                            </div>
+                            <div class="medicamentosCosto">
+                                <label for="costoMedicamentosGeneral">Costo medicamentos: </label>
+                                <input type="number" name="costoMedicamentosGeneral" id="costoMedicamentosGeneral" placeholder="Costo de medicamentos..." ></input>
+                            </div>
+                            
+                            <div class="extrasCosto">
+                                <label for="costoExtrasGeneral">Costo extras: </label>
+                                <input type="number" name="costoExtrasGeneral" id="costoExtrasGeneral" placeholder="Costo de extras..." ></input>
+                            </div>
+                            <div class="descripcionCosto">
+                                <label for="costoDescripcionGeneral">Descripción de consulta: </label>
+                                <input type="text" name="costoDescripcionGeneral" id="costoDescripcionGeneral" placeholder="Añade una descripción ..." required></input>
+                            </div>
+                            <div class="notas">
+                                <p>Si no hay costos que añadir, puedes dejar espacios vacios</p>
+                                <p>El sistema saca el total de la consulta automaticamente en base a los datos brindados</p>    
+                            </div>
+                        </div>
+                        
                         <div class="boton">
                             <button type="submit" class="btn-guardardatos" id="btn-guardardatos-vacunacion"><i class="fa-solid fa-newspaper"></i> Guardar</button>
                             <button type="button" class="btn-cancelardatos" id="btn-cancelardatos-consulta"><i class="fa-solid fa-newspaper"></i> Limpiar Formulario</button>
                         </div>
+                        
+                        
                     </form>
 
                     <form action="/consultavacunacion" method="post" class="formulario-vacunas" id="formulario-vacunas" autocomplete="off">
@@ -129,6 +162,33 @@
                             </div>
                         </div>
                         
+                        <div class="añadirCostosVacunacion">
+                            <button type="button" class="btn-añadirCostosVacunacion" id="btn-añadirCostosVacunacion"> <i class="fa-solid fa-cent-sign"></i> Añadir costos de consulta</button>
+                        </div>
+                        <div class="form-costosVacunacion" id="form-costosVacunacion">
+                            <h3>Costos de consulta vacunación <i class="fa-solid fa-comments-dollar"></i></h3>
+                            <div class="serviosCostoVacunacion">
+                                <label for="costoServiciosVacunacion">Costo por servicios brindados: </label>
+                                <input type="number" name="costoServiciosVacunacion" id="costoServiciosVacunacion" placeholder="Costo de servicios..." ></input>
+                            </div>
+                            <div class="medicamentosCostoVacunacion">
+                                <label for="costoMedicamentosVacunacion">Costo medicamentos: </label>
+                                <input type="number" name="costoMedicamentosVacunacion" id="costoMedicamentosVacunacion" placeholder="Costo medicamentos..." ></input>
+                            </div>
+                            <div class="extrasCostoVacunacion">
+                                <label for="costoExtrasVacunacion">Costo extras: </label>
+                                <input type="number" name="costoExtrasVacunacion" id="costoExtrasVacunacion" placeholder="Costo de extras..." ></input>
+                            </div>
+                            <div class="descripcionCostoVacunacion">
+                                <label for="costoDescripcionVacunacion">Descripción de consulta: </label>
+                                <input type="text" name="costoDescripcionVacunacion" id="costoDescripcionVacunacion" placeholder="Añade una descripción ..." required></input>
+                            </div>
+                            <div class="notas">
+                                <p>Si no hay costos que añadir, puedes dejar espacios vacios</p>
+                                <p>El sistema saca el total de la consulta automaticamente en base a los datos brindados</p>    
+                            </div>
+                        </div>
+
                         <div class="boton">
                             <button type="submit" class="btn-guardardatos" id="btn-guardardatos-vacunacion"><i class="fa-solid fa-newspaper"></i> Guardar</button>
                             <button type="button" class="btn-cancelardatos" id="cancelardatos-vacunacion"><i class="fa-solid fa-newspaper"></i> Limpiar Formulario</button>

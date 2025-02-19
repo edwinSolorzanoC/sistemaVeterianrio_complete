@@ -18,8 +18,16 @@
     margin: 1%;
 }
 
-
-
+.motivo-consulta .añadirCostosGeneral, .motivo-consulta .añadirCostosVacunacion{
+    width: 50%;
+    padding: 0.5%;
+}
+.motivo-consulta .costosGeneral {
+    width: 90%;
+}
+.motivo-consulta #form-costosGeneral{
+    display: none;
+}
 
 @media screen and (max-width:900px){
     .bloque{
@@ -38,19 +46,11 @@
 #formulario-vacunas{
     display: none;
 }
-
-.tipo-consulta .bloque{
-    margin-top: 2%;
-}
-.tipo-consulta .bloque .vacunacion, .tipo-consulta .bloque .desparacitacion{
-    width: 50%;
+#form-costosVacunacion{
+    display: none;
 }
 
 
-.tipo-consulta .opciones .btn-mostrarconsultas:active , .tipo-consulta .opciones .btn-mostrarvacunas:active{
-    background-color: #3e788e;
-
-}
 
 /* ----------------------------------------------------- */
 
