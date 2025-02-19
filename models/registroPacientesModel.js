@@ -43,37 +43,51 @@ registroPacientesModel.insertarPropietario = async (cedulaPropietario, nombrePro
 
 }
 
-registroPacientesModel.insertarMascota = async (nombreMascota, 
-    tipoMascota, pesoMascota, 
-    fechaNacimientoMascota, edadMascota,
-    razaMascota,castracionMascota, 
-    colorMascota, partosMascota, 
-    fechaPartosMascota, sexoMascota,
-    fechaConsultaMascota, idVeterinaria, 
-    cedulaPropietarioMascota) => {
+registroPacientesModel.insertarMascota = async (nombreMascota, tipoMascota, pesoMascota, 
+    fechaNacimientoMascota, edadMascota,razaMascota,castracionMascota, 
+    colorMascota, partosMascota, fechaPartosMascota, sexoMascota,
+    fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota) => {
 
-        const peticionMascota = `INSERT INTO tb_pacientes 
-        (tb_pacientes_col_nombre, tb_pacientes_col_tipo, tb_pacientes_col_peso, 
-        tb_pacientes_col_fechaNacimiento, tb_pacientes_col_edad, tb_pacientes_col_raza, 
-        tb_pacientes_col_castrado, tb_pacientes_col_color, tb_pacientes_col_sexo, 
-        tb_pacientes_col_fechaUltimaConsulta, tb_usuariosVeterinaria_idtb_usuariosVeterinaria, 
-        tb_propietarios_tb_propietarios_col_cedula) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-
+        const conecction = await pool.getConnection();
 
         try{
-             const [results] = await pool.execute(peticionMascota, [
+
+            await conecction.beginTransaction();
+            const peticionMascota = `INSERT INTO tb_pacientes 
+            (tb_pacientes_col_nombre, tb_pacientes_col_tipo, tb_pacientes_col_peso, 
+            tb_pacientes_col_fechaNacimiento, tb_pacientes_col_edad, tb_pacientes_col_raza, 
+            tb_pacientes_col_castrado, tb_pacientes_col_color, tb_pacientes_col_sexo, 
+            tb_pacientes_col_fechaUltimaConsulta, tb_usuariosVeterinaria_idtb_usuariosVeterinaria, 
+            tb_propietarios_tb_propietarios_col_cedula) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+            const [results] = await pool.execute(peticionMascota, [
             nombreMascota, tipoMascota, pesoMascota, fechaNacimientoMascota, 
             edadMascota, razaMascota, castracionMascota, colorMascota, 
             sexoMascota, fechaConsultaMascota, idVeterinaria, cedulaPropietarioMascota
-        ]);
+            ]);
 
-        const idMascota = results.insertId; // Obtener el ID de la mascota recién insertada
+            const idMascota = results.insertId; // Obtener el ID de la mascota recién insertada
+
+            if(partosMascota && fechaPartosMascota){
+                const peticionPartos = `INSERT INTO tb_partos
+                (tb_partos_col_numeroParto, tb_partos_col_fechaParto, tb_partos_col_cantidad, tb_pacientes_idtb_pacientes)
+                VALUES (?, ?, ?, ?)`;
+
+                await conecction.execute(peticionPartos, [partosMascota, fechaPartosMascota, partosMascota, idMascota])
+            }
+
+            await conecction.commit();
+            conecction.release();
 
             return results
+
         }catch(error){
+            await conecction.rollback();
+            conecction.release();
             console.log("ERROR:M:REGISTRO:INSERT: ", error)
             res.redirect('/?error=internalError');
+
         }
 
 }
