@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Datos Procesados", data);
-
                     document.getElementById('nombreMascota').value = data.datosPaciente[0].tb_pacientes_col_nombre;
                     document.getElementById('tipoMascota').value = data.datosPaciente[0].tb_pacientes_col_tipo;
                     document.getElementById('razaMascota').value = data.datosPaciente[0].tb_pacientes_col_raza;

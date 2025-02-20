@@ -25,10 +25,6 @@
 .motivo-consulta .costosGeneral {
     width: 90%;
 }
-.motivo-consulta #form-costosGeneral{
-    display: none;
-}
-
 @media screen and (max-width:900px){
     .bloque{
         display: block;
@@ -46,8 +42,10 @@
 #formulario-vacunas{
     display: none;
 }
-#form-costosVacunacion{
-    display: none;
+
+.form-costosVacunacion , .form-costosGeneral{
+    width: 90%;
+    padding-top: 1%;
 }
 
 

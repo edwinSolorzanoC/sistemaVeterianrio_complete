@@ -22,8 +22,8 @@ perfilPacientesController.inicioPerfilPacientes = async (req, res) => {
 
 perfilPacientesController.mostrarDatosSeleccionados = async (req, res) => {
     const idVeterinaria = req.session.user.id;
+   
     const { nombreMascota, nombrePropietario } = req.body;
-
     try{
         const results = await perfilPacientesModel.obtenerDatos(idVeterinaria, nombreMascota, nombrePropietario)
 

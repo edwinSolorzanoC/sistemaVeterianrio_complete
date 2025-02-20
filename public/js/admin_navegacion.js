@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
         if (formulariogeneral.style.display === 'none' || formulariogeneral.style.display === '') {
             formulariogeneral.style.display = 'block';
             formulariovacunas.style.display = 'none'; 
-            formulariocostosvacunacion.style.display = 'none'
         }
     });
 
@@ -28,27 +27,11 @@ document.addEventListener('DOMContentLoaded', function(){
         if (formulariovacunas.style.display === 'none' || formulariovacunas.style.display === '') {
             formulariovacunas.style.display = 'block';
             formulariogeneral.style.display = 'none'; 
-            formulariocostosconsultas.style.display = 'none'
         }
     });
 
-    mostrarcostosconsultas.addEventListener('click', function(){
-        if(formulariocostosconsultas.style.display === 'none'){
-            formulariocostosconsultas.style.display = 'block'
-        }else{
-            formulariocostosconsultas.style.display = 'none'
+ 
 
-        }
-    });
-
-    mostrarcostosVacunacion.addEventListener('click', function(){
-        if(formulariocostosvacunacion.style.display === 'none'){
-            formulariocostosvacunacion.style.display = 'block'
-        }else{
-            formulariocostosvacunacion.style.display = 'none'
-
-        }
-    });
 
     const irARegsitropacientes = document.getElementById("agregarpacientes");
 

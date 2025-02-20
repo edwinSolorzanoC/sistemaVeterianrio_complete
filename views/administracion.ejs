@@ -77,13 +77,13 @@
                     <form action="/consultageneral" method="post" autocomplete="off" id="formulario-general">
 
                         
-                        <h1>CONSULTA GENERAL <i class="fa-solid fa-paste"></i></h1>
+                        <h1>DATOS CONSULTA GENERAL <i class="fa-solid fa-paste"></i></h1>
                         <div class="propietario">
-                            <label for="nombrePropietarioConsulta">Nombre propietario: </label>
+                            <label for="nombrePropietarioConsulta">Nombre del propietario de la mascota: </label>
                             <input type="text" name="nombrePropietarioConsulta" id="nombrePropietarioConsulta" placeholder="Nombre propietario..." required>
                         </div>
                         <div class="pacientes">
-                            <label for="nombrePacienteConsulta">Nombre paciente: </label>
+                            <label for="nombrePacienteConsulta">Nombre mascota: </label>
                             <input type="text" name="nombrePacienteConsulta" id="nombrePacienteConsulta" placeholder="Nombre paciente..." required>
                         </div>
                         <div class="descripcion">
@@ -95,35 +95,30 @@
                             <input type="text" name="medicamentosConsulta" id="medicamentosConsulta" placeholder="Escriba los medicamentos utilizados..." required></input>
                         </div>
                         <div class="Peso">
-                            <label for="pesoConsultaGeneral">Peso: </label>
+                            <label for="pesoConsultaGeneral">Peso de mascota: </label>
                             <input type="number" name="pesoConsultaGeneral" id="pesoConsultaGeneral" required placeholder="Peso de mascota...">
                         </div>
                         
-                        <div class="añadirCostosGeneral">
-                            <button type="button" class="btn-añadirCostosGeneral" id="btn-añadirCostosGeneral"> <i class="fa-solid fa-cent-sign"></i> Añadir costos de consulta</button>
-                        </div>
                         <div class="form-costosGeneral" id="form-costosGeneral">
                             <h3>Costos de consulta <i class="fa-solid fa-comments-dollar"></i></h3>
                             <div class="serviosCosoto">
                                 <label for="costoServiciosGeneral">Costo por servicios brindados: </label>
-                                <input type="number" name="costoServiciosGeneral" id="costoServiciosGeneral" placeholder="Costo de servicios..." ></input>
+                                <input type="number" name="costoServiciosGeneral" id="costoServiciosGeneral" placeholder="Costo de servicios..." step="0.01" required></input>
                             </div>
                             <div class="medicamentosCosto">
-                                <label for="costoMedicamentosGeneral">Costo medicamentos: </label>
-                                <input type="number" name="costoMedicamentosGeneral" id="costoMedicamentosGeneral" placeholder="Costo de medicamentos..." ></input>
+                                <label for="costoMedicamentosGeneral">Costo de medicamentos: </label>
+                                <input type="number" name="costoMedicamentosGeneral" id="costoMedicamentosGeneral" placeholder="Costo de medicamentos..." required></input>
                             </div>
                             
                             <div class="extrasCosto">
                                 <label for="costoExtrasGeneral">Costo extras: </label>
-                                <input type="number" name="costoExtrasGeneral" id="costoExtrasGeneral" placeholder="Costo de extras..." ></input>
+                                <input type="number" name="costoExtrasGeneral" id="costoExtrasGeneral" placeholder="Costo de extras..." required></input>
                             </div>
                             <div class="descripcionCosto">
-                                <label for="costoDescripcionGeneral">Descripción de consulta: </label>
+                                <label for="costoDescripcionVacunacion">Descripción de costos: </label>
                                 <input type="text" name="costoDescripcionGeneral" id="costoDescripcionGeneral" placeholder="Añade una descripción ..." required></input>
                             </div>
                             <div class="notas">
-                                <p>Si no hay costos que añadir, puedes dejar espacios vacios</p>
-                                <p>El sistema saca el total de la consulta automaticamente en base a los datos brindados</p>    
                             </div>
                         </div>
                         
@@ -136,56 +131,51 @@
                     </form>
 
                     <form action="/consultavacunacion" method="post" class="formulario-vacunas" id="formulario-vacunas" autocomplete="off">
-                        <h1>CONSULTA VACUNACION Y/O DESPARACITACION <i class="fa-solid fa-syringe"></i></h1>
+                        <h1>DATOS CONSULTA VACUNACION Y/O DESPARACITACION <i class="fa-solid fa-syringe"></i></h1>
                         <div class="propietario">
-                            <label for="nombrePropietarioVacunacion">Nombre propietario: </label>
+                            <label for="nombrePropietarioConsulta">Nombre del propietario de la mascota: </label>
                             <input type="text" name="nombrePropietarioVacunacion" id="nombrePropietarioVacunacion" placeholder="Nombre de propietario..." required>
                         </div>
                         <div class="paciente">
-                            <label for="nombrePacienteVacunacion">Nombre paciente: </label>
+                            <label for="nombrePacienteVacunacion">Nombre mascota: </label>
                             <input type="text" name="nombrePacienteVacunacion" id="nombrePacienteVacunacion" placeholder="Nombre de paciente..." required>
                         </div>
                         <div class="Peso">
-                            <label for="pesoVacunacion">Peso: </label>
+                            <label for="pesoVacunacion">Peso de mascota: </label>
                             <input type="number" name="pesoVacunacion" id="pesoVacunacion" required placeholder="Peso de mascota...">
                         </div>
                         <div class="vacunacion">
                             <div class="vacuna">
                                 <label for="nombreInyeccionVacunacion">Programa de vacunación</label>
-                                <input type="text" name="nombreInyeccionVacunacion" id="nombreInyeccionVacunacion" placeholder="Escribe el nombre de la inyeccion..." required>
+                                <input type="text" name="nombreInyeccionVacunacion" id="nombreInyeccionVacunacion" placeholder="Nombre de la inyeccion/opcional">
                             </div>
                         </div>
                         <div class="desparacitacion">
                             <div class="vacuna">
                                 <label for="nombreInyeccionDesparacitacion">Programa de desparacitación</label>
-                                <input type="text" name="nombreInyeccionDesparacitacion" id="nombreInyeccionDesparacitacion" placeholder="Escribe el nombre de la inyeccion..." required>
+                                <input type="text" name="nombreInyeccionDesparacitacion" id="nombreInyeccionDesparacitacion" placeholder="Nombre de la inyeccion/opcional" >
                             </div>
                         </div>
                         
-                        <div class="añadirCostosVacunacion">
-                            <button type="button" class="btn-añadirCostosVacunacion" id="btn-añadirCostosVacunacion"> <i class="fa-solid fa-cent-sign"></i> Añadir costos de consulta</button>
-                        </div>
                         <div class="form-costosVacunacion" id="form-costosVacunacion">
-                            <h3>Costos de consulta vacunación <i class="fa-solid fa-comments-dollar"></i></h3>
+                            <h3>COSTOS DE CONSULTA VACUNACIÓN <i class="fa-solid fa-comments-dollar"></i></h3>
                             <div class="serviosCostoVacunacion">
                                 <label for="costoServiciosVacunacion">Costo por servicios brindados: </label>
-                                <input type="number" name="costoServiciosVacunacion" id="costoServiciosVacunacion" placeholder="Costo de servicios..." ></input>
+                                <input type="number" name="costoServiciosVacunacion" id="costoServiciosVacunacion" placeholder="Costo de servicios..." required></input>
                             </div>
                             <div class="medicamentosCostoVacunacion">
-                                <label for="costoMedicamentosVacunacion">Costo medicamentos: </label>
-                                <input type="number" name="costoMedicamentosVacunacion" id="costoMedicamentosVacunacion" placeholder="Costo medicamentos..." ></input>
+                                <label for="costoMedicamentosVacunacion">Costo de medicamentos: </label>
+                                <input type="number" name="costoMedicamentosVacunacion" id="costoMedicamentosVacunacion" placeholder="Costo de medicamentos..."required></input>
                             </div>
                             <div class="extrasCostoVacunacion">
                                 <label for="costoExtrasVacunacion">Costo extras: </label>
-                                <input type="number" name="costoExtrasVacunacion" id="costoExtrasVacunacion" placeholder="Costo de extras..." ></input>
+                                <input type="number" name="costoExtrasVacunacion" id="costoExtrasVacunacion" placeholder="Costo de extras..." required></input>
                             </div>
                             <div class="descripcionCostoVacunacion">
-                                <label for="costoDescripcionVacunacion">Descripción de consulta: </label>
+                                <label for="costoDescripcionVacunacion">Descripción de costos: </label>
                                 <input type="text" name="costoDescripcionVacunacion" id="costoDescripcionVacunacion" placeholder="Añade una descripción ..." required></input>
                             </div>
                             <div class="notas">
-                                <p>Si no hay costos que añadir, puedes dejar espacios vacios</p>
-                                <p>El sistema saca el total de la consulta automaticamente en base a los datos brindados</p>    
                             </div>
                         </div>
 

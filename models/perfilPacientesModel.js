@@ -47,7 +47,7 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
         FROM tb_pacientes
         JOIN tb_propietarios 
         ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
-        JOIN tb_partos
+        LEFT JOIN tb_partos
         ON tb_pacientes.idtb_pacientes = tb_partos.tb_pacientes_idtb_pacientes
         WHERE 
         tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ? AND
@@ -109,5 +109,3 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
 }
 
 export default perfilPacientesModel;
-
-

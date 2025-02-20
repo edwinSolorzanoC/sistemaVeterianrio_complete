@@ -28,6 +28,12 @@ document.querySelectorAll("#tabla tr").forEach((fila, index) => {
         document.getElementById('motivoConsulta').value = "";
         document.getElementById('medicamentosConsulta').value = "";
         document.getElementById('pesoConsultaGeneral').value = "";
+
+        document.getElementById('costoServiciosGeneral').value = "";
+        document.getElementById('costoMedicamentosGeneral').value = "";
+        document.getElementById('costoExtrasGeneral').value = "";
+        document.getElementById('costoDescripcionGeneral').value = "";
+        
     })
 
     const limpiarConsultaVacunacion = document.getElementById("cancelardatos-vacunacion");
@@ -38,6 +44,11 @@ document.querySelectorAll("#tabla tr").forEach((fila, index) => {
         document.getElementById('pesoVacunacion').value = "";
         document.getElementById('nombreInyeccionVacunacion').value = "";
         document.getElementById('nombreInyeccionDesparacitacion').value = "";
+
+        document.getElementById('costoServiciosVacunacion').value = "";
+        document.getElementById('costoMedicamentosVacunacion').value = "";
+        document.getElementById('costoExtrasVacunacion').value = "";
+        document.getElementById('costoDescripcionVacunacion').value = "";
     })
 
 
