@@ -29,27 +29,34 @@ administracionModel.consultaInicio = async (idVeterinaria) => {
 administracionModel.consultaGeneral = async (nombrePropietarioConsulta,
     nombrePacienteConsulta, motivoConsulta,
     medicamentosConsulta, pesoConsultaGeneral,
-    fechaAutomatica, idVeterinaria
+    fechaAutomatica, idVeterinaria, 
+    costoMedicamentosGeneral, 
+    costoExtrasGeneral, 
+    costoServiciosGeneral, 
+    costoDescripcionGeneral,
+    costoTotalGeneral,
+    costoTipoGeneral
 ) => {
-    const verificarExistenciaPacientes = `
+
+    const conecction = await pool.getConnection();
+
+    try{
+
+        await conecction.beginTransaction();
+
+        const verificarExistenciaPacientes = `
         SELECT idtb_pacientes
         FROM tb_pacientes
         JOIN tb_propietarios
         ON tb_propietarios.tb_propietarios_col_cedula = tb_pacientes.tb_propietarios_tb_propietarios_col_cedula
-        WHERE tb_pacientes_col_nombre = ? AND tb_propietarios_col_nombre = ?;
-    `;
+        WHERE tb_pacientes_col_nombre = ? AND tb_propietarios_col_nombre = ?;`;
 
-    try {
         const [resultsBusqueda] = await pool.execute(verificarExistenciaPacientes, [
             nombrePacienteConsulta,
             nombrePropietarioConsulta
         ]);
 
-        let idMascota = null;
-
-        if (resultsBusqueda.length) {
-            idMascota = resultsBusqueda[0].idtb_pacientes;
-        }
+        let idMascota = resultsBusqueda.length ? resultsBusqueda[0].idtb_pacientes : null;
 
         const peticionConsulta = `
             INSERT INTO tb_consultageneral (
@@ -61,21 +68,53 @@ administracionModel.consultaGeneral = async (nombrePropietarioConsulta,
                 tb_consultaGeneral_col_fecha, 
                 tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
                 tb_pacientes_idtb_pacientes
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
-        `;
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
 
-        const [results] = await pool.execute(peticionConsulta, [nombrePropietarioConsulta,
-            nombrePacienteConsulta, motivoConsulta,
-            medicamentosConsulta, pesoConsultaGeneral,
-            fechaAutomatica, idVeterinaria,
-            idMascota // Si la mascota no existe, se insertará `NULL`
+        const [resultsConsulta] = await pool.execute(peticionConsulta, [
+            nombrePropietarioConsulta, nombrePacienteConsulta, motivoConsulta,
+            medicamentosConsulta, pesoConsultaGeneral, fechaAutomatica, idVeterinaria, idMascota
         ]);
 
-        return results;
-    } catch (error) {
+        const idConsultaGeneral = resultsConsulta.insertId; // Obtener el ID de la consulta recién insertada
+        const idConsultaVacunacion = null;
+        const insertarCostos = `
+        INSERT INTO tb_costosconsultas(
+            tb_costosConsultas_col_medicamentos,
+            tb_costosConsultas_col_extras, 
+            tb_costosConsultas_col_consultal, 
+            tb_costosConsultas_col_descripcion,
+            tb_costosConsultas_col_total, 
+            tb_costosConsultas_col_tipo, 
+            tb_consultaGeneral_idtb_consultaGeneral,
+            tb_consultaVacunacion_idtb_consultaVacunacion)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
+
+        await pool.execute(insertarCostos, [
+            costoMedicamentosGeneral, 
+            costoExtrasGeneral, 
+            costoServiciosGeneral, 
+            costoDescripcionGeneral, 
+            costoTotalGeneral, 
+            costoTipoGeneral,
+            idConsultaGeneral,
+            idConsultaVacunacion
+        ]);
+
+
+        await conecction.commit();
+        conecction.release();
+
+        return resultsConsulta;
+
+
+    }catch(error){
+       await conecction.rollback();
+        conecction.release();
         console.log("ERROR:M:ADMIN:CONSULTA: ", error)
         res.redirect('/?error=internalError');
+
     }
+
 };
 
 
@@ -109,6 +148,8 @@ administracionModel.consultaVacunacion = async (nombrePropietarioVacunacion,
         tb_consultaVacunacion_col_fecha,tb_usuariosVeterinaria_idtb_usuariosVeterinaria,
         tb_pacientes_idtb_pacientes)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?);`;
+
+        
 
         const [results] = await pool.execute(peticionConsulta, [nombrePropietarioVacunacion,
             nombrePacienteVacunacion, pesoVacunacion,

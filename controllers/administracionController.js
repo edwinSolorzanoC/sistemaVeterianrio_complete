@@ -29,21 +29,40 @@ administracionController.insertarConsultaGeneral = async (req, res) => {
         motivoConsulta,
         medicamentosConsulta,
         pesoConsultaGeneral,
-        fechaAutomatica = new Date().toISOString().slice(0, 10), // Formato: YYYY-MM-DD,
-        idVeterinaria = req.session.user.id
+        idVeterinaria = req.session.user.id,
+        costoMedicamentosGeneral, 
+        costoExtrasGeneral, 
+        costoServiciosGeneral, 
+        costoDescripcionGeneral
     } = req.body;
 
+    const fechaAutomatica = new Date().toISOString().slice(0, 10); // Formato: YYYY-MM-DD,
+
+    const ScostoMedicamentosGeneral = Number(costoMedicamentosGeneral) || 0;
+    const ScostoExtrasGeneral = Number(costoExtrasGeneral) || 0;
+    const ScostoServiciosGeneral = Number(costoServiciosGeneral) || 0;
+    
+    const costoTotalGeneral = ScostoExtrasGeneral + ScostoMedicamentosGeneral + ScostoServiciosGeneral;
+
+    const costoTipoGeneral = "Consulta General"
     try{
 
-        const results = await administracionModel.consultaGeneral(nombrePropietarioConsulta,
+        const results = await administracionModel.consultaGeneral(
+            nombrePropietarioConsulta,
             nombrePacienteConsulta,motivoConsulta,
             medicamentosConsulta, pesoConsultaGeneral,
-            fechaAutomatica,idVeterinaria
+            fechaAutomatica,idVeterinaria, 
+            costoMedicamentosGeneral, 
+            costoExtrasGeneral, 
+            costoServiciosGeneral, 
+            costoDescripcionGeneral,
+            costoTotalGeneral,
+            costoTipoGeneral
         );
         return res.redirect('/administracion?success=consultaUpdate');
 
     }catch(error){
-        console.log("ERROR:ADMIN:INSERTCONSULTA: ", error)
+        console.log("ERROR:C:ADMIN:INSERTCONSULTA: ", error)
         res.redirect('/administracion?error=internalError');
     }
     
