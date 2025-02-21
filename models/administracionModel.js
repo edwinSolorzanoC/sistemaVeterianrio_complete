@@ -122,25 +122,33 @@ administracionModel.consultaVacunacion = async (nombrePropietarioVacunacion,
     nombrePacienteVacunacion, pesoVacunacion,
     nombreInyeccionVacunacion, nombreInyeccionDesparacitacion,
     fechaAutomatica,idVeterinaria,
+    costoMedicamentosVacunacion, 
+    costoExtrasVacunacion, 
+    costoServiciosVacunacion, 
+    costoDescripcionVacunacion,
+    costoTotalVacunacion,
+    costoTipoVacunacion
 ) => {
-    
-    const verificarExistenciaPacientes = `SELECT  idtb_pacientes
-    FROM tb_pacientes
-    JOIN tb_propietarios
-    ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
-    WHERE tb_pacientes_col_nombre = ? AND tb_propietarios_col_nombre = ?;`;
-    
+
+    const conecction = await pool.getConnection();
     try{
+
+        await conecction.beginTransaction();
+
+        const verificarExistenciaPacientes = `SELECT  idtb_pacientes
+        FROM tb_pacientes
+        JOIN tb_propietarios
+        ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+        WHERE tb_pacientes_col_nombre = ? AND tb_propietarios_col_nombre = ?;`;
+
+
         const [resultsBusqueda] = await pool.execute(verificarExistenciaPacientes, [
             nombrePacienteVacunacion, 
             nombrePropietarioVacunacion
         ])
 
-        let idMascota = null;
+        let idMascota = resultsBusqueda.length ? resultsBusqueda[0].idtb_pacientes : null;
 
-        if(resultsBusqueda.length){
-            idMascota = resultsBusqueda[0].idtb_pacientes;
-        }
 
         const peticionConsulta = `INSERT INTO tb_consultavacunacion (tb_consultaVacunacion_col_nombrePropietario, 
         tb_consultaVacunacion_col_nombrePaciente, tb_consultaVacunacion_col_actualizacionPeso,
@@ -149,19 +157,52 @@ administracionModel.consultaVacunacion = async (nombrePropietarioVacunacion,
         tb_pacientes_idtb_pacientes)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?);`;
 
-        
-
         const [results] = await pool.execute(peticionConsulta, [nombrePropietarioVacunacion,
-            nombrePacienteVacunacion, pesoVacunacion,
-            nombreInyeccionVacunacion, nombreInyeccionDesparacitacion,
-            fechaAutomatica, idVeterinaria, idMascota]);
+        nombrePacienteVacunacion, pesoVacunacion,
+        nombreInyeccionVacunacion, nombreInyeccionDesparacitacion,
+        fechaAutomatica, idVeterinaria, idMascota]);
 
-        return results
+
+        const idConsultaVacunacion = results.insertId;
+        const idConsultaGeneral = null;
+        const insertarCostos = `
+        INSERT INTO tb_costosconsultas(
+            tb_costosConsultas_col_medicamentos,
+            tb_costosConsultas_col_extras, 
+            tb_costosConsultas_col_consultal, 
+            tb_costosConsultas_col_descripcion,
+            tb_costosConsultas_col_total, 
+            tb_costosConsultas_col_tipo, 
+            tb_consultaGeneral_idtb_consultaGeneral,
+            tb_consultaVacunacion_idtb_consultaVacunacion)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
+
+        await pool.execute(insertarCostos, [
+            costoMedicamentosVacunacion, 
+            costoExtrasVacunacion, 
+            costoServiciosVacunacion, 
+            costoDescripcionVacunacion,
+            costoTotalVacunacion,
+            costoTipoVacunacion,
+            idConsultaGeneral,
+            idConsultaVacunacion
+        ]);
+
+        
+        await conecction.commit();
+        conecction.release();
+
+        return results;
+
 
     }catch(error){
+        await conecction.rollback();
+        conecction.release();
         console.log("ERROR:M:ADMIN:CONSULTAVAC: ", error)
         res.redirect('/?error=internalError');
+        
     }
+
 }
 
 export default administracionModel;

@@ -69,18 +69,41 @@ administracionController.insertarConsultaGeneral = async (req, res) => {
 }
 
 administracionController.insertaVacunacion = async (req, res) => {
-    const {nombrePropietarioVacunacion,nombrePacienteVacunacion,
-        pesoVacunacion, nombreInyeccionVacunacion,
-        nombreInyeccionDesparacitacion, fechaAutomatica = new Date().toISOString().slice(0, 10), // Formato: YYYY-MM-DD,,
-        idVeterinaria = req.session.user.id
+    const {nombrePropietarioVacunacion,
+        nombrePacienteVacunacion,
+        pesoVacunacion, 
+        nombreInyeccionVacunacion,
+        nombreInyeccionDesparacitacion, 
+        idVeterinaria = req.session.user.id,
+        costoMedicamentosVacunacion,
+        costoExtrasVacunacion,
+        costoServiciosVacunacion,
+        costoDescripcionVacunacion
     } = req.body;
+
+    const ScostoMedicamentosVacunacion = Number(costoMedicamentosVacunacion) || 0;
+    const ScostoExtrasVacunacion = Number(costoExtrasVacunacion) || 0;
+    const ScostoServiciosVacunacion = Number(costoServiciosVacunacion) || 0;
+
+    const costoTotalVacunacion = ScostoMedicamentosVacunacion + ScostoExtrasVacunacion + ScostoServiciosVacunacion;
+
+    const fechaAutomatica = new Date().toISOString().slice(0, 10); // Formato: YYYY-MM-DD
+
+    const costoTipoVacunacion = "Consulta Vacunacion"
+
 
     try{
 
         const results = await administracionModel.consultaVacunacion(nombrePropietarioVacunacion, nombrePacienteVacunacion,
             pesoVacunacion, nombreInyeccionVacunacion,
             nombreInyeccionDesparacitacion, fechaAutomatica,
-            idVeterinaria
+            idVeterinaria,
+            costoMedicamentosVacunacion, 
+            costoExtrasVacunacion, 
+            costoServiciosVacunacion, 
+            costoDescripcionVacunacion,
+            costoTotalVacunacion,
+            costoTipoVacunacion
         )
         return res.redirect('/administracion?success=consultaUpdate');
 
