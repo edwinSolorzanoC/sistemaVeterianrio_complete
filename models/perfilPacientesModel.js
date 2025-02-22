@@ -62,7 +62,8 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
         const peticionDatosConsultaGeneral = `SELECT 
         tb_consultaGeneral_col_fecha, 
         tb_consultaGeneral_col_motivo, 
-        tb_consultaGeneral_col_medicamentosUtilizados
+        tb_consultaGeneral_col_medicamentosUtilizados,
+        tb_costosConsultas_col_total
     
         FROM tb_consultageneral
     
@@ -71,6 +72,9 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
     
         JOIN tb_propietarios
         ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+
+        JOIN tb_costosConsultas
+        ON tb_consultageneral.idtb_consultaGeneral = tb_consultaGeneral_idtb_consultaGeneral
     
         WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
         AND tb_pacientes.tb_pacientes_col_nombre = ?
@@ -80,7 +84,8 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
         const peticionVacunacion = `SELECT 
         tb_consultaVacunacion_col_fecha,
         tb_consultaVacunacion_col_desparacitacion,
-        tb_consultaVacunacion_col_vacunacion
+        tb_consultaVacunacion_col_vacunacion,
+        tb_costosConsultas_col_total
         
         FROM tb_consultavacunacion
         
@@ -89,6 +94,9 @@ perfilPacientesModel.obtenerDatos = async (idVeterinaria,nombreMascota,nombrePro
         
         JOIN tb_propietarios
         ON tb_pacientes.tb_propietarios_tb_propietarios_col_cedula = tb_propietarios.tb_propietarios_col_cedula
+
+        JOIN tb_costosConsultas
+        ON tb_consultavacunacion.idtb_consultaVacunacion = tb_consultaVacunacion_idtb_consultaVacunacion
         
         WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?
         AND tb_pacientes.tb_pacientes_col_nombre = ?

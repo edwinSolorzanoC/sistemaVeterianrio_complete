@@ -78,7 +78,7 @@ administracionModel.consultaGeneral = async (nombrePropietarioConsulta,
         const idConsultaGeneral = resultsConsulta.insertId; // Obtener el ID de la consulta recién insertada
         const idConsultaVacunacion = null;
         const insertarCostos = `
-        INSERT INTO tb_costosconsultas(
+        INSERT INTO tb_costosConsultas(
             tb_costosConsultas_col_medicamentos,
             tb_costosConsultas_col_extras, 
             tb_costosConsultas_col_consultal, 
@@ -166,7 +166,7 @@ administracionModel.consultaVacunacion = async (nombrePropietarioVacunacion,
         const idConsultaVacunacion = results.insertId;
         const idConsultaGeneral = null;
         const insertarCostos = `
-        INSERT INTO tb_costosconsultas(
+        INSERT INTO tb_costosConsultas(
             tb_costosConsultas_col_medicamentos,
             tb_costosConsultas_col_extras, 
             tb_costosConsultas_col_consultal, 

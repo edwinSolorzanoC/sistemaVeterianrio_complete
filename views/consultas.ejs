@@ -35,12 +35,14 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Fecha</th>
-                                <th>Paciente</th>
-                                <th>Propietario</th>
-                                <th>Motivo</th>
-                                <th>Tratamiento</th>
-                                <th>Peso </th>
+                                <th class="fecha">Fecha</th>
+                                <th class="paciente">Paciente</th>
+                                <th class="propietario">Propietario</th>
+                                <th class="motivo">Motivo</th>
+                                <th class="tratamiento">Tratamiento</th>
+                                <th class="peso">Peso </th>
+                                <th class="precio">Costo de cosulta </th>
+
                             </tr>
                         </thead>
         
@@ -54,7 +56,8 @@
                                     <td class="motivo"><%=dato.tb_consultaGeneral_col_motivo %></td>
                                     <td class="tratamiento"><%=dato.tb_consultaGeneral_col_medicamentosUtilizados %></td>
                                     <td><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
-                                
+                                    <td><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
+
                                 </tr>
                                 <%}); %>
                             

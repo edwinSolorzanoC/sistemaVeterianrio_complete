@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         nuevaFila.insertCell(0).textContent = formatearFecha(item.tb_consultaGeneral_col_fecha);
                         nuevaFila.insertCell(1).textContent = item.tb_consultaGeneral_col_motivo;
                         nuevaFila.insertCell(2).textContent = item.tb_consultaGeneral_col_medicamentosUtilizados;
+                        nuevaFila.insertCell(3).textContent = "₡ " + item.tb_costosConsultas_col_total;
                     });
 
                     // Manejar las vacunaciones
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         nuevaFilaVacunacion.insertCell(0).textContent = formatearFecha(item.tb_consultaVacunacion_col_fecha);
                         nuevaFilaVacunacion.insertCell(1).textContent = item.tb_consultaVacunacion_col_desparacitacion;
                         nuevaFilaVacunacion.insertCell(2).textContent = item.tb_consultaVacunacion_col_vacunacion;
+                        nuevaFilaVacunacion.insertCell(3).textContent = "₡ " + item.tb_costosConsultas_col_total;
                     });
 
 
