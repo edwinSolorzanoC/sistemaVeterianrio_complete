@@ -52,3 +52,19 @@
 
 /* ----------------------------------------------------- */
 
+
+.bloque .ultimasConsultas{
+    background-color: white;
+
+    width: 100%;
+    padding: 1%;
+    margin: 1%;
+}
+.bloque .ultimasConsultas .titulo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.bloque .ultimasConsultas table .costoConsulta{
+    min-width: 100px;
+}

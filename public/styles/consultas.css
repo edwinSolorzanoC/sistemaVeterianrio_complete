@@ -16,14 +16,15 @@
     width: 100%;
     text-align: center;
 }
-.consultageneral .peso, .consultageneral .precio{
-    min-width: 70px;
-}
-.consultageneral .fecha, .consultageneral .paciente, .consultageneral .propietario{
-    min-width: 100px;
-}
-.consultageneral .tratamiento{
+.consultageneral .fecha, .consultageneral .propietario{
     min-width: 200px;
+}
+.consultageneral .costoConsulta, .consultageneral .pesoConsulta{
+    min-width: 200px;
+}
+.consultageneral .paciente{
+    min-width: 100px;
+
 }
 #consultavacunacion{
     display: none;

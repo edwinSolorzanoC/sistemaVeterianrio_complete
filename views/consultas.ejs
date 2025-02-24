@@ -55,8 +55,8 @@
                                     <td class="propietario"><%=dato.tb_consultaGeneral_col_nombrePropietario %></td>
                                     <td class="motivo"><%=dato.tb_consultaGeneral_col_motivo %></td>
                                     <td class="tratamiento"><%=dato.tb_consultaGeneral_col_medicamentosUtilizados %></td>
-                                    <td><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
-                                    <td><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
+                                    <td class="pesoConsulta"><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
+                                    <td class="costoConsulta">₡ <%=dato.tb_costosConsultas_col_total %></td>
 
                                 </tr>
                                 <%}); %>
@@ -76,6 +76,7 @@
                                 <th>Vacunacion</th>
                                 <th>Despacitacion</th>
                                 <th>Peso</th>
+                                <th>Costo Consulta</th>
                             </tr>
                         </thead>
         
@@ -87,7 +88,8 @@
                                     <td><%=dato.tb_consultaVacunacion_col_nombrePropietario %></td>
                                     <td><%=dato.tb_consultaVacunacion_col_vacunacion %></td>
                                     <td><%=dato.tb_consultaVacunacion_col_desparacitacion %></td>
-                                    <td><%=dato.tb_consultaVacunacion_col_actualizacionPeso %></td>
+                                    <td><%=dato.tb_consultaVacunacion_col_actualizacionPeso %>Kg</td>
+                                    <td>₡  <%=dato.tb_costosConsultas_col_total %></td>
                                 </tr>
                             <%}); %>
                             
