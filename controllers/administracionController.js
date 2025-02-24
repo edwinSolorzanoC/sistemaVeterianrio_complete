@@ -14,13 +14,29 @@ administracionController.inicioAdministracion = async (req, res) => {
         const results = await administracionModel.consultaInicio(idVeterinaria);
         
         // Renderizar la vista con los resultados y la alerta
-        res.render('administracion', {datos_pacientes: results});
+        res.render('administracion', {datos_pacientes: results.results, datos_consultas: results.resultsConsultas});
     } catch (error) {
         
-        console.error("ERROR:ADMIN:STARTADMIN:", error);
+        console.error("ERROR:C:ADMIN:STARTADMIN:", error);
         res.redirect('/?error=internalError');
     }
 };
+
+administracionController.actualizarDatosConsultas = async (req, res) => {
+
+    const idVeterinaria = req.session.user.id; 
+
+    try{
+        const { peticionConsultas } = await administracionModel.actualizarDatosConsultas(idVeterinaria);
+        res.json({
+            peticionConsultas
+        })
+        
+    }catch(error){
+        console.error("ERROR:C:ADMIN:ACTCONSULTA:", error);
+        res.redirect('/?error=internalError');
+    }
+}
 
 administracionController.insertarConsultaGeneral = async (req, res) => {
     

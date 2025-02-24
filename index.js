@@ -48,6 +48,7 @@ app.get('/administracion', administracionRouters);
 app.post('/consultageneral', administracionRouters);
 app.post('/consultavacunacion', administracionRouters);
 app.get('/logout', administracionRouters);
+app.post('/actualizarConsultas',administracionRouters);
 
 import registroPacientesRouters from './routes/registroPacientesRouters.js';
 app.get('/registroPacientes', registroPacientesRouters);

@@ -15,16 +15,72 @@ administracionModel.consultaInicio = async (idVeterinaria) => {
     ON tb_propietarios_tb_propietarios_col_cedula = tb_propietarios_col_cedula 
     WHERE tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`;
 
+
+    const queryDatosConsultas = `SELECT 
+    tb_consultaGeneral_col_fecha, 
+    tb_consultaGeneral_col_nombrePropietario,
+    tb_consultaGeneral_col_nombrePaciente, 
+    tb_consultaGeneral_col_motivo,
+    tb_costosConsultas_col_total,
+    tb_costosConsultas_col_medicamentos,
+    tb_costosConsultas_col_extras,
+    tb_costosConsultas_col_consultal,
+    tb_costosConsultas_col_descripcion
+    
+    FROM tb_consultageneral
+    
+    JOIN tb_costosConsultas
+    ON tb_consultageneral.idtb_consultaGeneral = tb_consultaGeneral_idtb_consultaGeneral
+    
+    WHERE tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ? 
+    ORDER BY tb_consultaGeneral_col_fecha DESC, idtb_consultaGeneral DESC
+    LIMIT 5;`;
+
     try {
         const [results] = await pool.execute(queryDatosUsuario, [idVeterinaria]);
-        return results;
+        const [resultsConsultas] = await pool.execute(queryDatosConsultas, [idVeterinaria]);
+
+        return {results, resultsConsultas};
     } catch (error) {
         console.log("ERROR:M:ADMIN:START: ", error)
         res.redirect('/?error=internalError');
     }
 };
 
+administracionModel.actualizarDatosConsultas = async (idVeterinaria) => {
 
+    try {
+        const queryDatosConsultas = `SELECT 
+        tb_consultaGeneral_col_fecha, 
+        tb_consultaGeneral_col_nombrePropietario,
+        tb_consultaGeneral_col_nombrePaciente, 
+        tb_consultaGeneral_col_motivo,
+        tb_costosConsultas_col_total,
+        tb_costosConsultas_col_medicamentos,
+        tb_costosConsultas_col_extras,
+        tb_costosConsultas_col_consultal,
+        tb_costosConsultas_col_descripcion
+        
+        FROM tb_consultageneral
+        
+        JOIN tb_costosConsultas
+        ON tb_consultageneral.idtb_consultaGeneral = tb_consultaGeneral_idtb_consultaGeneral
+        
+        WHERE tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ? 
+        ORDER BY tb_consultaGeneral_col_fecha DESC, idtb_consultaGeneral DESC
+        LIMIT 5;`;
+
+    
+        const [peticionConsultas] = await pool.execute(queryDatosConsultas, [idVeterinaria]);
+
+        return {peticionConsultas};
+    } catch (error) {
+        console.log("ERROR:M:ADMIN:CONSULTA CONSULTAS: ", error)
+        res.redirect('/?error=internalError');
+    }
+
+
+}
 
 administracionModel.consultaGeneral = async (nombrePropietarioConsulta,
     nombrePacienteConsulta, motivoConsulta,

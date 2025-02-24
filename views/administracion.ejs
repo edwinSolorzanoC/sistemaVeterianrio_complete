@@ -191,6 +191,60 @@
 
         </section>
 
+        <section class="bloque">
+
+            <div class="ultimasConsultas">
+
+                <div class="titulo">
+                    <div>
+                        <h1>Ultimas consultas</h1>
+                        <p>Ultimas 5 consultas registradas</p>
+                    </div>
+                    <button type="button" class="actualizarConsultas" id="actualizarConsultas">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+                </div>
+
+
+                <div class="tablaConsultas" id="tablaConsultas">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mascota</th>
+                                <th>Propietario</th>
+                                <th>Fecha Consulta</th>
+                                <th>Descripción de consulta</th>
+                                <th>Costo por servicios</th>
+                                <th>Costo Medicamentos</th>
+                                <th>Costo Extras</th>
+                                <th>Costo Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% datos_consultas.forEach(dato => { %>
+                                <tr class="linea-tabla">
+                                    <td><%= dato.tb_consultaGeneral_col_nombrePaciente %></td>
+                                    <td><%= dato.tb_consultaGeneral_col_nombrePropietario %></td>
+                                    <td><%= new Date( dato.tb_consultaGeneral_col_fecha).toLocaleDateString('es-ES') %></td>
+
+                                    <td><%= dato.tb_costosConsultas_col_descripcion %></td>
+                                    <td>₡  <%= dato.tb_costosConsultas_col_consultal %></td>
+                                    <td>₡  <%= dato.tb_costosConsultas_col_medicamentos %></td>
+                                    <td>₡  <%= dato.tb_costosConsultas_col_extras %></td>
+                                    <td class="costoConsulta">₡  <%= dato.tb_costosConsultas_col_total %></td>
+
+                                </tr>
+                            <% }); %>
+
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+
+        
 
     </main>
 
@@ -202,7 +256,8 @@
     <script src="js/admin_navegacion.js"></script>
     <script src="js/admin_datosTablasMostrar.js"></script>
     <script src="js/main.js"></script>
-    
+    <script src="js/admin_AJAX.js"></script>    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/alertas.js"></script>
 
