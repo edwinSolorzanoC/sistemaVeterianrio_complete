@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 nuevaFila.insertCell(2).textContent = formatearFecha(element.tb_consultaGeneral_col_fecha);
                 nuevaFila.insertCell(3).textContent = element.tb_costosConsultas_col_descripcion;
                 nuevaFila.insertCell(4).textContent ="₡ "+element.tb_costosConsultas_col_consultal;
-                nuevaFila.insertCell(5).textContent = "₡ "+element.tb_costosConsultas_col_medicamentos;
+                nuevaFila.insertCell(5).textContent ="₡ "+element.tb_costosConsultas_col_medicamentos;
                 nuevaFila.insertCell(6).textContent ="₡ "+element.tb_costosConsultas_col_extras;
-                nuevaFila.insertCell(7).textContent = "₡ "+element.tb_costosConsultas_col_total;
+                nuevaFila.insertCell(7).textContent ="₡ "+element.tb_costosConsultas_col_total;
                 
             });
         }).catch(err => {

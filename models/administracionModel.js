@@ -53,8 +53,7 @@ administracionModel.actualizarDatosConsultas = async (idVeterinaria) => {
         const queryDatosConsultas = `SELECT 
         tb_consultaGeneral_col_fecha, 
         tb_consultaGeneral_col_nombrePropietario,
-        tb_consultaGeneral_col_nombrePaciente, 
-        tb_consultaGeneral_col_motivo,
+        tb_consultaGeneral_col_nombrePaciente,
         tb_costosConsultas_col_total,
         tb_costosConsultas_col_medicamentos,
         tb_costosConsultas_col_extras,
